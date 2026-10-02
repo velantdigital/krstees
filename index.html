@@ -1,0 +1,2811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Custom Tees | KRS Tees</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="images/logo/krs-tees-star-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!-- PayPal Client ID for the KRSTees app is filled in below. This is the PUBLIC id, safe to have in
+     a page's source — never put the Secret here or anywhere in this file. enable-funding=venmo is what makes
+     the separate Venmo button appear alongside the PayPal one. -->
+<script src="https://www.paypal.com/sdk/js?client-id=BAACoIJgsUQtvi5RyCH09TJaWfQK8znOmPCBamtAXzozbuGz0P4JHJkVLjLx-wQgbngI7sSDDTjRnUB_Us&currency=USD&enable-funding=venmo"></script>
+<script>
+// Safety net: if any product/logo photo ever fails to load (missing file, bad path,
+// still being photographed, etc.) show a friendly "Photo coming soon" placeholder
+// instead of a broken-image icon — a garment photo on the customizers, or just hide
+// a logo overlay so it doesn't leave an ugly box floating on top of the shirt.
+// This is registered before the page body loads so it catches every image, including
+// the very first ones the browser requests.
+(function(){
+  var FALLBACK = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgNTAwIDUwMCI+CiAgPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNGRkY5RjAiLz4KICA8cmVjdCB4PSIxMiIgeT0iMTIiIHdpZHRoPSI0NzYiIGhlaWdodD0iNDc2IiByeD0iMTgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0U4QTk0RiIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtZGFzaGFycmF5PSIxMCA4Ii8+CiAgPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRTM5QjM3IiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgPHBhdGggZD0iTTE3MCAxMjAgTDIwMCAxMDAgTDI1MCAxMzAgTDMwMCAxMDAgTDMzMCAxMjAgTDM2MCAxNjUgTDMyMCAxOTUgTDMwMCAxODAgTDMwMCA0MDAgTDIwMCA0MDAgTDIwMCAxODAgTDE4MCAxOTUgTDE0MCAxNjUgWiIvPgogIDwvZz4KICA8dGV4dCB4PSIyNTAiIHk9IjQ0NSIgZm9udC1mYW1pbHk9IlBvcHBpbnMsU2Vnb2UgVUksQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzE2MTYxNiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UGhvdG8gY29taW5nIHNvb248L3RleHQ+Cjwvc3ZnPg==";
+  document.addEventListener('error', function(e){
+    var t = e.target;
+    if (!t || t.tagName !== 'IMG' || t.dataset.fallbackApplied) return;
+    t.dataset.fallbackApplied = '1';
+    if (t.classList.contains('logoOverlay')) {
+      t.style.display = 'none';
+    } else if (t.src !== FALLBACK) {
+      t.src = FALLBACK;
+    }
+  }, true);
+})();
+</script>
+<style>
+  :root{
+    --gold:#E8A94F;
+    --gold-deep:#E39B37;
+    --ink:#161616;
+    --coral:#E8735A;
+    --coral-dark:#D65F47;
+    --cream:#FFF9F0;
+    --line:rgba(22,22,22,0.14);
+    --ok:#2E7D4F;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Poppins',system-ui,-apple-system,Segoe UI,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.5;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  /* ---------- top nav ---------- */
+  header.site-nav{
+    background:var(--ink);
+    color:#f2f2f2;
+    padding:16px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .brand{
+    font-weight:800;
+    font-size:1.15rem;
+    letter-spacing:.02em;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .brand .star{color:var(--coral);}
+  .site-nav nav{display:flex;gap:22px;font-size:.92rem;flex-wrap:wrap;align-items:center;}
+  .site-nav nav a{text-decoration:none;color:#cfcfcf;}
+  .site-nav nav a:hover{color:#fff;}
+  .cart-link{display:inline-flex;align-items:center;font-weight:700;}
+  .cart-badge{
+    background:var(--coral); color:#fff; font-weight:800; font-size:.72rem;
+    border-radius:999px; min-width:18px; height:18px; line-height:18px;
+    display:inline-block; text-align:center; padding:0 5px; margin-left:6px;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:linear-gradient(180deg,var(--gold) 0%,var(--gold-deep) 100%);
+    padding:clamp(28px,6vw,56px) 20px;
+    text-align:center;
+  }
+  .hero h1{
+    font-size:clamp(1.7rem,5.5vw,2.8rem);
+    margin:0 0 10px;
+    font-weight:800;
+    line-height:1.1;
+  }
+  .hero p{
+    max-width:560px;
+    margin:0 auto;
+    font-size:clamp(.95rem,2.2vw,1.05rem);
+    color:#241a08;
+  }
+  .hero .tagline{
+    display:inline-block;
+    margin-top:14px;
+    background:var(--ink);
+    color:#fff;
+    padding:6px 16px;
+    border-radius:999px;
+    font-size:.85rem;
+    font-weight:600;
+    letter-spacing:.03em;
+  }
+
+  /* ---------- gallery strip ---------- */
+  .gallery-note{
+    max-width:820px;
+    margin:0 auto;
+    padding:22px 20px 0;
+    text-align:center;
+    font-size:.95rem;
+  }
+  .gallery-note a{
+    color:var(--coral-dark);
+    font-weight:700;
+    text-decoration:underline;
+  }
+
+  /* ---------- tab bar ---------- */
+  .tab-bar{
+    max-width:900px;
+    margin:22px auto 0;
+    padding:0 18px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+  }
+  .tab-btn{
+    border:1.5px solid var(--line);
+    background:#fff;
+    color:var(--ink);
+    padding:10px 20px;
+    border-radius:999px;
+    font-family:inherit;
+    font-size:.92rem;
+    font-weight:700;
+    cursor:pointer;
+  }
+  .tab-btn.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .tab-panel[hidden]{display:none;}
+  .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:10px;}
+  .portfolio-card{border:1.5px solid var(--line);border-radius:14px;overflow:hidden;background:#fffdf9;}
+  .portfolio-card img{width:100%;display:block;}
+  .portfolio-card .pinfo{padding:12px 14px;}
+  .portfolio-card h3{margin:0 0 4px;font-size:.95rem;}
+  .portfolio-card p{margin:0;font-size:.8rem;color:#666;}
+  .custom-hero{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:10px;}
+  .custom-hero-img{border-radius:16px;overflow:hidden;}
+  .custom-hero-img img{width:100%;height:100%;object-fit:cover;display:block;}
+  .custom-hero-caption{text-align:center;font-size:.85rem;color:#666;font-style:italic;margin:0 0 22px;}
+  @media (max-width:640px){ .custom-hero{grid-template-columns:1fr;} }
+  .tab-section-heading{
+    max-width:900px;
+    margin:26px auto 4px;
+    padding:0 18px 8px;
+    font-size:1.3rem;
+    font-weight:800;
+    letter-spacing:.5px;
+    color:var(--ink);
+    border-bottom:3px solid var(--coral);
+  }
+  .tab-panel > .tab-section-heading:first-child{margin-top:6px;}
+
+  /* ---------- layout ---------- */
+  main{max-width:900px;margin:0 auto;padding:30px 18px 70px;}
+  .card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:clamp(18px,4vw,32px);
+    margin-bottom:26px;
+    box-shadow:0 2px 10px rgba(22,22,22,0.04);
+  }
+  .card h2{
+    font-size:1.3rem;
+    margin:0 0 4px;
+    font-weight:800;
+  }
+  .card .sub{
+    color:#555;
+    font-size:.92rem;
+    margin:0 0 20px;
+  }
+  .step-pill{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:26px;height:26px;
+    background:var(--coral);
+    color:#fff;
+    border-radius:50%;
+    font-size:.8rem;
+    font-weight:700;
+    margin-right:8px;
+  }
+
+  /* ---------- form ---------- */
+  .field{margin-bottom:18px;}
+  .field label{
+    display:block;
+    font-weight:600;
+    font-size:.88rem;
+    margin-bottom:6px;
+  }
+  .field .hint{
+    font-weight:400;
+    color:#777;
+    font-size:.78rem;
+  }
+  input[type=text],
+  input[type=email],
+  input[type=tel],
+  input[type=date],
+  input[type=number],
+  select,
+  textarea{
+    width:100%;
+    padding:11px 12px;
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    font-family:inherit;
+    font-size:.95rem;
+    background:#fffdf9;
+    color:var(--ink);
+  }
+  textarea{resize:vertical;min-height:80px;}
+  input:focus,select:focus,textarea:focus{
+    outline:none;
+    border-color:var(--coral);
+  }
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media (max-width:520px){ .row2{grid-template-columns:1fr;} }
+
+  /* size/qty grid */
+  .size-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(84px,1fr));
+    gap:10px;
+    margin-top:6px;
+  }
+  .size-box{
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    padding:8px;
+    text-align:center;
+    background:#fffdf9;
+  }
+  .size-box label{
+    font-size:.78rem;
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .size-box input{
+    padding:8px 4px;
+    text-align:center;
+  }
+
+  .btn{
+    display:inline-block;
+    background:var(--coral);
+    color:#fff;
+    border:none;
+    padding:14px 26px;
+    border-radius:999px;
+    font-size:1rem;
+    font-weight:700;
+    cursor:pointer;
+    text-decoration:none;
+    text-align:center;
+  }
+  .btn:hover{background:var(--coral-dark);}
+  .btn.secondary{
+    background:var(--ink);
+  }
+  .btn.secondary:hover{background:#000;}
+  .btn.block{display:block;width:100%;}
+
+  .form-actions{margin-top:8px;}
+  .form-note{font-size:.82rem;color:#777;margin-top:10px;}
+
+  /* ready-made catalog */
+  .product-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:16px;
+    margin-top:10px;
+  }
+  .product-card{
+    border:1.5px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    background:#fffdf9;
+  }
+  .product-card .thumb{
+    aspect-ratio:1/1;
+    background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#3a2a0f;
+    font-weight:700;
+    font-size:.85rem;
+    text-align:center;
+    padding:10px;
+  }
+  .product-card .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .product-card .pinfo{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .product-card h3{margin:0;font-size:1rem;}
+  .product-card .price{font-weight:800;color:var(--coral-dark);font-size:1.05rem;}
+  .product-card select,.product-card input[type=number]{padding:8px;font-size:.85rem;}
+  .product-card .row2{gap:8px;}
+  .product-card .btn{padding:10px 16px;font-size:.9rem;margin-top:4px;}
+
+  /* cart */
+  #cartSection.empty #cartBody{display:none;}
+  #cartSection:not(.empty) #cartEmptyMsg{display:none;}
+  .cart-line{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+    font-size:.92rem;
+  }
+  .cart-line .meta{color:#666;font-size:.8rem;}
+  .cart-line .remove{
+    background:none;border:none;color:var(--coral-dark);
+    font-size:.8rem;font-weight:700;cursor:pointer;padding:4px;
+  }
+  .cart-subtotal-row{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:3px 0;font-size:.88rem;color:#555;
+  }
+  .cart-total{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 0 6px;font-weight:800;font-size:1.1rem;
+  }
+  .paypal-btns-wrap{max-width:420px;margin:14px auto 0;}
+  .paypal-btns-wrap .hint{display:block;text-align:center;margin-top:8px;}
+  .amount-row{display:flex;gap:10px;align-items:flex-end;margin-bottom:14px;}
+  .amount-row .field{flex:1;margin-bottom:0;}
+  #quoteButtonsBox{display:none;}
+
+  /* payment section */
+  .pay-options{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:16px;
+  }
+  @media (max-width:480px){ .pay-options{grid-template-columns:1fr;} }
+  .pay-card{
+    border:1.5px solid var(--line);
+    border-radius:14px;
+    padding:18px;
+    text-align:center;
+  }
+  .pay-card img.logo-txt{height:22px;margin:0 auto 10px;}
+  .pay-card h3{margin:0 0 6px;font-size:1.05rem;}
+  .pay-card p{font-size:.85rem;color:#555;margin:0 0 14px;}
+
+  .timeline{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:6px;
+  }
+  .timeline .tstep{
+    flex:1 1 140px;
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px;
+    font-size:.85rem;
+  }
+  .timeline .tstep b{display:block;margin-bottom:4px;font-size:.9rem;}
+
+  footer{
+    text-align:center;
+    padding:26px 18px 40px;
+    font-size:.8rem;
+    color:#777;
+  }
+  footer a{color:var(--coral-dark);text-decoration:underline;}
+
+  #confirmBanner{
+    display:none;
+    background:#e8f5ee;
+    border:1.5px solid var(--ok);
+    color:#1c5c38;
+    padding:14px 18px;
+    border-radius:12px;
+    margin-bottom:20px;
+    font-size:.92rem;
+  }
+
+  /* ---------- tee customizer ---------- */
+  .customizer-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:26px;}
+  @media (max-width:680px){ .customizer-grid{grid-template-columns:1fr;} }
+  .preview-stage{
+    position:relative;
+    border-radius:14px;
+    overflow:hidden;
+    background:#f2ede1;
+    border:1px solid var(--line);
+  }
+  .preview-stage img.baseShirt{width:100%;display:block;}
+  .preview-stage img.logoOverlay{
+    position:absolute;
+    top:20%;
+    left:50%;
+    width:44%;
+    transform:translateX(-50%);
+    pointer-events:none;
+    filter:drop-shadow(0 1px 3px rgba(0,0,0,.3));
+  }
+  .cust-label{font-weight:700;font-size:.88rem;display:block;margin:0 0 8px;}
+  .swatch-row{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 6px;}
+  .swatch-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;}
+  .swatch{
+    width:42px;height:42px;border-radius:50%;
+    border:2px solid var(--line);
+    cursor:pointer;background-size:cover;background-position:center;
+  }
+  .swatch.active{border-color:var(--coral);box-shadow:0 0 0 2px #fff,0 0 0 4px var(--coral);}
+  .swatch-label{font-size:.7rem;color:#666;text-align:center;line-height:1.1;}
+  .logo-row{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 6px;}
+  .logo-thumb{
+    width:62px;height:62px;border-radius:10px;
+    border:2px solid var(--line);cursor:pointer;background:#f2ede1;
+    display:flex;align-items:center;justify-content:center;padding:6px;
+  }
+  .logo-thumb img{max-width:100%;max-height:100%;}
+  .logo-thumb.active{border-color:var(--coral);background:#fff3ec;}
+  .logo-thumb .none-thumb{font-size:.62rem;font-weight:700;color:#888;text-align:center;line-height:1.15;}
+  .seg-toggle{display:inline-flex;border:1.5px solid var(--line);border-radius:999px;overflow:hidden;margin-bottom:4px;}
+  .seg-toggle button{
+    border:none;background:#fff;padding:8px 20px;font-size:.85rem;font-weight:700;
+    cursor:pointer;color:#555;font-family:inherit;
+  }
+  .seg-toggle button.active{background:var(--coral);color:#fff;}
+  .size-chart-link{
+    background:none;border:none;color:var(--coral-dark);text-decoration:underline;
+    font-size:.8rem;font-weight:700;cursor:pointer;padding:0;margin-top:8px;font-family:inherit;
+  }
+  .size-chart-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.76rem;display:none;}
+  .size-chart-table.show{display:table;}
+  .size-chart-table th,.size-chart-table td{border-bottom:1px solid var(--line);padding:6px 4px;text-align:center;white-space:nowrap;}
+  .size-chart-table th:first-child,.size-chart-table td:first-child{text-align:left;}
+  .fabric-note{font-size:.78rem;color:#666;margin-top:8px;}
+  .cust-price{font-size:1.35rem;font-weight:800;color:var(--coral-dark);margin:12px 0 6px;}
+  .trademark-note{
+    font-size:.76rem;color:#8a6d1f;background:#fdf3da;border:1px solid #ecd48f;
+    border-radius:10px;padding:8px 10px;margin-top:14px;
+  }
+
+  /* ---------- front/back view toggle + print placement + back print ---------- */
+  .view-toggle{margin:10px 0 0;text-align:center;}
+  .preview-stage img.backLogoOverlay{
+    position:absolute;
+    top:22%;
+    left:50%;
+    width:44%;
+    transform:translateX(-50%);
+    pointer-events:none;
+    filter:drop-shadow(0 1px 3px rgba(0,0,0,.3));
+    display:none;
+  }
+  .backTextOverlay{
+    position:absolute;left:50%;top:30%;
+    transform:translateX(-50%);
+    text-align:center;pointer-events:none;color:#222;font-weight:800;
+    text-transform:uppercase;line-height:1.05;display:none;
+    text-shadow:0 1px 2px rgba(255,255,255,.35);
+  }
+  .backTextOverlay .bt-name{display:block;font-size:1.05rem;letter-spacing:.02em;}
+  .backTextOverlay .bt-number{display:block;font-size:2.1rem;margin-top:2px;}
+  .jersey-back-note{font-size:.76rem;color:#666;margin-top:6px;font-style:italic;display:none;}
+  .placement-options{display:flex;flex-direction:column;gap:8px;margin:0 0 4px;}
+  .placement-opt{
+    display:flex;align-items:flex-start;gap:8px;border:1.5px solid var(--line);
+    border-radius:10px;padding:8px 10px;cursor:pointer;
+  }
+  .placement-opt input{margin-top:3px;}
+  .placement-opt.active{border-color:var(--coral);background:#fff3ec;}
+  .placement-opt strong{display:block;font-size:.83rem;}
+  .placement-opt .desc{display:block;color:#666;font-size:.74rem;margin-top:1px;}
+  .back-fields{display:none;margin-top:12px;}
+  .back-fields.show{display:grid;}
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="brand"><img src="images/logo/krs-tees-star-512.png" alt="KRS Tees" style="height:2.1em;width:auto;margin-right:2px;"> KRS TEES</div>
+  <nav>
+    <a href="#customize-tee">Order a Custom Tee</a>
+    <a href="#cartSection" class="cart-link" id="cartNavLink">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-4px;margin-right:4px;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>Cart<span class="cart-badge" id="cartNavCount" hidden>0</span>
+    </a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Shop Ready Designs or Go Fully Custom</h1>
+  <p>Grab a ready-made bestseller now, or tell us the team and we'll build it from scratch — either way, hand-pressed to order.</p>
+  <span class="tagline">WEAR THE WIN</span>
+</section>
+
+<div class="tab-bar" id="tabBar">
+  <button type="button" class="tab-btn active" data-tab="softball">Softball / Baseball</button>
+  <button type="button" class="tab-btn" data-tab="soccer">Soccer</button>
+  <button type="button" class="tab-btn" data-tab="school">School</button>
+  <button type="button" class="tab-btn" data-tab="custom">Custom Printing</button>
+</div>
+
+<main>
+
+  <div id="confirmBanner"></div>
+
+  <!-- ============ TAB: SOFTBALL / BASEBALL ============ -->
+  <div class="tab-panel" id="tab-softball" data-tab-panel="softball">
+
+  <h2 class="tab-section-heading">For the Players</h2>
+
+  <!-- JERSEY CUSTOMIZER -->
+  <section class="card" id="customize-jersey">
+    <h2>Customize the Player Practice Jersey</h2>
+    <p class="sub">Youth performance fabric — moisture-management, UPF 50 protection, snag-resistant, standard fit, self-fabric collar, rolled forward shoulder. Cleavers logo on the front; child's first name &amp; number on the back.</p>
+
+    <div class="customizer-grid">
+      <div>
+        <div class="preview-stage" id="jerseyPreviewStage">
+          <img class="baseShirt" id="jerseyPreviewShirt" src="images/jersey/heather-granite-front.jpg" alt="Player Practice Jersey preview">
+        </div>
+        <div class="seg-toggle view-toggle" id="jerseyViewToggle">
+          <button type="button" data-view="front" class="active">Front</button>
+          <button type="button" data-view="back">Back</button>
+        </div>
+        <p class="jersey-back-note" id="jerseyBackNote">Back shown with a sample name &amp; number for reference — yours will be pressed with the name and number you enter below.</p>
+        <p class="fabric-note" id="jerseyFabricNote">Performance fabric — moisture-management, UPF 50, snag-resistant.</p>
+      </div>
+
+      <div>
+        <span class="cust-label">Color</span>
+        <div class="swatch-row" id="jerseyColorSwatches"></div>
+
+        <div class="row2" style="margin-top:14px;">
+          <div class="field" style="margin-bottom:0;">
+            <label for="jerseyBackName">Child's First Name</label>
+            <input type="text" id="jerseyBackName" placeholder="e.g. Casey" maxlength="14">
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label for="jerseyBackNumber">Number</label>
+            <input type="text" id="jerseyBackNumber" placeholder="e.g. 8" maxlength="3">
+          </div>
+        </div>
+
+        <div class="row2" style="margin-top:12px;">
+          <div class="field" style="margin-bottom:0;">
+            <label for="jerseySize">Youth Size</label>
+            <select id="jerseySize">
+              <option>Youth XS</option>
+              <option>Youth S</option>
+              <option>Youth M</option>
+              <option>Youth L</option>
+              <option>Youth XL</option>
+            </select>
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label for="jerseyQty">Qty</label>
+            <input type="number" id="jerseyQty" min="1" value="1">
+          </div>
+        </div>
+        <button type="button" class="size-chart-link" id="jerseySizeChartToggle">View size chart</button>
+        <table class="size-chart-table" id="jerseyChart"></table>
+
+        <div class="cust-price" id="jerseyPrice">$20.00</div>
+        <button type="button" class="btn block" id="addCustomJersey">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <h2 class="tab-section-heading">For the Fans</h2>
+
+  <!-- TEE CUSTOMIZER -->
+  <section class="card" id="customize-tee">
+    <h2>Dryblend T-shirt, Unisex and Youth Sizes</h2>
+    <p class="sub">Gildan DryBlend T-Shirt — 50/50 cotton/polyester. Adult sizing is classic fit; Youth sizing is modern classic fit. Classic-width rib collar, taped neck &amp; shoulders. Same shirt and same colors in Adult and Youth sizing.</p>
+
+    <div class="customizer-grid">
+      <div>
+        <div class="preview-stage" id="previewStage">
+          <img class="baseShirt" id="previewShirt" src="images/tee/ash-front.jpg" alt="DryBlend T-Shirt preview">
+          <img class="logoOverlay" id="previewLogo" src="images/logos/cleavers-full.png" alt="Cleavers logo placement preview">
+          <img class="backLogoOverlay" id="previewBackLogo" src="images/logos/cleavers-full.png" alt="Cleavers logo, back">
+          <div class="backTextOverlay" id="previewBackText"><span class="bt-name"></span><span class="bt-number"></span></div>
+        </div>
+        <div class="seg-toggle view-toggle" id="teeViewToggle">
+          <button type="button" data-view="front" class="active">Front</button>
+          <button type="button" data-view="back">Back</button>
+        </div>
+        <p class="fabric-note" id="fabricNote">50% cotton / 50% polyester DryBlend.</p>
+      </div>
+
+      <div>
+        <span class="cust-label">Color</span>
+        <div class="swatch-row" id="colorSwatches"></div>
+
+        <span class="cust-label" style="margin-top:10px;">Logo — choose design</span>
+        <div class="logo-row" id="logoThumbs"></div>
+
+        <span class="cust-label" style="margin-top:10px;">Print Placement</span>
+        <div class="placement-options" id="teePlacementOptions">
+          <label class="placement-opt" data-placement="front-only">
+            <input type="radio" name="teePlacement" value="front-only" checked>
+            <span><strong>Front only</strong><span class="desc">Your chosen design, centered on the front.</span></span>
+          </label>
+          <label class="placement-opt" data-placement="back-name">
+            <input type="radio" name="teePlacement" value="back-name">
+            <span><strong>Add back number and/or name</strong><span class="desc">Front design plus a name/number on the back.</span></span>
+          </label>
+          <label class="placement-opt" data-placement="chest-back-logo">
+            <input type="radio" name="teePlacement" value="chest-back-logo">
+            <span><strong>Small front chest + large back logo</strong><span class="desc">Front chest: logo icon only. Back: full logo + Cleavers name.</span></span>
+          </label>
+        </div>
+
+        <div class="row2 back-fields" id="teeBackFields">
+          <div class="field" style="margin-bottom:0;">
+            <label for="teeBackName">Back Name (optional)</label>
+            <input type="text" id="teeBackName" placeholder="e.g. Casey" maxlength="14">
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label for="teeBackNumber">Back Number (optional)</label>
+            <input type="text" id="teeBackNumber" placeholder="e.g. 8" maxlength="3">
+          </div>
+        </div>
+
+        <span class="cust-label" style="margin-top:10px;">Fit</span>
+        <div class="seg-toggle" id="fitToggle">
+          <button type="button" data-fit="adult" class="active">Adult</button>
+          <button type="button" data-fit="youth">Youth</button>
+        </div>
+
+        <div class="row2" style="margin-top:12px;">
+          <div class="field" style="margin-bottom:0;">
+            <label for="custSize">Size</label>
+            <select id="custSize"></select>
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label for="custQty">Qty</label>
+            <input type="number" id="custQty" min="1" value="1">
+          </div>
+        </div>
+        <button type="button" class="size-chart-link" id="sizeChartToggle">View size chart</button>
+        <table class="size-chart-table" id="adultChart"></table>
+        <table class="size-chart-table" id="youthChart"></table>
+
+        <div class="cust-price" id="custPrice">$25.00</div>
+        <button type="button" class="btn block" id="addCustomTee">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERFORMANCE TEE CUSTOMIZER -->
+  <section class="card" id="customize-perf">
+    <h2>Unisex Performance Dri-fit</h2>
+    <p class="sub">100% polyester moisture-management &amp; antimicrobial Dri-fit performance fabric, self-fabric collar, double-needle stitched hem with tack. Adult sizing.</p>
+
+    <div class="customizer-grid">
+      <div>
+        <div class="preview-stage" id="perfPreviewStage">
+          <img class="baseShirt" id="perfPreviewShirt" src="images/perf/black-front.jpg" alt="Unisex Performance Tee preview">
+          <img class="logoOverlay" id="perfPreviewLogo" src="images/logos/cleavers-full.png" alt="Cleavers logo placement preview">
+          <img class="backLogoOverlay" id="perfPreviewBackLogo" src="images/logos/cleavers-full.png" alt="Cleavers logo, back">
+          <div class="backTextOverlay" id="perfPreviewBackText"><span class="bt-name"></span><span class="bt-number"></span></div>
+        </div>
+        <div class="seg-toggle view-toggle" id="perfViewToggle">
+          <button type="button" data-view="front" class="active">Front</button>
+          <button type="button" data-view="back">Back</button>
+        </div>
+        <p class="fabric-note">100% polyester moisture-management/antimicrobial performance fabric.</p>
+      </div>
+
+      <div>
+        <span class="cust-label">Color</span>
+        <div class="swatch-row" id="perfColorSwatches"></div>
+
+        <span class="cust-label" style="margin-top:10px;">Logo — choose design</span>
+        <div class="logo-row" id="perfLogoThumbs"></div>
+
+        <span class="cust-label" style="margin-top:10px;">Print Placement</span>
+        <div class="placement-options" id="perfPlacementOptions">
+          <label class="placement-opt" data-placement="front-only">
+            <input type="radio" name="perfPlacement" value="front-only" checked>
+            <span><strong>Front only</strong><span class="desc">Your chosen design, centered on the front.</span></span>
+          </label>
+          <label class="placement-opt" data-placement="back-name">
+            <input type="radio" name="perfPlacement" value="back-name">
+            <span><strong>Add back number and/or name</strong><span class="desc">Front design plus a name/number on the back.</span></span>
+          </label>
+          <label class="placement-opt" data-placement="chest-back-logo">
+            <input type="radio" name="perfPlacement" value="chest-back-logo">
+            <span><strong>Small front chest + large back logo</strong><span class="desc">Front chest: logo icon only. Back: full logo + Cleavers name.</span></span>
+          </label>
+        </div>
+
+        <div class="row2 back-fields" id="perfBackFields">
+          <div class="field" style="margin-bottom:0;">
+            <label for="perfBackName">Back Name (optional)</label>
+            <input type="text" id="perfBackName" placeholder="e.g. Casey" maxlength="14">
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label for="perfBackNumber">Back Number (optional)</label>
+            <input type="text" id="perfBackNumber" placeholder="e.g. 8" maxlength="3">
+          </div>
+        </div>
+
+        <div class="row2" style="margin-top:12px;">
+          <div class="field" style="margin-bottom:0;">
+            <label for="perfSize">Size</label>
+            <select id="perfSize"></select>
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label for="perfQty">Qty</label>
+            <input type="number" id="perfQty" min="1" value="1">
+          </div>
+        </div>
+        <button type="button" class="size-chart-link" id="perfSizeChartToggle">View size chart</button>
+        <table class="size-chart-table" id="perfChart"></table>
+
+        <div class="cust-price" id="perfPrice">$25.00</div>
+        <button type="button" class="btn block" id="addCustomPerf">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- WOMEN'S PERFORMANCE DRI-FIT CUSTOMIZER -->
+  <section class="card" id="customize-perf-womens">
+    <h2>Women's Performance Dri-fit</h2>
+    <p class="sub">100% polyester moisture-management &amp; antimicrobial Dri-fit performance fabric, fitted women's cut.</p>
+
+    <div class="customizer-grid">
+      <div>
+        <div class="preview-stage" id="perfWomensPreviewStage">
+          <img class="baseShirt" id="perfWomensPreviewShirt" src="images/perf/black-front.jpg" alt="Women's Performance Dri-fit preview">
+          <img class="logoOverlay" id="perfWomensPreviewLogo" src="images/logos/cleavers-full.png" alt="Cleavers logo placement preview">
+          <img class="backLogoOverlay" id="perfWomensPreviewBackLogo" src="images/logos/cleavers-full.png" alt="Cleavers logo, back">
+          <div class="backTextOverlay" id="perfWomensPreviewBackText"><span class="bt-name"></span><span class="bt-number"></span></div>
+        </div>
+        <div class="seg-toggle view-toggle" id="perfWomensViewToggle">
+          <button type="button" data-view="front" class="active">Front</button>
+          <button type="button" data-view="back">Back</button>
+        </div>
+        <p class="fabric-note">100% polyester moisture-management/antimicrobial performance fabric, fitted cut.</p>
+      </div>
+
+      <div>
+        <span class="cust-label">Color</span>
+        <div class="swatch-row" id="perfWomensColorSwatches"></div>
+
+        <span class="cust-label" style="margin-top:10px;">Logo — choose design</span>
+        <div class="logo-row" id="perfWomensLogoThumbs"></div>
+
+        <span class="cust-label" style="margin-top:10px;">Print Placement</span>
+        <div class="placement-options" id="perfWomensPlacementOptions">
+          <label class="placement-opt" data-placement="front-only">
+            <input type="radio" name="perfWomensPlacement" value="front-only" checked>
+            <span><strong>Front only</strong><span class="desc">Your chosen design, centered on the front.</span></span>
+          </label>
+          <label class="placement-opt" data-placement="back-name">
+            <input type="radio" name="perfWomensPlacement" value="back-name">
+            <span><strong>Add back number and/or name</strong><span class="desc">Front design plus a name/number on the back.</span></span>
+          </label>
+          <label class="placement-opt" data-placement="chest-back-logo">
+            <input type="radio" name="perfWomensPlacement" value="chest-back-logo">
+            <span><strong>Small front chest + large back logo</strong><span class="desc">Front chest: logo icon only. Back: full logo + Cleavers name.</span></span>
+          </label>
+        </div>
+
+        <div class="row2 back-fields" id="perfWomensBackFields">
+          <div class="field" style="margin-bottom:0;">
+            <label for="perfWomensBackName">Back Name (optional)</label>
+            <input type="text" id="perfWomensBackName" placeholder="e.g. Casey" maxlength="14">
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label for="perfWomensBackNumber">Back Number (optional)</label>
+            <input type="text" id="perfWomensBackNumber" placeholder="e.g. 8" maxlength="3">
+          </div>
+        </div>
+
+        <div class="row2" style="margin-top:12px;">
+          <div class="field" style="margin-bottom:0;">
+            <label for="perfWomensSize">Size</label>
+            <select id="perfWomensSize"></select>
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label for="perfWomensQty">Qty</label>
+            <input type="number" id="perfWomensQty" min="1" value="1">
+          </div>
+        </div>
+        <button type="button" class="size-chart-link" id="perfWomensSizeChartToggle">View size chart</button>
+        <table class="size-chart-table" id="perfWomensChart"></table>
+
+        <div class="cust-price" id="perfWomensPrice">$25.00</div>
+        <button type="button" class="btn block" id="addCustomPerfWomens">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- YOUTH PERFORMANCE DRI-FIT CUSTOMIZER -->
+  <section class="card" id="customize-perf-youth">
+    <h2>Youth Performance Dri-fit</h2>
+    <p class="sub">100% polyester moisture-management &amp; antimicrobial Dri-fit performance fabric, UPF 50 protection, youth sizing.</p>
+
+    <div class="customizer-grid">
+      <div>
+        <div class="preview-stage" id="perfYouthPreviewStage">
+          <img class="baseShirt" id="perfYouthPreviewShirt" src="images/perf/black-front.jpg" alt="Youth Performance Dri-fit preview">
+          <img class="logoOverlay" id="perfYouthPreviewLogo" src="images/logos/cleavers-full.png" alt="Cleavers logo placement preview">
+          <img class="backLogoOverlay" id="perfYouthPreviewBackLogo" src="images/logos/cleavers-full.png" alt="Cleavers logo, back">
+          <div class="backTextOverlay" id="perfYouthPreviewBackText"><span class="bt-name"></span><span class="bt-number"></span></div>
+        </div>
+        <div class="seg-toggle view-toggle" id="perfYouthViewToggle">
+          <button type="button" data-view="front" class="active">Front</button>
+          <button type="button" data-view="back">Back</button>
+        </div>
+        <p class="fabric-note">100% polyester moisture-management/antimicrobial performance fabric, UPF 50.</p>
+      </div>
+
+      <div>
+        <span class="cust-label">Color</span>
+        <div class="swatch-row" id="perfYouthColorSwatches"></div>
+
+        <span class="cust-label" style="margin-top:10px;">Logo — choose design</span>
+        <div class="logo-row" id="perfYouthLogoThumbs"></div>
+
+        <span class="cust-label" style="margin-top:10px;">Print Placement</span>
+        <div class="placement-options" id="perfYouthPlacementOptions">
+          <label class="placement-opt" data-placement="front-only">
+            <input type="radio" name="perfYouthPlacement" value="front-only" checked>
+            <span><strong>Front only</strong><span class="desc">Your chosen design, centered on the front.</span></span>
+          </label>
+          <label class="placement-opt" data-placement="back-name">
+            <input type="radio" name="perfYouthPlacement" value="back-name">
+            <span><strong>Add back number and/or name</strong><span class="desc">Front design plus a name/number on the back.</span></span>
+          </label>
+          <label class="placement-opt" data-placement="chest-back-logo">
+            <input type="radio" name="perfYouthPlacement" value="chest-back-logo">
+            <span><strong>Small front chest + large back logo</strong><span class="desc">Front chest: logo icon only. Back: full logo + Cleavers name.</span></span>
+          </label>
+        </div>
+
+        <div class="row2 back-fields" id="perfYouthBackFields">
+          <div class="field" style="margin-bottom:0;">
+            <label for="perfYouthBackName">Back Name (optional)</label>
+            <input type="text" id="perfYouthBackName" placeholder="e.g. Casey" maxlength="14">
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label for="perfYouthBackNumber">Back Number (optional)</label>
+            <input type="text" id="perfYouthBackNumber" placeholder="e.g. 8" maxlength="3">
+          </div>
+        </div>
+
+        <div class="row2" style="margin-top:12px;">
+          <div class="field" style="margin-bottom:0;">
+            <label for="perfYouthSize">Size</label>
+            <select id="perfYouthSize"></select>
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label for="perfYouthQty">Qty</label>
+            <input type="number" id="perfYouthQty" min="1" value="1">
+          </div>
+        </div>
+        <button type="button" class="size-chart-link" id="perfYouthSizeChartToggle">View size chart</button>
+        <table class="size-chart-table" id="perfYouthChart"></table>
+
+        <div class="cust-price" id="perfYouthPrice">$25.00</div>
+        <button type="button" class="btn block" id="addCustomPerfYouth">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- WOMEN'S BUTTERSOFT TEE CUSTOMIZER (kept last per Anne's request) -->
+  <section class="card" id="customize-buttersoft">
+    <h2>Women's Buttersoft Tee</h2>
+    <p class="sub">Fitted buttery-soft blend, crew neckline — our softest women's tee. Add your logo and pick a size below.</p>
+
+    <div class="customizer-grid">
+      <div>
+        <div class="preview-stage" id="buttersoftPreviewStage">
+          <img class="baseShirt" id="buttersoftPreviewShirt" src="images/buttersoft/white.jpg" alt="Women's Buttersoft Tee preview">
+          <img class="logoOverlay" id="buttersoftPreviewLogo" src="images/logos/cleavers-full.png" alt="Cleavers logo placement preview">
+        </div>
+        <p class="fabric-note">Buttery-soft fitted blend.</p>
+      </div>
+
+      <div>
+        <span class="cust-label">Color</span>
+        <div class="swatch-row" id="buttersoftColorSwatches"></div>
+
+        <span class="cust-label" style="margin-top:10px;">Logo (front, centered)</span>
+        <div class="logo-row" id="buttersoftLogoThumbs"></div>
+
+        <div class="row2" style="margin-top:12px;">
+          <div class="field" style="margin-bottom:0;">
+            <label for="buttersoftSize">Size</label>
+            <select id="buttersoftSize"></select>
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label for="buttersoftQty">Qty</label>
+            <input type="number" id="buttersoftQty" min="1" value="1">
+          </div>
+        </div>
+
+        <div class="cust-price" id="buttersoftPrice">$25.00</div>
+        <button type="button" class="btn block" id="addCustomButtersoft">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  </div>
+  <!-- ============ END TAB: SOFTBALL / BASEBALL ============ -->
+
+  <!-- ============ TAB: SOCCER ============ -->
+  <div class="tab-panel" id="tab-soccer" data-tab-panel="soccer" hidden>
+
+  <!-- WHITE WOLVES PERFORMANCE TEE CUSTOMIZER (adult + kids, Gray/White/Black) -->
+  <section class="card" id="customize-wolves-perf">
+    <h2>Customize the White Wolves Performance Tee</h2>
+    <p class="sub">100% polyester moisture-management &amp; antimicrobial performance fabric, self-fabric collar, double-needle stitched hem with tack. Adult and Youth sizing. Gray, White, or Black.</p>
+
+    <div class="customizer-grid">
+      <div>
+        <div class="preview-stage" id="wolvesPerfPreviewStage">
+          <img class="baseShirt" id="wolvesPerfPreviewShirt" src="images/perf/platinum-front.jpg" alt="White Wolves Performance Tee preview">
+          <img class="logoOverlay" id="wolvesPerfPreviewLogo" src="images/logos/white-wolves-dark.png" alt="White Wolves logo placement preview">
+        </div>
+        <p class="fabric-note">100% polyester moisture-management/antimicrobial performance fabric.</p>
+      </div>
+
+      <div>
+        <span class="cust-label">Color</span>
+        <div class="swatch-row" id="wolvesPerfColorSwatches"></div>
+
+        <span class="cust-label" style="margin-top:10px;">Fit</span>
+        <div class="seg-toggle" id="wolvesPerfFitToggle">
+          <button type="button" data-fit="adult" class="active">Adult</button>
+          <button type="button" data-fit="youth">Youth</button>
+        </div>
+
+        <div class="row2" style="margin-top:12px;">
+          <div class="field" style="margin-bottom:0;">
+            <label for="wolvesPerfSize">Size</label>
+            <select id="wolvesPerfSize"></select>
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label for="wolvesPerfQty">Qty</label>
+            <input type="number" id="wolvesPerfQty" min="1" value="1">
+          </div>
+        </div>
+        <button type="button" class="size-chart-link" id="wolvesPerfSizeChartToggle">View size chart</button>
+        <table class="size-chart-table" id="wolvesPerfAdultChart"></table>
+        <table class="size-chart-table" id="wolvesPerfYouthChart"></table>
+
+        <div class="cust-price" id="wolvesPerfPrice">$25.00</div>
+        <button type="button" class="btn block" id="addWolvesPerf">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHITE WOLVES BUTTERSOFT TEE CUSTOMIZER (Gray/White/Black) -->
+  <section class="card" id="customize-wolves-buttersoft">
+    <h2>Customize the White Wolves Buttersoft Tee</h2>
+    <p class="sub">Fitted buttery-soft blend, crew neckline. Gray, White, or Black.</p>
+
+    <div class="customizer-grid">
+      <div>
+        <div class="preview-stage" id="wolvesButtersoftPreviewStage">
+          <img class="baseShirt" id="wolvesButtersoftPreviewShirt" src="images/buttersoft/dark-grey.jpg" alt="White Wolves Buttersoft Tee preview">
+          <img class="logoOverlay" id="wolvesButtersoftPreviewLogo" src="images/logos/white-wolves-dark.png" alt="White Wolves logo placement preview">
+        </div>
+        <p class="fabric-note">Buttery-soft fitted blend.</p>
+      </div>
+
+      <div>
+        <span class="cust-label">Color</span>
+        <div class="swatch-row" id="wolvesButtersoftColorSwatches"></div>
+
+        <div class="row2" style="margin-top:12px;">
+          <div class="field" style="margin-bottom:0;">
+            <label for="wolvesButtersoftSize">Size</label>
+            <select id="wolvesButtersoftSize"></select>
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label for="wolvesButtersoftQty">Qty</label>
+            <input type="number" id="wolvesButtersoftQty" min="1" value="1">
+          </div>
+        </div>
+
+        <div class="cust-price" id="wolvesButtersoftPrice">$30.00</div>
+        <button type="button" class="btn block" id="addWolvesButtersoft">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  </div>
+  <!-- ============ END TAB: SOCCER ============ -->
+
+  <!-- ============ TAB: SCHOOL ============ -->
+  <div class="tab-panel" id="tab-school" data-tab-panel="school" hidden>
+
+  <section class="card">
+    <h2>100 Days of School</h2>
+    <p class="sub">Lock in color and sizing now — drop your 100 Days artwork in whenever it's ready and we'll press it on these. Cotton Tee and Performance Tee, kids and adult sizes, every color.</p>
+  </section>
+
+  <!-- SCHOOL COTTON TEE CUSTOMIZER -->
+  <section class="card" id="customize-school-tee">
+    <h2>100 Days Cotton Tee</h2>
+    <p class="sub">Unisex Light Cotton T-Shirt — modern classic fit, narrow rib collar, taped neck &amp; shoulders. Adult and Youth sizing, all 6 colors.</p>
+
+    <div class="customizer-grid">
+      <div>
+        <div class="preview-stage" id="schoolTeePreviewStage">
+          <img class="baseShirt" id="schoolTeePreviewShirt" src="images/tee/ash-front.jpg" alt="100 Days Cotton Tee preview">
+        </div>
+        <p class="fabric-note" id="schoolTeeFabricNote">100% U.S. cotton.</p>
+      </div>
+
+      <div>
+        <span class="cust-label">Color</span>
+        <div class="swatch-row" id="schoolTeeColorSwatches"></div>
+
+        <span class="cust-label" style="margin-top:10px;">Fit</span>
+        <div class="seg-toggle" id="schoolTeeFitToggle">
+          <button type="button" data-fit="adult" class="active">Adult</button>
+          <button type="button" data-fit="youth">Youth</button>
+        </div>
+
+        <div class="row2" style="margin-top:12px;">
+          <div class="field" style="margin-bottom:0;">
+            <label for="schoolTeeSize">Size</label>
+            <select id="schoolTeeSize"></select>
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label for="schoolTeeQty">Qty</label>
+            <input type="number" id="schoolTeeQty" min="1" value="1">
+          </div>
+        </div>
+        <button type="button" class="size-chart-link" id="schoolTeeSizeChartToggle">View size chart</button>
+        <table class="size-chart-table" id="schoolTeeAdultChart"></table>
+        <table class="size-chart-table" id="schoolTeeYouthChart"></table>
+
+        <div class="cust-price" id="schoolTeePrice">$25.00</div>
+        <button type="button" class="btn block" id="addSchoolTee">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHOOL PERFORMANCE TEE CUSTOMIZER -->
+  <section class="card" id="customize-school-perf">
+    <h2>100 Days Performance Tee</h2>
+    <p class="sub">100% polyester moisture-management &amp; antimicrobial performance fabric. Adult and Youth sizing, all 4 colors.</p>
+
+    <div class="customizer-grid">
+      <div>
+        <div class="preview-stage" id="schoolPerfPreviewStage">
+          <img class="baseShirt" id="schoolPerfPreviewShirt" src="images/perf/black-front.jpg" alt="100 Days Performance Tee preview">
+        </div>
+        <p class="fabric-note">100% polyester moisture-management/antimicrobial performance fabric.</p>
+      </div>
+
+      <div>
+        <span class="cust-label">Color</span>
+        <div class="swatch-row" id="schoolPerfColorSwatches"></div>
+
+        <span class="cust-label" style="margin-top:10px;">Fit</span>
+        <div class="seg-toggle" id="schoolPerfFitToggle">
+          <button type="button" data-fit="adult" class="active">Adult</button>
+          <button type="button" data-fit="youth">Youth</button>
+        </div>
+
+        <div class="row2" style="margin-top:12px;">
+          <div class="field" style="margin-bottom:0;">
+            <label for="schoolPerfSize">Size</label>
+            <select id="schoolPerfSize"></select>
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label for="schoolPerfQty">Qty</label>
+            <input type="number" id="schoolPerfQty" min="1" value="1">
+          </div>
+        </div>
+        <button type="button" class="size-chart-link" id="schoolPerfSizeChartToggle">View size chart</button>
+        <table class="size-chart-table" id="schoolPerfAdultChart"></table>
+        <table class="size-chart-table" id="schoolPerfYouthChart"></table>
+
+        <div class="cust-price" id="schoolPerfPrice">$25.00</div>
+        <button type="button" class="btn block" id="addSchoolPerf">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- KINDERGARTEN 50s (fixed design, fixed color per style, youth XS-M) -->
+  <section class="card" id="kinder50">
+    <h2>Kindergarten 50s</h2>
+    <p class="sub">50th Day of School costume tees — each style is a fixed design on one tee color (shown in the photo), youth sizing XS–M. $25 each.</p>
+    <div class="product-grid" id="kinder50Grid"></div>
+  </section>
+
+  </div>
+  <!-- ============ END TAB: SCHOOL ============ -->
+
+  <!-- ============ TAB: CUSTOM PRINTING ============ -->
+  <div class="tab-panel" id="tab-custom" data-tab-panel="custom" hidden>
+
+  <section class="custom-hero">
+    <div class="custom-hero-img"><img src="images/hero/custom-dugout.jpg" alt="Family in custom KRS Tees on a baseball dugout bench — kids in star-logo tees, coach in a custom back-print tee"></div>
+    <div class="custom-hero-img"><img src="images/hero/custom-family.jpg" alt="Family portrait wearing custom KRS Tees designs — star logo, number, lightning bolt, and bird logo tees"></div>
+  </section>
+  <p class="custom-hero-caption">Real families, real teams — every design here started as a photo, a logo, or just an idea.</p>
+
+  <section class="card">
+    <h2>Custom Printing</h2>
+    <p class="sub">A few examples of what we can print on anything — your design, your garment. Tell us what you're picturing in the form below.</p>
+    <div class="portfolio-grid">
+      <div class="portfolio-card">
+        <img src="images/portfolio/dog-inout.jpg" alt="Custom pet design example — dog wearing a drive-thru hat">
+        <div class="pinfo"><h3>Pet Portraits</h3><p>Send us a photo — we'll turn your dog (or cat) into wearable art.</p></div>
+      </div>
+      <div class="portfolio-card">
+        <img src="images/portfolio/dog-conan.jpg" alt="Custom pet design example — dog in a costume with a funny caption">
+        <div class="pinfo"><h3>Custom Captions</h3><p>Funny, sweet, or somewhere in between — we'll match the design to your caption.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUSTOM ORDER FORM -->
+  <section class="card" id="order-form">
+    <h2><span class="step-pill">1</span>Or tell us what you need — fully custom</h2>
+    <p class="sub">Fill this out and it'll open a pre-filled email straight to us — nothing is charged yet.</p>
+
+    <form id="orderForm">
+      <div class="row2">
+        <div class="field">
+          <label for="name">Your name</label>
+          <input type="text" id="name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" required>
+        </div>
+      </div>
+
+      <div class="row2">
+        <div class="field">
+          <label for="phone">Phone <span class="hint">(optional, for faster turnaround)</span></label>
+          <input type="tel" id="phone">
+        </div>
+        <div class="field">
+          <label for="needBy">Need it by <span class="hint">(optional)</span></label>
+          <input type="date" id="needBy">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="teamName">Team / design name</label>
+        <input type="text" id="teamName" placeholder="e.g. LV White Wolves, or 'Family reunion 2026'" required>
+      </div>
+
+      <div class="field">
+        <label for="fabric">Fabric / style</label>
+        <select id="fabric">
+          <option>Women's Buttery Soft</option>
+          <option>Dryfit Jersey</option>
+          <option>Cotton</option>
+          <option>Not sure — recommend one</option>
+        </select>
+      </div>
+
+      <div class="row2">
+        <div class="field">
+          <label for="shirtColor">Shirt color</label>
+          <input type="text" id="shirtColor" placeholder="e.g. Black">
+        </div>
+        <div class="field">
+          <label for="designColor">Design / print colors</label>
+          <input type="text" id="designColor" placeholder="e.g. Orange & black, matches logo">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Sizes & quantities <span class="hint">— fill in only the ones you need</span></label>
+        <div class="size-grid">
+          <div class="size-box"><label>YS</label><input type="number" min="0" class="sizeQty" data-size="Youth S" value="0"></div>
+          <div class="size-box"><label>YM</label><input type="number" min="0" class="sizeQty" data-size="Youth M" value="0"></div>
+          <div class="size-box"><label>YL</label><input type="number" min="0" class="sizeQty" data-size="Youth L" value="0"></div>
+          <div class="size-box"><label>S</label><input type="number" min="0" class="sizeQty" data-size="Adult S" value="0"></div>
+          <div class="size-box"><label>M</label><input type="number" min="0" class="sizeQty" data-size="Adult M" value="0"></div>
+          <div class="size-box"><label>L</label><input type="number" min="0" class="sizeQty" data-size="Adult L" value="0"></div>
+          <div class="size-box"><label>XL</label><input type="number" min="0" class="sizeQty" data-size="Adult XL" value="0"></div>
+          <div class="size-box"><label>2XL</label><input type="number" min="0" class="sizeQty" data-size="Adult 2XL" value="0"></div>
+          <div class="size-box"><label>3XL</label><input type="number" min="0" class="sizeQty" data-size="Adult 3XL" value="0"></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="personalize">Personalization <span class="hint">— one name/number per line, if this is a roster order</span></label>
+        <textarea id="personalize" placeholder="Example:&#10;Jordan #8 - Medium&#10;Casey #21 - Large"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="notes">Anything else we should know?</label>
+        <textarea id="notes" placeholder="Logo file, reference photo/link, deadline details, etc. — attach any images to the email before you send it."></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn block">Email This Order Request</button>
+        <p class="form-note">This opens your email app with everything filled in. Attach your logo or reference photos there before hitting send. We'll reply with a firm price and a payment link.</p>
+      </div>
+    </form>
+  </section>
+
+  </div>
+  <!-- ============ END TAB: CUSTOM PRINTING ============ -->
+
+  <!-- CART / CHECKOUT -->
+  <section class="card empty" id="cartSection">
+    <h2>Your Cart</h2>
+    <p class="sub" id="cartEmptyMsg">Nothing in your cart yet — add a design above.</p>
+    <div id="cartBody">
+      <div id="cartLines"></div>
+      <div class="cart-subtotal-row"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div>
+      <div class="cart-subtotal-row"><span>Sales Tax (Clark County, NV &middot; 8.375%)</span><span id="cartTax">$0.00</span></div>
+      <div class="cart-total"><span>Total</span><span id="cartTotal">$0.00</span></div>
+      <div class="paypal-btns-wrap">
+        <div id="paypal-button-container"></div>
+        <div id="venmo-button-container" style="margin-top:8px;"></div>
+        <span class="hint">Secure checkout via PayPal — Venmo appears as its own button when available on your device.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 2: TIMELINE -->
+  <section class="card">
+    <h2><span class="step-pill">2</span>What happens next</h2>
+    <div class="timeline">
+      <div class="tstep"><b>We confirm</b>Design, fabric, and total price — usually within 24 hours.</div>
+      <div class="tstep"><b>You pay</b>Secure checkout with PayPal or Venmo, right here on the site. Nothing's pressed until it clears.</div>
+      <div class="tstep"><b>Confirmation email</b>You'll receive an order confirmation email with your order details.</div>
+      <div class="tstep"><b>We press & ship</b>Each shirt is hand-pressed to order — please allow 3–5 business days before it ships.</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Hand-pressed in-house, one order at a time — questions? email
+  <a href="mailto:orders@krstees.com">orders@krstees.com</a>.
+  <br>© <span id="year"></span> KRS Tees. Wear the win.
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// ======= REQUIRED: set these before this page goes live =======
+const ORDERS_EMAIL = "orders@krstees.com";
+// The PayPal Client ID goes in the <script src="...paypal.com/sdk/js?client-id=..."> tag up in <head> —
+// edit it there, not here. Never put your Secret key anywhere in this file.
+
+// Orders hub (Google Sheet) — paste your deployed Apps Script Web App URL here.
+// See README-ORDERS-HUB.md for the one-time setup. Leave blank to disable —
+// checkout and the order form both work fine either way, they just will not log.
+const ORDER_HUB_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyvLwW-y9bShLzicPcQ5qlEu9i07FAoqz7gwtTi9cfpLrYaikr5THdzXotH1nxjNQwyFg/exec";
+const ORDER_HUB_KEY = "uQJbJAM8ECt0GT3eBzManmg2wBOO"; // must match SHARED_SECRET in the Apps Script
+// Clark County, NV combined sales tax rate (state + county), applied to every order.
+// KRS Tees is a Las Vegas / Clark County business — if you ever ship or sell outside
+// Clark County, double check whether a different rate applies before relying on this.
+const NV_SALES_TAX_RATE = 0.08375;
+
+// ======= STALE-PAGE GUARD =======
+// A customer once checked out from a copy of this page that their browser had
+// cached from before sales tax existed, so they were charged the pre-tax amount.
+// version.json is deployed alongside this file and is never cached. If the build
+// on the server no longer matches the one baked into this page, the page is out of
+// date: reload once to pick up the new one, and if it is still stale after that,
+// refuse to render the checkout buttons rather than take a wrong-amount payment.
+// Bump SITE_BUILD_ID and version.json together on every deploy that changes money.
+const SITE_BUILD_ID = '2026-10-02-kinder50carbon';
+let siteBuildStale = false;
+
+function showStaleNotice(){
+  const banner = document.getElementById('confirmBanner');
+  if (banner) {
+    banner.style.display = 'block';
+    banner.textContent = 'This page is out of date. Please refresh before checking out so your order total is correct.';
+  }
+  const ppBox = document.getElementById('paypal-button-container');
+  const vBox = document.getElementById('venmo-button-container');
+  const msg = '<p class="form-note">This page is out of date. Please refresh the page to check out.</p>';
+  if (ppBox) ppBox.innerHTML = msg;
+  if (vBox) vBox.innerHTML = '';
+}
+
+async function checkSiteBuild(){
+  try {
+    const res = await fetch('version.json?t=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) return;
+    const v = await res.json();
+    if (!v || !v.build || v.build === SITE_BUILD_ID) return;
+    // Server has a newer build than this page.
+    let alreadyReloaded = false;
+    try { alreadyReloaded = sessionStorage.getItem('krsBuildReloaded') === '1'; } catch (e) {}
+    if (!alreadyReloaded) {
+      try { sessionStorage.setItem('krsBuildReloaded', '1'); } catch (e) {}
+      location.reload();
+      return;
+    }
+    siteBuildStale = true;
+    showStaleNotice();
+  } catch (e) {
+    // Offline, blocked, or version.json missing — never block a sale over this.
+  }
+}
+
+checkSiteBuild();
+window.addEventListener('pageshow', checkSiteBuild);
+document.addEventListener('visibilitychange', function(){
+  if (!document.hidden) checkSiteBuild();
+});
+
+// Fires-and-forgets a row to the orders hub. Never throws and never blocks
+// checkout or the order form — a logging hiccup should not cost a sale.
+function logOrderToHub(payload){
+  if (!ORDER_HUB_WEBHOOK_URL) return;
+  try {
+    fetch(ORDER_HUB_WEBHOOK_URL, {
+      method: 'POST',
+      mode: 'no-cors', // Apps Script Web Apps do not send CORS headers back; we do not need to read the response
+      body: JSON.stringify({ key: ORDER_HUB_KEY, ...payload })
+    }).catch(() => {});
+  } catch (e) { /* ignore — logging must never break the page */ }
+}
+
+let cart = []; // { key, name, variantLabel, size, number, qty, price }
+
+function money(n){ return `$${n.toFixed(2)}`; }
+
+function renderCart(){
+  const section = document.getElementById('cartSection');
+  const linesEl = document.getElementById('cartLines');
+  section.classList.toggle('empty', cart.length === 0);
+  linesEl.innerHTML = cart.map(l => `
+    <div class="cart-line">
+      <div>
+        <div>${l.name} — ${l.variantLabel} × ${l.qty}</div>
+        <div class="meta">${l.size}${l.number ? ' · #' + l.number : ''} · ${money(l.price)} each</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div>${money(l.price * l.qty)}</div>
+        <button type="button" class="remove" data-key="${l.key}">Remove</button>
+      </div>
+    </div>
+  `).join('');
+  linesEl.querySelectorAll('.remove').forEach(btn => {
+    btn.addEventListener('click', () => {
+      cart = cart.filter(l => l.key !== btn.dataset.key);
+      renderCart();
+    });
+  });
+  const subtotal = cart.reduce((sum, l) => sum + l.price * l.qty, 0);
+  const tax = +(subtotal * NV_SALES_TAX_RATE).toFixed(2);
+  const total = +(subtotal + tax).toFixed(2);
+  document.getElementById('cartSubtotal').textContent = money(subtotal);
+  document.getElementById('cartTax').textContent = money(tax);
+  document.getElementById('cartTotal').textContent = money(total);
+  renderCheckoutButtons(subtotal, tax, total);
+
+  const cartCount = cart.reduce((sum, l) => sum + l.qty, 0);
+  const cartBadge = document.getElementById('cartNavCount');
+  if (cartBadge) {
+    cartBadge.textContent = cartCount;
+    cartBadge.hidden = cartCount === 0;
+  }
+}
+
+// Renders (or re-renders) the real PayPal + Venmo buttons for the cart total.
+// Re-rendering on every cart change is the simplest reliable way to keep the
+// amount in sync with the PayPal SDK, which doesn't support updating an
+// already-rendered button's amount directly.
+let paypalCartButtons = null, venmoCartButtons = null;
+function renderCheckoutButtons(subtotal, tax, total){
+  const ppBox = document.getElementById('paypal-button-container');
+  const vBox = document.getElementById('venmo-button-container');
+  if (typeof paypal === 'undefined') {
+    ppBox.innerHTML = '<p class="form-note">Add your PayPal Client ID at the top of this file to enable checkout.</p>';
+    return;
+  }
+  if (paypalCartButtons) paypalCartButtons.close();
+  if (venmoCartButtons) venmoCartButtons.close();
+  if (total <= 0) { ppBox.innerHTML = ''; vBox.innerHTML = ''; return; }
+  if (siteBuildStale) { showStaleNotice(); return; }
+
+  const orderConfig = {
+    createOrder: (data, actions) => actions.order.create({
+      purchase_units: [{ amount: { value: total.toFixed(2) } }]
+    }),
+    onApprove: (data, actions) => actions.order.capture().then((details) => {
+      const payer = (details && details.payer) || {};
+      const payerName = payer.name ? `${payer.name.given_name || ''} ${payer.name.surname || ''}`.trim() : '';
+      const itemsSummary = cart.map(l =>
+        `${l.name} — ${l.variantLabel} (${l.size}${l.number ? ' · #' + l.number : ''}) x${l.qty}`
+      ).join('; ');
+      const lineItems = cart.map(l => ({
+        product: l.name,
+        logo: l.logo || '',
+        placement: l.placement || '',
+        fit: l.fit || '',
+        size: l.sizeOnly || '',
+        color: l.color || '',
+        back: l.backText || '',
+        qty: l.qty,
+        unitPrice: l.price,
+        lineTotal: +(l.price * l.qty).toFixed(2)
+      }));
+      logOrderToHub({
+        type: 'cart',
+        name: payerName,
+        email: payer.email_address || '',
+        items: itemsSummary,
+        lineItems: lineItems,
+        subtotal: subtotal.toFixed(2),
+        tax: tax.toFixed(2),
+        total: total.toFixed(2),
+        paymentMethod: (data && data.paymentSource === 'venmo') ? 'Venmo' : 'PayPal'
+      });
+
+      cart = [];
+      renderCart();
+      const banner = document.getElementById('confirmBanner');
+      banner.style.display = 'block';
+      banner.textContent = "Payment received — thank you! We'll confirm your order by email shortly.";
+      banner.scrollIntoView({behavior:'smooth', block:'center'});
+    })
+  };
+
+  paypalCartButtons = paypal.Buttons({ ...orderConfig, style: { color: 'gold', label: 'paypal', height: 45 } });
+  paypalCartButtons.render('#paypal-button-container');
+
+  if (paypal.isFundingEligible && paypal.isFundingEligible(paypal.FUNDING.VENMO)) {
+    venmoCartButtons = paypal.Buttons({ ...orderConfig, fundingSource: paypal.FUNDING.VENMO, style: { height: 45 } });
+    venmoCartButtons.render('#venmo-button-container');
+  }
+}
+renderCart();
+
+// ======= TEE CUSTOMIZER (color + logo picker for the Unisex Light Cotton Tee) =======
+// Real Gildan Dryblend supplier photos — front + back per color. Adult has all 6 colors;
+// Youth does not come in Sand, so it gets its own 5-color list.
+// Gildan DryBlend 8000/8000B: 50/50 cotton/polyester across the board, except the heather
+// shades, which are the reverse — 65% polyester / 35% cotton.
+const TEE_COLORS = [
+  { key:"ash",          label:"Ash",          img:"images/tee/ash-front.jpg",          back:"images/tee/ash-back.jpg",          swatch:"images/tee/ash-swatch.jpg",          fabric:"50% cotton / 50% polyester DryBlend." },
+  { key:"black",        label:"Black",        img:"images/tee/black-front.jpg",        back:"images/tee/black-back.jpg",        swatch:"images/tee/black-swatch.jpg",        fabric:"50% cotton / 50% polyester DryBlend." },
+  { key:"dark-heather", label:"Dark Heather", img:"images/tee/dark-heather-front.jpg", back:"images/tee/dark-heather-back.jpg", swatch:"images/tee/dark-heather-swatch.jpg", fabric:"65% polyester / 35% cotton heather DryBlend." },
+  { key:"gravel",       label:"Gravel",       img:"images/tee/gravel-front.jpg",       back:"images/tee/gravel-back.jpg",       swatch:"images/tee/gravel-swatch.jpg",       fabric:"50% cotton / 50% polyester DryBlend." },
+  { key:"orange",       label:"Orange",       img:"images/tee/orange-front.jpg",       back:"images/tee/orange-back.jpg",       swatch:"images/tee/orange-swatch.jpg",       fabric:"50% cotton / 50% polyester DryBlend." },
+  { key:"sand",         label:"Sand",         img:"images/tee/sand-front.jpg",         back:"images/tee/sand-back.jpg",         swatch:"images/tee/sand-swatch.jpg",         fabric:"50% cotton / 50% polyester DryBlend." }
+];
+const YOUTH_TEE_COLORS = [
+  { key:"ash",          label:"Ash",          img:"images/tee/youth-ash-front.jpg",          back:"images/tee/youth-ash-back.jpg",          swatch:"images/tee/ash-swatch.jpg",          fabric:"50% cotton / 50% polyester DryBlend." },
+  { key:"black",        label:"Black",        img:"images/tee/youth-black-front.jpg",        back:"images/tee/youth-black-back.jpg",        swatch:"images/tee/black-swatch.jpg",        fabric:"50% cotton / 50% polyester DryBlend." },
+  { key:"dark-heather", label:"Dark Heather", img:"images/tee/youth-dark-heather-front.jpg", back:"images/tee/youth-dark-heather-back.jpg", swatch:"images/tee/dark-heather-swatch.jpg", fabric:"65% polyester / 35% cotton heather DryBlend." },
+  { key:"gravel",       label:"Gravel",       img:"images/tee/youth-gravel-front.jpg",       back:"images/tee/youth-gravel-back.jpg",       swatch:"images/tee/gravel-swatch.jpg",       fabric:"50% cotton / 50% polyester DryBlend." },
+  { key:"orange",       label:"Orange",       img:"images/tee/youth-orange-front.jpg",       back:"images/tee/youth-orange-back.jpg",       swatch:"images/tee/orange-swatch.jpg",       fabric:"50% cotton / 50% polyester DryBlend." }
+];
+const TEE_LOGOS = [
+  { key:"icon",   label:"Cleavers Logo",      img:"images/logos/cleavers-icon.png" },
+  { key:"script", label:"Cleavers Name",      img:"images/logos/cleavers-script.png" },
+  { key:"full",   label:"Logo + Name",        img:"images/logos/cleavers-full.png" }
+];
+// Per-variant placement on the shirt preview — the wordmark-only print sits lower and larger
+// than the icon-based ones since it's a short, wide graphic rather than a tall badge.
+// Split into a separate table per product photo style: the Cotton Tee and Buttersoft Tee are
+// shot on-model at an angle (collar sits lower in frame), while the Performance Tee is a flat-lay
+// (collar right at the top of frame) — using one shared table put the logo on the collar/neck
+// for the on-model photos, which is the "cut off / not centered" bug. Each table's numbers were
+// derived by measuring where the collar and chest actually fall in that product's real photos.
+const TEE_LOGO_PLACEMENT = {
+  icon:   { top:"12%", width:"34%" },
+  full:   { top:"18%", width:"36%" },
+  script: { top:"26%", width:"46%" }
+};
+const PERF_LOGO_PLACEMENT = {
+  icon:   { top:"12%", width:"42%" },
+  full:   { top:"20%", width:"40%" },
+  script: { top:"30%", width:"40%" }
+};
+const BUTTERSOFT_LOGO_PLACEMENT = {
+  icon:   { top:"12%", width:"44%" },
+  full:   { top:"19%", width:"44%" },
+  script: { top:"27%", width:"58%" }
+};
+// Used for the "Small front chest + large back logo" print placement — same design,
+// shrunk down onto the wearer's left chest (viewer's right, mirroring a standard polo-style
+// placement) and dropped down from the collar to sit over the actual chest/pocket area.
+const TEE_CHEST_PLACEMENT = { icon:{top:"30%",width:"16%",left:"64%"}, full:{top:"29%",width:"17%",left:"64%"}, script:{top:"32%",width:"24%",left:"64%"} };
+const PERF_CHEST_PLACEMENT = { icon:{top:"22%",width:"18%",left:"64%"}, full:{top:"21%",width:"19%",left:"64%"}, script:{top:"24%",width:"26%",left:"64%"} };
+const TEE_BACK_LOGO_PLACEMENT = { top:"24%", width:"46%" };
+const PERF_BACK_LOGO_PLACEMENT = { top:"14%", width:"48%" };
+// Clears the global "photo coming soon" fallback guard before swapping a preview image's
+// src, so a color that has no real photo yet (falls back once) will fall back again correctly
+// if the shopper picks it a second time after viewing a different, working photo.
+function setPreviewSrc(imgEl, src){
+  delete imgEl.dataset.fallbackApplied;
+  imgEl.src = src;
+}
+function applyLogoPlacement(imgEl, logoKey, table){
+  const t = table || TEE_LOGO_PLACEMENT;
+  const p = t[logoKey] || t.full;
+  imgEl.style.top = p.top;
+  imgEl.style.width = p.width;
+  imgEl.style.left = p.left || '50%';
+}
+// Gildan DryBlend 8000 (adult) doesn't come in XS — S is the smallest size.
+const ADULT_SIZES = ["S","M","L","XL","2XL","3XL","4XL","5XL"];
+const YOUTH_SIZES = ["XS (2-4)","S (6-8)","M (10-12)","L (14-16)","XL (18-20)"];
+const ADULT_PRICE = 25; // flat price, all sizes
+const YOUTH_PRICE = 25; // flat price, all sizes
+
+// Official Gildan DryBlend 8000 (Unisex/Adult) finished measurements.
+const ADULT_MEASUREMENTS = {
+  headers: ["S","M","L","XL","2XL","3XL","4XL","5XL"],
+  rows: [
+    ["Body Length", 28, 29, 30, 31, 32, 33, 34, 35],
+    ["Chest Width (Laid Flat)", 18, 20, 22, 24, 26, 28, 30, 32],
+    ["Sleeve Length (From Center Back)", "15 5/8", 17, "18 1/2", 20, "21 1/2", "22 7/8", "24 1/4", "25 3/8"]
+  ]
+};
+// Official Gildan DryBlend 8000B (Youth) finished measurements.
+const YOUTH_MEASUREMENTS = {
+  headers: ["XS","S","M","L","XL"],
+  rows: [
+    ["Body Length", 18, "20 1/2", 22, "23 1/2", 25],
+    ["Chest Width (Laid Flat)", 14, 16, 17, 18, 19],
+    ["Numerical Size", "2-4", "6-8", "10-12", "14-16", "18-20"]
+  ]
+};
+
+function buildSizeChart(tableEl, data){
+  let html = '<thead><tr><th></th>' + data.headers.map(h => `<th>${h}</th>`).join('') + '</tr></thead><tbody>';
+  data.rows.forEach(r => {
+    html += '<tr><td>' + r[0] + '</td>' + r.slice(1).map(v => `<td>${v}</td>`).join('') + '</tr>';
+  });
+  tableEl.innerHTML = html + '</tbody>';
+}
+buildSizeChart(document.getElementById('adultChart'), ADULT_MEASUREMENTS);
+buildSizeChart(document.getElementById('youthChart'), YOUTH_MEASUREMENTS);
+
+const colorSwatchesEl = document.getElementById('colorSwatches');
+function teeColorSet(){ return custState.fit === 'adult' ? TEE_COLORS : YOUTH_TEE_COLORS; }
+function renderTeeSwatches(){
+  colorSwatchesEl.innerHTML = '';
+  teeColorSet().forEach(c => {
+    const wrap = document.createElement('div');
+    wrap.className = 'swatch-wrap';
+    wrap.innerHTML = `<div class="swatch" data-color="${c.key}" style="background-image:url('${c.swatch}')" title="${c.label}"></div><span class="swatch-label">${c.label}</span>`;
+    colorSwatchesEl.appendChild(wrap);
+  });
+}
+
+const logoThumbsEl = document.getElementById('logoThumbs');
+TEE_LOGOS.forEach(l => {
+  const el = document.createElement('div');
+  el.className = 'logo-thumb';
+  el.dataset.logo = l.key;
+  el.title = l.label;
+  el.innerHTML = l.img ? `<img src="${l.img}" alt="${l.label}">` : `<span class="none-thumb">No Logo</span>`;
+  logoThumbsEl.appendChild(el);
+});
+
+let custState = { color: 'ash', logo: 'full', fit: 'adult', price: ADULT_PRICE, view: 'front', placement: 'front-only', backName: '', backNumber: '' };
+renderTeeSwatches();
+let sizeChartShown = false;
+
+function refreshCustomizer(){
+  const color = teeColorSet().find(c => c.key === custState.color) || teeColorSet()[0];
+  custState.color = color.key;
+  setPreviewSrc(document.getElementById('previewShirt'), custState.view === 'back' ? color.back : color.img);
+  document.getElementById('fabricNote').textContent = color.fabric;
+  colorSwatchesEl.querySelectorAll('.swatch').forEach(el =>
+    el.classList.toggle('active', el.dataset.color === custState.color));
+
+  const logo = TEE_LOGOS.find(l => l.key === custState.logo);
+  // For "small front chest + large back logo", the chosen design above doesn't apply — the
+  // small chest print is always just the icon, and the back is always the full logo + Cleavers name.
+  const isChestBack = custState.placement === 'chest-back-logo';
+  const frontLogo = isChestBack ? TEE_LOGOS.find(l => l.key === 'icon') : logo;
+  const backLogoImg = TEE_LOGOS.find(l => l.key === 'full');
+  const logoImgEl = document.getElementById('previewLogo');
+  const showFrontLogo = custState.view === 'front' && frontLogo.img;
+  if (showFrontLogo) {
+    logoImgEl.src = frontLogo.img;
+    logoImgEl.style.display = 'block';
+    applyLogoPlacement(logoImgEl, frontLogo.key, isChestBack ? TEE_CHEST_PLACEMENT : TEE_LOGO_PLACEMENT);
+  } else { logoImgEl.style.display = 'none'; }
+  logoThumbsEl.querySelectorAll('.logo-thumb').forEach(el =>
+    el.classList.toggle('active', el.dataset.logo === custState.logo));
+
+  // back-of-shirt print preview: either a large back logo, or a live name/number, depending on placement
+  const backLogoEl = document.getElementById('previewBackLogo');
+  const backTextEl = document.getElementById('previewBackText');
+  const showBackLogo = custState.view === 'back' && isChestBack && backLogoImg.img;
+  const showBackText = custState.view === 'back' && custState.placement === 'back-name' && (custState.backName || custState.backNumber);
+  if (showBackLogo) {
+    backLogoEl.src = backLogoImg.img;
+    backLogoEl.style.top = TEE_BACK_LOGO_PLACEMENT.top;
+    backLogoEl.style.width = TEE_BACK_LOGO_PLACEMENT.width;
+    backLogoEl.style.display = 'block';
+  } else { backLogoEl.style.display = 'none'; }
+  if (showBackText) {
+    backTextEl.querySelector('.bt-name').textContent = custState.backName;
+    backTextEl.querySelector('.bt-number').textContent = custState.backNumber ? '#' + custState.backNumber : '';
+    backTextEl.style.display = 'block';
+  } else { backTextEl.style.display = 'none'; }
+
+  document.getElementById('teeViewToggle').querySelectorAll('button').forEach(b =>
+    b.classList.toggle('active', b.dataset.view === custState.view));
+
+  document.querySelectorAll('#teePlacementOptions .placement-opt').forEach(el =>
+    el.classList.toggle('active', el.dataset.placement === custState.placement));
+  document.getElementById('teeBackFields').classList.toggle('show', custState.placement === 'back-name');
+
+  document.getElementById('fitToggle').querySelectorAll('button').forEach(b =>
+    b.classList.toggle('active', b.dataset.fit === custState.fit));
+
+  const sizeEl = document.getElementById('custSize');
+  const prevVal = sizeEl.value;
+  const sizes = custState.fit === 'adult' ? ADULT_SIZES : YOUTH_SIZES;
+  sizeEl.innerHTML = sizes.map(s => `<option>${s}</option>`).join('');
+  if (sizes.includes(prevVal)) sizeEl.value = prevVal;
+  else if (sizes.includes('M')) sizeEl.value = 'M';
+
+  document.getElementById('adultChart').classList.toggle('show', sizeChartShown && custState.fit === 'adult');
+  document.getElementById('youthChart').classList.toggle('show', sizeChartShown && custState.fit === 'youth');
+
+  custState.price = custState.fit === 'adult' ? ADULT_PRICE : YOUTH_PRICE;
+  document.getElementById('custPrice').textContent = money(custState.price);
+}
+
+colorSwatchesEl.addEventListener('click', e => {
+  const el = e.target.closest('.swatch');
+  if (!el) return;
+  custState.color = el.dataset.color;
+  refreshCustomizer();
+});
+logoThumbsEl.addEventListener('click', e => {
+  const el = e.target.closest('.logo-thumb');
+  if (!el) return;
+  custState.logo = el.dataset.logo;
+  refreshCustomizer();
+});
+document.getElementById('teeViewToggle').addEventListener('click', e => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  custState.view = btn.dataset.view;
+  refreshCustomizer();
+});
+document.getElementById('teePlacementOptions').addEventListener('click', e => {
+  const el = e.target.closest('.placement-opt');
+  if (!el) return;
+  custState.placement = el.dataset.placement;
+  refreshCustomizer();
+});
+document.getElementById('teeBackName').addEventListener('input', e => { custState.backName = e.target.value.trim(); refreshCustomizer(); });
+document.getElementById('teeBackNumber').addEventListener('input', e => { custState.backNumber = e.target.value.trim(); refreshCustomizer(); });
+document.getElementById('fitToggle').addEventListener('click', e => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  custState.fit = btn.dataset.fit;
+  renderTeeSwatches();
+  refreshCustomizer();
+});
+document.getElementById('custSize').addEventListener('change', refreshCustomizer);
+document.getElementById('sizeChartToggle').addEventListener('click', () => {
+  sizeChartShown = !sizeChartShown;
+  document.getElementById('sizeChartToggle').textContent = sizeChartShown ? 'Hide size chart' : 'View size chart';
+  refreshCustomizer();
+});
+
+document.getElementById('addCustomTee').addEventListener('click', () => {
+  const color = teeColorSet().find(c => c.key === custState.color);
+  const logo = TEE_LOGOS.find(l => l.key === custState.logo);
+  const size = document.getElementById('custSize').value;
+  const qty = Math.max(1, parseInt(document.getElementById('custQty').value || '1', 10));
+  const fitLabel = custState.fit === 'adult' ? 'Adult' : 'Youth';
+  const placementLabels = { 'front-only':'Front only', 'back-name':'Front + back name/number', 'chest-back-logo':'Small front chest + large back logo' };
+  const backText = custState.placement === 'back-name' ? [custState.backName, custState.backNumber ? '#' + custState.backNumber : ''].filter(Boolean).join(' ') : '';
+  const key = `custom-tee|${custState.color}|${custState.logo}|${custState.fit}|${custState.placement}|${custState.backName}|${custState.backNumber}|${size}`;
+  const existing = cart.find(l => l.key === key);
+  if (existing) existing.qty += qty;
+  else cart.push({
+    key,
+    name: 'DryBlend Tee',
+    variantLabel: `${logo.label} — ${placementLabels[custState.placement]}`,
+    size: `${fitLabel} ${size} · ${color.label}${backText ? ' · Back: ' + backText : ''}`,
+    number: '',
+    qty,
+    price: custState.price,
+    fit: fitLabel,
+    sizeOnly: size,
+    color: color.label,
+    logo: logo.label,
+    placement: placementLabels[custState.placement],
+    backText: backText
+  });
+  renderCart();
+  document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+refreshCustomizer();
+
+// ======= WOMEN'S BUTTERSOFT TEE CUSTOMIZER (color + logo picker) =======
+const BUTTERSOFT_COLORS = [
+  { key:"white",     label:"White",     img:"images/buttersoft/white.jpg",     swatch:"images/buttersoft/white-swatch.jpg" },
+  { key:"dark-grey", label:"Dark Grey", img:"images/buttersoft/dark-grey.jpg", swatch:"images/buttersoft/dark-grey-swatch.jpg" },
+  { key:"apricot",   label:"Apricot",   img:"images/buttersoft/apricot.jpg",   swatch:"images/buttersoft/apricot-swatch.jpg" },
+  { key:"black",     label:"Black",     img:"images/buttersoft/black.jpg",     swatch:"images/buttersoft/black-swatch.jpg" },
+  { key:"orange",    label:"Orange",    img:"images/buttersoft/orange.jpg",    swatch:"images/buttersoft/orange-swatch.jpg" }
+];
+const BUTTERSOFT_SIZES = ["S","M","L","XL","2XL"];
+const BUTTERSOFT_PRICE = 25;
+
+const buttersoftColorSwatchesEl = document.getElementById('buttersoftColorSwatches');
+BUTTERSOFT_COLORS.forEach(c => {
+  const wrap = document.createElement('div');
+  wrap.className = 'swatch-wrap';
+  wrap.innerHTML = `<div class="swatch" data-color="${c.key}" style="background-image:url('${c.swatch}')" title="${c.label}"></div><span class="swatch-label">${c.label}</span>`;
+  buttersoftColorSwatchesEl.appendChild(wrap);
+});
+
+const buttersoftLogoThumbsEl = document.getElementById('buttersoftLogoThumbs');
+TEE_LOGOS.forEach(l => {
+  const el = document.createElement('div');
+  el.className = 'logo-thumb';
+  el.dataset.logo = l.key;
+  el.title = l.label;
+  el.innerHTML = l.img ? `<img src="${l.img}" alt="${l.label}">` : `<span class="none-thumb">No Logo</span>`;
+  buttersoftLogoThumbsEl.appendChild(el);
+});
+
+const buttersoftSizeEl = document.getElementById('buttersoftSize');
+buttersoftSizeEl.innerHTML = BUTTERSOFT_SIZES.map(s => `<option>${s}</option>`).join('');
+buttersoftSizeEl.value = 'M';
+
+let buttersoftState = { color: 'white', logo: 'full', price: BUTTERSOFT_PRICE };
+
+function refreshButtersoftCustomizer(){
+  const color = BUTTERSOFT_COLORS.find(c => c.key === buttersoftState.color);
+  setPreviewSrc(document.getElementById('buttersoftPreviewShirt'), color.img);
+  buttersoftColorSwatchesEl.querySelectorAll('.swatch').forEach(el =>
+    el.classList.toggle('active', el.dataset.color === buttersoftState.color));
+
+  const logo = TEE_LOGOS.find(l => l.key === buttersoftState.logo);
+  const buttersoftLogoImgEl = document.getElementById('buttersoftPreviewLogo');
+  if (logo.img) {
+    buttersoftLogoImgEl.src = logo.img;
+    buttersoftLogoImgEl.style.display = 'block';
+    applyLogoPlacement(buttersoftLogoImgEl, buttersoftState.logo, BUTTERSOFT_LOGO_PLACEMENT);
+  } else { buttersoftLogoImgEl.style.display = 'none'; }
+  buttersoftLogoThumbsEl.querySelectorAll('.logo-thumb').forEach(el =>
+    el.classList.toggle('active', el.dataset.logo === buttersoftState.logo));
+
+  document.getElementById('buttersoftPrice').textContent = money(buttersoftState.price);
+}
+
+buttersoftColorSwatchesEl.addEventListener('click', e => {
+  const el = e.target.closest('.swatch');
+  if (!el) return;
+  buttersoftState.color = el.dataset.color;
+  refreshButtersoftCustomizer();
+});
+buttersoftLogoThumbsEl.addEventListener('click', e => {
+  const el = e.target.closest('.logo-thumb');
+  if (!el) return;
+  buttersoftState.logo = el.dataset.logo;
+  refreshButtersoftCustomizer();
+});
+buttersoftSizeEl.addEventListener('change', refreshButtersoftCustomizer);
+
+document.getElementById('addCustomButtersoft').addEventListener('click', () => {
+  const color = BUTTERSOFT_COLORS.find(c => c.key === buttersoftState.color);
+  const logo = TEE_LOGOS.find(l => l.key === buttersoftState.logo);
+  const size = buttersoftSizeEl.value;
+  const qty = Math.max(1, parseInt(document.getElementById('buttersoftQty').value || '1', 10));
+  const key = `custom-buttersoft|${buttersoftState.color}|${buttersoftState.logo}|${size}`;
+  const existing = cart.find(l => l.key === key);
+  if (existing) existing.qty += qty;
+  else cart.push({
+    key,
+    name: "Women's Buttersoft Tee",
+    variantLabel: `${logo.label}`,
+    size: `${size} · ${color.label}`,
+    number: '',
+    qty,
+    price: buttersoftState.price,
+    fit: '',
+    sizeOnly: size,
+    color: color.label,
+    logo: logo.label,
+    placement: 'Front, centered',
+    backText: ''
+  });
+  renderCart();
+  document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+refreshButtersoftCustomizer();
+
+// ======= PERFORMANCE TEE CUSTOMIZER (color + logo picker for the Unisex Performance Tee) =======
+const PERF_COLORS = [
+  { key:"black",         label:"Black",         img:"images/perf/black-front.jpg",         back:"images/perf/black-back.jpg",         swatch:"images/perf/black-swatch.jpg" },
+  { key:"campus-orange", label:"Campus Orange", img:"images/perf/campus-orange-front.jpg", back:"images/perf/campus-orange-back.jpg", swatch:"images/perf/campus-orange-swatch.jpg" },
+  { key:"carbon",        label:"Carbon",        img:"images/perf/carbon-front.jpg",        back:"images/perf/carbon-back.jpg",        swatch:"images/perf/carbon-swatch.jpg" },
+  { key:"platinum",      label:"Platinum",      img:"images/perf/platinum-front.jpg",      back:"images/perf/platinum-back.jpg",      swatch:"images/perf/platinum-swatch.jpg" }
+];
+const PERF_SIZES = ["XS","S","M","L","XL","2XL","3XL","4XL"];
+const PERF_PRICE = 25; // flat price, all sizes
+const PERF_MEASUREMENTS = {
+  headers: ["XS","S","M","L","XL","2XL","3XL","4XL"],
+  rows: [
+    ["Body Length", 26, 27, 28, 29, 30, 31, 32, 32],
+    ["Chest Width (Laid Flat)", 16, 18, 20, 22, 24, 26, 28, 30]
+  ]
+};
+buildSizeChart(document.getElementById('perfChart'), PERF_MEASUREMENTS);
+
+const perfColorSwatchesEl = document.getElementById('perfColorSwatches');
+PERF_COLORS.forEach(c => {
+  const wrap = document.createElement('div');
+  wrap.className = 'swatch-wrap';
+  wrap.innerHTML = `<div class="swatch" data-color="${c.key}" style="background-image:url('${c.swatch}')" title="${c.label}"></div><span class="swatch-label">${c.label}</span>`;
+  perfColorSwatchesEl.appendChild(wrap);
+});
+
+const perfLogoThumbsEl = document.getElementById('perfLogoThumbs');
+TEE_LOGOS.forEach(l => {
+  const el = document.createElement('div');
+  el.className = 'logo-thumb';
+  el.dataset.logo = l.key;
+  el.title = l.label;
+  el.innerHTML = l.img ? `<img src="${l.img}" alt="${l.label}">` : `<span class="none-thumb">No Logo</span>`;
+  perfLogoThumbsEl.appendChild(el);
+});
+
+const perfSizeEl = document.getElementById('perfSize');
+perfSizeEl.innerHTML = PERF_SIZES.map(s => `<option>${s}</option>`).join('');
+perfSizeEl.value = 'M';
+
+let perfState = { color: 'black', logo: 'full', price: PERF_PRICE, view: 'front', placement: 'front-only', backName: '', backNumber: '' };
+
+function refreshPerfCustomizer(){
+  const color = PERF_COLORS.find(c => c.key === perfState.color);
+  setPreviewSrc(document.getElementById('perfPreviewShirt'), perfState.view === 'back' ? color.back : color.img);
+  perfColorSwatchesEl.querySelectorAll('.swatch').forEach(el =>
+    el.classList.toggle('active', el.dataset.color === perfState.color));
+
+  const logo = TEE_LOGOS.find(l => l.key === perfState.logo);
+  const isPerfChestBack = perfState.placement === 'chest-back-logo';
+  const perfFrontLogo = isPerfChestBack ? TEE_LOGOS.find(l => l.key === 'icon') : logo;
+  const perfBackLogoImg = TEE_LOGOS.find(l => l.key === 'full');
+  const perfLogoImgEl = document.getElementById('perfPreviewLogo');
+  const showFrontLogo = perfState.view === 'front' && perfFrontLogo.img;
+  if (showFrontLogo) {
+    perfLogoImgEl.src = perfFrontLogo.img;
+    perfLogoImgEl.style.display = 'block';
+    applyLogoPlacement(perfLogoImgEl, perfFrontLogo.key, isPerfChestBack ? PERF_CHEST_PLACEMENT : PERF_LOGO_PLACEMENT);
+  } else { perfLogoImgEl.style.display = 'none'; }
+  perfLogoThumbsEl.querySelectorAll('.logo-thumb').forEach(el =>
+    el.classList.toggle('active', el.dataset.logo === perfState.logo));
+
+  const perfBackLogoEl = document.getElementById('perfPreviewBackLogo');
+  const perfBackTextEl = document.getElementById('perfPreviewBackText');
+  const showBackLogo = perfState.view === 'back' && isPerfChestBack && perfBackLogoImg.img;
+  const showBackText = perfState.view === 'back' && perfState.placement === 'back-name' && (perfState.backName || perfState.backNumber);
+  if (showBackLogo) {
+    perfBackLogoEl.src = perfBackLogoImg.img;
+    perfBackLogoEl.style.top = PERF_BACK_LOGO_PLACEMENT.top;
+    perfBackLogoEl.style.width = PERF_BACK_LOGO_PLACEMENT.width;
+    perfBackLogoEl.style.display = 'block';
+  } else { perfBackLogoEl.style.display = 'none'; }
+  if (showBackText) {
+    perfBackTextEl.querySelector('.bt-name').textContent = perfState.backName;
+    perfBackTextEl.querySelector('.bt-number').textContent = perfState.backNumber ? '#' + perfState.backNumber : '';
+    perfBackTextEl.style.display = 'block';
+  } else { perfBackTextEl.style.display = 'none'; }
+
+  document.getElementById('perfViewToggle').querySelectorAll('button').forEach(b =>
+    b.classList.toggle('active', b.dataset.view === perfState.view));
+  document.querySelectorAll('#perfPlacementOptions .placement-opt').forEach(el =>
+    el.classList.toggle('active', el.dataset.placement === perfState.placement));
+  document.getElementById('perfBackFields').classList.toggle('show', perfState.placement === 'back-name');
+
+  perfState.price = PERF_PRICE;
+  document.getElementById('perfPrice').textContent = money(perfState.price);
+}
+
+perfColorSwatchesEl.addEventListener('click', e => {
+  const el = e.target.closest('.swatch');
+  if (!el) return;
+  perfState.color = el.dataset.color;
+  refreshPerfCustomizer();
+});
+perfLogoThumbsEl.addEventListener('click', e => {
+  const el = e.target.closest('.logo-thumb');
+  if (!el) return;
+  perfState.logo = el.dataset.logo;
+  refreshPerfCustomizer();
+});
+document.getElementById('perfViewToggle').addEventListener('click', e => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  perfState.view = btn.dataset.view;
+  refreshPerfCustomizer();
+});
+document.getElementById('perfPlacementOptions').addEventListener('click', e => {
+  const el = e.target.closest('.placement-opt');
+  if (!el) return;
+  perfState.placement = el.dataset.placement;
+  refreshPerfCustomizer();
+});
+document.getElementById('perfBackName').addEventListener('input', e => { perfState.backName = e.target.value.trim(); refreshPerfCustomizer(); });
+document.getElementById('perfBackNumber').addEventListener('input', e => { perfState.backNumber = e.target.value.trim(); refreshPerfCustomizer(); });
+perfSizeEl.addEventListener('change', refreshPerfCustomizer);
+
+let perfSizeChartShown = false;
+document.getElementById('perfSizeChartToggle').addEventListener('click', () => {
+  perfSizeChartShown = !perfSizeChartShown;
+  document.getElementById('perfSizeChartToggle').textContent = perfSizeChartShown ? 'Hide size chart' : 'View size chart';
+  document.getElementById('perfChart').classList.toggle('show', perfSizeChartShown);
+});
+
+document.getElementById('addCustomPerf').addEventListener('click', () => {
+  const color = PERF_COLORS.find(c => c.key === perfState.color);
+  const logo = TEE_LOGOS.find(l => l.key === perfState.logo);
+  const size = perfSizeEl.value;
+  const qty = Math.max(1, parseInt(document.getElementById('perfQty').value || '1', 10));
+  const placementLabels = { 'front-only':'Front only', 'back-name':'Front + back name/number', 'chest-back-logo':'Small front chest + large back logo' };
+  const backText = perfState.placement === 'back-name' ? [perfState.backName, perfState.backNumber ? '#' + perfState.backNumber : ''].filter(Boolean).join(' ') : '';
+  const key = `custom-perf|${perfState.color}|${perfState.logo}|${perfState.placement}|${perfState.backName}|${perfState.backNumber}|${size}`;
+  const existing = cart.find(l => l.key === key);
+  if (existing) existing.qty += qty;
+  else cart.push({
+    key,
+    name: 'Unisex Performance Dri-fit',
+    variantLabel: `${logo.label} — ${placementLabels[perfState.placement]}`,
+    size: `Adult ${size} · ${color.label}${backText ? ' · Back: ' + backText : ''}`,
+    number: '',
+    qty,
+    price: perfState.price,
+    fit: 'Adult',
+    sizeOnly: size,
+    color: color.label,
+    logo: logo.label,
+    placement: placementLabels[perfState.placement],
+    backText: backText
+  });
+  renderCart();
+  document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+refreshPerfCustomizer();
+
+// ======= WOMEN'S & YOUTH PERFORMANCE DRI-FIT CUSTOMIZERS =======
+// Same performance fabric as the Unisex Performance Dri-fit above, but its own cut/photos —
+// shared factory below keeps the (identical) wiring in one place.
+const WOMENS_PERF_COLORS = [
+  { key:"black",         label:"Black",         img:"images/perf-womens/black-front.jpg",         back:"images/perf-womens/black-back.jpg",         swatch:"images/perf-womens/black-swatch.jpg" },
+  { key:"campus-orange", label:"Campus Orange", img:"images/perf-womens/campus-orange-front.jpg", back:"images/perf-womens/campus-orange-back.jpg", swatch:"images/perf-womens/campus-orange-swatch.jpg" },
+  { key:"carbon",        label:"Carbon",        img:"images/perf-womens/carbon-front.jpg",        back:"images/perf-womens/carbon-back.jpg",        swatch:"images/perf-womens/carbon-swatch.jpg" },
+  { key:"platinum",      label:"Platinum",      img:"images/perf-womens/platinum-front.jpg",      back:"images/perf-womens/platinum-back.jpg",      swatch:"images/perf-womens/platinum-swatch.jpg" }
+];
+const YOUTH_PERF_COLORS = [
+  { key:"black",         label:"Black",         img:"images/perf-youth/black-front.jpg",         back:"images/perf-youth/black-back.jpg",         swatch:"images/perf-youth/black-swatch.jpg" },
+  { key:"campus-orange", label:"Campus Orange", img:"images/perf-youth/campus-orange-front.jpg", back:"images/perf-youth/campus-orange-back.jpg", swatch:"images/perf-youth/campus-orange-swatch.jpg" },
+  { key:"carbon",        label:"Carbon",        img:"images/perf-youth/carbon-front.jpg",        back:"images/perf-youth/carbon-back.jpg",        swatch:"images/perf-youth/carbon-swatch.jpg" },
+  { key:"platinum",      label:"Platinum",      img:"images/perf-youth/platinum-front.jpg",      back:"images/perf-youth/platinum-back.jpg",      swatch:"images/perf-youth/platinum-swatch.jpg" }
+];
+const WOMENS_PERF_SIZES = ["XS","S","M","L","XL","2XL"];
+const WOMENS_PERF_PRICE = 25;
+const WOMENS_PERF_MEASUREMENTS = {
+  headers: ["XS","S","M","L","XL","2XL"],
+  rows: [
+    ["Body Length", 24, 25, 26, 27, 28, 29],
+    ["Chest Width (Laid Flat)", 15, 17, 19, 21, 23, 25]
+  ]
+};
+const YOUTH_PERF_PRICE = 25;
+const YOUTH_PERF_MEASUREMENTS = {
+  headers: ["XS","S","M","L","XL"],
+  rows: [
+    ["Body Length", 19, "20 1/2", 22, "23 1/2", 25],
+    ["Chest Width (Laid Flat)", 14, 16, 17, 18, 19]
+  ]
+};
+
+function initPerfVariant(cfg){
+  const els = {
+    colorSwatches:    document.getElementById(cfg.idPrefix + 'ColorSwatches'),
+    logoThumbs:       document.getElementById(cfg.idPrefix + 'LogoThumbs'),
+    previewShirt:     document.getElementById(cfg.idPrefix + 'PreviewShirt'),
+    previewLogo:      document.getElementById(cfg.idPrefix + 'PreviewLogo'),
+    previewBackLogo:  document.getElementById(cfg.idPrefix + 'PreviewBackLogo'),
+    previewBackText:  document.getElementById(cfg.idPrefix + 'PreviewBackText'),
+    viewToggle:       document.getElementById(cfg.idPrefix + 'ViewToggle'),
+    placementOptions: document.getElementById(cfg.idPrefix + 'PlacementOptions'),
+    backFields:       document.getElementById(cfg.idPrefix + 'BackFields'),
+    backName:         document.getElementById(cfg.idPrefix + 'BackName'),
+    backNumber:       document.getElementById(cfg.idPrefix + 'BackNumber'),
+    sizeSel:          document.getElementById(cfg.idPrefix + 'Size'),
+    qty:              document.getElementById(cfg.idPrefix + 'Qty'),
+    sizeChartToggle:  document.getElementById(cfg.idPrefix + 'SizeChartToggle'),
+    chart:            document.getElementById(cfg.idPrefix + 'Chart'),
+    price:            document.getElementById(cfg.idPrefix + 'Price'),
+    addBtn:           document.getElementById(cfg.addBtnId)
+  };
+
+  buildSizeChart(els.chart, cfg.measurements);
+  const colors = cfg.colors || PERF_COLORS;
+
+  colors.forEach(c => {
+    const wrap = document.createElement('div');
+    wrap.className = 'swatch-wrap';
+    wrap.innerHTML = `<div class="swatch" data-color="${c.key}" style="background-image:url('${c.swatch}')" title="${c.label}"></div><span class="swatch-label">${c.label}</span>`;
+    els.colorSwatches.appendChild(wrap);
+  });
+
+  TEE_LOGOS.forEach(l => {
+    const el = document.createElement('div');
+    el.className = 'logo-thumb';
+    el.dataset.logo = l.key;
+    el.title = l.label;
+    el.innerHTML = l.img ? `<img src="${l.img}" alt="${l.label}">` : `<span class="none-thumb">No Logo</span>`;
+    els.logoThumbs.appendChild(el);
+  });
+
+  els.sizeSel.innerHTML = cfg.sizes.map(s => `<option>${s}</option>`).join('');
+  els.sizeSel.value = cfg.sizes.includes('M') ? 'M' : cfg.sizes[Math.floor(cfg.sizes.length / 2)];
+
+  const state = { color: 'black', logo: 'full', price: cfg.price, view: 'front', placement: 'front-only', backName: '', backNumber: '' };
+  let sizeChartShown = false;
+
+  function refresh(){
+    const color = colors.find(c => c.key === state.color);
+    setPreviewSrc(els.previewShirt, state.view === 'back' ? color.back : color.img);
+    els.colorSwatches.querySelectorAll('.swatch').forEach(el =>
+      el.classList.toggle('active', el.dataset.color === state.color));
+
+    const logo = TEE_LOGOS.find(l => l.key === state.logo);
+    const isChestBack = state.placement === 'chest-back-logo';
+    const frontLogo = isChestBack ? TEE_LOGOS.find(l => l.key === 'icon') : logo;
+    const backLogoImg = TEE_LOGOS.find(l => l.key === 'full');
+    const showFrontLogo = state.view === 'front' && frontLogo.img;
+    if (showFrontLogo) {
+      els.previewLogo.src = frontLogo.img;
+      els.previewLogo.style.display = 'block';
+      applyLogoPlacement(els.previewLogo, frontLogo.key, isChestBack ? PERF_CHEST_PLACEMENT : PERF_LOGO_PLACEMENT);
+    } else { els.previewLogo.style.display = 'none'; }
+    els.logoThumbs.querySelectorAll('.logo-thumb').forEach(el =>
+      el.classList.toggle('active', el.dataset.logo === state.logo));
+
+    const showBackLogo = state.view === 'back' && isChestBack && backLogoImg.img;
+    const showBackText = state.view === 'back' && state.placement === 'back-name' && (state.backName || state.backNumber);
+    if (showBackLogo) {
+      els.previewBackLogo.src = backLogoImg.img;
+      els.previewBackLogo.style.top = PERF_BACK_LOGO_PLACEMENT.top;
+      els.previewBackLogo.style.width = PERF_BACK_LOGO_PLACEMENT.width;
+      els.previewBackLogo.style.display = 'block';
+    } else { els.previewBackLogo.style.display = 'none'; }
+    if (showBackText) {
+      els.previewBackText.querySelector('.bt-name').textContent = state.backName;
+      els.previewBackText.querySelector('.bt-number').textContent = state.backNumber ? '#' + state.backNumber : '';
+      els.previewBackText.style.display = 'block';
+    } else { els.previewBackText.style.display = 'none'; }
+
+    els.viewToggle.querySelectorAll('button').forEach(b =>
+      b.classList.toggle('active', b.dataset.view === state.view));
+    els.placementOptions.querySelectorAll('.placement-opt').forEach(el =>
+      el.classList.toggle('active', el.dataset.placement === state.placement));
+    els.backFields.classList.toggle('show', state.placement === 'back-name');
+
+    state.price = cfg.price;
+    els.price.textContent = money(state.price);
+  }
+
+  els.colorSwatches.addEventListener('click', e => {
+    const el = e.target.closest('.swatch');
+    if (!el) return;
+    state.color = el.dataset.color;
+    refresh();
+  });
+  els.logoThumbs.addEventListener('click', e => {
+    const el = e.target.closest('.logo-thumb');
+    if (!el) return;
+    state.logo = el.dataset.logo;
+    refresh();
+  });
+  els.viewToggle.addEventListener('click', e => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    state.view = btn.dataset.view;
+    refresh();
+  });
+  els.placementOptions.addEventListener('click', e => {
+    const el = e.target.closest('.placement-opt');
+    if (!el) return;
+    state.placement = el.dataset.placement;
+    refresh();
+  });
+  els.backName.addEventListener('input', e => { state.backName = e.target.value.trim(); refresh(); });
+  els.backNumber.addEventListener('input', e => { state.backNumber = e.target.value.trim(); refresh(); });
+  els.sizeSel.addEventListener('change', refresh);
+  els.sizeChartToggle.addEventListener('click', () => {
+    sizeChartShown = !sizeChartShown;
+    els.sizeChartToggle.textContent = sizeChartShown ? 'Hide size chart' : 'View size chart';
+    els.chart.classList.toggle('show', sizeChartShown);
+  });
+
+  els.addBtn.addEventListener('click', () => {
+    const color = colors.find(c => c.key === state.color);
+    const logo = TEE_LOGOS.find(l => l.key === state.logo);
+    const size = els.sizeSel.value;
+    const qty = Math.max(1, parseInt(els.qty.value || '1', 10));
+    const placementLabels = { 'front-only':'Front only', 'back-name':'Front + back name/number', 'chest-back-logo':'Small front chest + large back logo' };
+    const backText = state.placement === 'back-name' ? [state.backName, state.backNumber ? '#' + state.backNumber : ''].filter(Boolean).join(' ') : '';
+    const key = `${cfg.idPrefix}|${state.color}|${state.logo}|${state.placement}|${state.backName}|${state.backNumber}|${size}`;
+    const existing = cart.find(l => l.key === key);
+    if (existing) existing.qty += qty;
+    else cart.push({
+      key,
+      name: cfg.cartName,
+      variantLabel: `${logo.label} — ${placementLabels[state.placement]}`,
+      size: `${size} · ${color.label}${backText ? ' · Back: ' + backText : ''}`,
+      number: '',
+      qty,
+      price: state.price,
+      fit: cfg.fitLabel || '',
+      sizeOnly: size,
+      color: color.label,
+      logo: logo.label,
+      placement: placementLabels[state.placement],
+      backText: backText
+    });
+    renderCart();
+    document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  refresh();
+}
+
+initPerfVariant({
+  idPrefix: 'perfWomens',
+  addBtnId: 'addCustomPerfWomens',
+  colors: WOMENS_PERF_COLORS,
+  sizes: WOMENS_PERF_SIZES,
+  price: WOMENS_PERF_PRICE,
+  measurements: WOMENS_PERF_MEASUREMENTS,
+  cartName: "Women's Performance Dri-fit",
+  fitLabel: "Women's"
+});
+initPerfVariant({
+  idPrefix: 'perfYouth',
+  addBtnId: 'addCustomPerfYouth',
+  colors: YOUTH_PERF_COLORS,
+  sizes: YOUTH_SIZES,
+  price: YOUTH_PERF_PRICE,
+  measurements: YOUTH_PERF_MEASUREMENTS,
+  cartName: "Youth Performance Dri-fit",
+  fitLabel: "Youth"
+});
+
+// ======= JERSEY CUSTOMIZER (color picker + name/number for the Player Practice Jersey) =======
+const JERSEY_COLORS = [
+  { key:"heather-granite", label:"Heather Granite", img:"images/jersey/heather-granite-front.jpg", back:"images/jersey/heather-granite-back.jpg", swatch:"images/jersey/heather-granite-swatch.jpg" }
+];
+const JERSEY_PRICE = 20;
+const JERSEY_MEASUREMENTS = {
+  headers: ["XS","S","M","L","XL"],
+  rows: [
+    ["Body Length", 19, "20 1/2", 22, "23 1/2", 25],
+    ["Body Length Tolerance", "+/- 3/4", "+/- 3/4", "+/- 3/4", "+/- 3/4", "+/- 3/4"],
+    ["Chest Tolerance", "+/- 1/2", "+/- 1/2", "+/- 1/2", "+/- 1/2", "+/- 1/2"],
+    ["Chest Width (Laid Flat)", 14, 16, 17, 18, 19]
+  ]
+};
+buildSizeChart(document.getElementById('jerseyChart'), JERSEY_MEASUREMENTS);
+
+const jerseySwatchesEl = document.getElementById('jerseyColorSwatches');
+JERSEY_COLORS.forEach(c => {
+  const wrap = document.createElement('div');
+  wrap.className = 'swatch-wrap';
+  wrap.innerHTML = `<div class="swatch" data-color="${c.key}" style="background-image:url('${c.swatch}')" title="${c.label}"></div><span class="swatch-label">${c.label}</span>`;
+  jerseySwatchesEl.appendChild(wrap);
+});
+
+let jerseyState = { color: 'heather-granite', view: 'front' };
+
+function refreshJerseyCustomizer(){
+  const color = JERSEY_COLORS.find(c => c.key === jerseyState.color);
+  setPreviewSrc(document.getElementById('jerseyPreviewShirt'), jerseyState.view === 'back' ? color.back : color.img);
+  document.getElementById('jerseyBackNote').style.display = jerseyState.view === 'back' ? 'block' : 'none';
+  document.getElementById('jerseyViewToggle').querySelectorAll('button').forEach(b =>
+    b.classList.toggle('active', b.dataset.view === jerseyState.view));
+  jerseySwatchesEl.querySelectorAll('.swatch').forEach(el =>
+    el.classList.toggle('active', el.dataset.color === jerseyState.color));
+  document.getElementById('jerseyPrice').textContent = money(JERSEY_PRICE);
+}
+// mark default color active on first render
+jerseySwatchesEl.addEventListener('click', e => {
+  const el = e.target.closest('.swatch');
+  if (!el) return;
+  jerseyState.color = el.dataset.color;
+  refreshJerseyCustomizer();
+});
+document.getElementById('jerseyViewToggle').addEventListener('click', e => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  jerseyState.view = btn.dataset.view;
+  refreshJerseyCustomizer();
+});
+
+let jerseySizeChartShown = false;
+document.getElementById('jerseySizeChartToggle').addEventListener('click', () => {
+  jerseySizeChartShown = !jerseySizeChartShown;
+  document.getElementById('jerseySizeChartToggle').textContent = jerseySizeChartShown ? 'Hide size chart' : 'View size chart';
+  document.getElementById('jerseyChart').classList.toggle('show', jerseySizeChartShown);
+});
+
+document.getElementById('addCustomJersey').addEventListener('click', () => {
+  const color = JERSEY_COLORS.find(c => c.key === jerseyState.color);
+  const size = document.getElementById('jerseySize').value;
+  const qty = Math.max(1, parseInt(document.getElementById('jerseyQty').value || '1', 10));
+  const name = document.getElementById('jerseyBackName').value.trim();
+  const number = document.getElementById('jerseyBackNumber').value.trim();
+  const key = `custom-jersey|${jerseyState.color}|${size}|${name}|${number}`;
+  const backText = [name, number ? `#${number}` : ''].filter(Boolean).join(' ');
+  const existing = cart.find(l => l.key === key);
+  if (existing) existing.qty += qty;
+  else cart.push({
+    key,
+    name: 'Cleavers Practice Jersey',
+    variantLabel: 'Player Practice Jersey — Performance Fabric — Cleavers Logo',
+    size: `${size} · ${color.label}${backText ? ' · Back: ' + backText : ''}`,
+    number: '',
+    qty,
+    price: JERSEY_PRICE,
+    fit: 'Youth',
+    sizeOnly: size,
+    color: color.label,
+    logo: 'Cleavers Logo',
+    placement: 'Front logo + back name/number',
+    backText: backText
+  });
+  renderCart();
+  document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+refreshJerseyCustomizer();
+
+// ======= WHITE WOLVES PERFORMANCE TEE CUSTOMIZER (Gray/White/Black, adult + kids) =======
+// Real Core365 supplier photos only exist for Black and Platinum (used here for "Gray") —
+// no real White Performance Tee photo yet, so it falls back to the site's "Photo coming
+// soon" placeholder on the big preview, and a plain white swatch dot instead of a broken image.
+const WOLVES_COLORS = [
+  { key:"gray",  label:"Gray",  img:"images/perf/platinum-front.jpg", back:"images/perf/platinum-back.jpg", swatch:"images/perf/platinum-swatch.jpg" },
+  { key:"white", label:"White", img:"images/perf/white-front.jpg",    back:"images/perf/white-back.jpg",    swatchColor:"#faf8f2" },
+  { key:"black", label:"Black", img:"images/perf/black-front.jpg",    back:"images/perf/black-back.jpg",    swatch:"images/perf/black-swatch.jpg" }
+];
+const WOLVES_LOGO_PLACEMENT = { wolves: { top:"20%", width:"42%" } };
+const WOLVES_BUTTERSOFT_LOGO_PLACEMENT = { wolves: { top:"24%", width:"30%" } };
+// Real White Wolves team logo, in two ink colors for contrast: dark linework reads best on
+// White/Gray shirts, the light (reversed) version reads best on Black.
+function wolvesLogoFor(colorKey){
+  return colorKey === 'black' ? 'images/logos/white-wolves-light.png' : 'images/logos/white-wolves-dark.png';
+}
+
+buildSizeChart(document.getElementById('wolvesPerfAdultChart'), PERF_MEASUREMENTS);
+buildSizeChart(document.getElementById('wolvesPerfYouthChart'), YOUTH_MEASUREMENTS);
+
+const wolvesPerfColorSwatchesEl = document.getElementById('wolvesPerfColorSwatches');
+WOLVES_COLORS.forEach(c => {
+  const wrap = document.createElement('div');
+  wrap.className = 'swatch-wrap';
+  const swatchStyle = c.swatch ? `background-image:url('${c.swatch}')` : `background-color:${c.swatchColor};border-color:#ccc;`;
+  wrap.innerHTML = `<div class="swatch" data-color="${c.key}" style="${swatchStyle}" title="${c.label}"></div><span class="swatch-label">${c.label}</span>`;
+  wolvesPerfColorSwatchesEl.appendChild(wrap);
+});
+
+let wolvesPerfState = { color: 'gray', fit: 'adult', price: PERF_PRICE };
+let wolvesPerfSizeChartShown = false;
+
+function refreshWolvesPerfCustomizer(){
+  const color = WOLVES_COLORS.find(c => c.key === wolvesPerfState.color);
+  setPreviewSrc(document.getElementById('wolvesPerfPreviewShirt'), color.img);
+  wolvesPerfColorSwatchesEl.querySelectorAll('.swatch').forEach(el =>
+    el.classList.toggle('active', el.dataset.color === wolvesPerfState.color));
+  const wolvesPerfLogoEl = document.getElementById('wolvesPerfPreviewLogo');
+  wolvesPerfLogoEl.src = wolvesLogoFor(wolvesPerfState.color);
+  applyLogoPlacement(wolvesPerfLogoEl, 'wolves', WOLVES_LOGO_PLACEMENT);
+
+  document.getElementById('wolvesPerfFitToggle').querySelectorAll('button').forEach(b =>
+    b.classList.toggle('active', b.dataset.fit === wolvesPerfState.fit));
+
+  const sizeEl = document.getElementById('wolvesPerfSize');
+  const prevVal = sizeEl.value;
+  const sizes = wolvesPerfState.fit === 'adult' ? PERF_SIZES : YOUTH_SIZES;
+  sizeEl.innerHTML = sizes.map(s => `<option>${s}</option>`).join('');
+  if (sizes.includes(prevVal)) sizeEl.value = prevVal;
+  else if (sizes.includes('M')) sizeEl.value = 'M';
+
+  document.getElementById('wolvesPerfAdultChart').classList.toggle('show', wolvesPerfSizeChartShown && wolvesPerfState.fit === 'adult');
+  document.getElementById('wolvesPerfYouthChart').classList.toggle('show', wolvesPerfSizeChartShown && wolvesPerfState.fit === 'youth');
+
+  wolvesPerfState.price = wolvesPerfState.fit === 'adult' ? PERF_PRICE : YOUTH_PRICE;
+  document.getElementById('wolvesPerfPrice').textContent = money(wolvesPerfState.price);
+}
+
+wolvesPerfColorSwatchesEl.addEventListener('click', e => {
+  const el = e.target.closest('.swatch');
+  if (!el) return;
+  wolvesPerfState.color = el.dataset.color;
+  refreshWolvesPerfCustomizer();
+});
+document.getElementById('wolvesPerfFitToggle').addEventListener('click', e => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  wolvesPerfState.fit = btn.dataset.fit;
+  refreshWolvesPerfCustomizer();
+});
+document.getElementById('wolvesPerfSize').addEventListener('change', refreshWolvesPerfCustomizer);
+document.getElementById('wolvesPerfSizeChartToggle').addEventListener('click', () => {
+  wolvesPerfSizeChartShown = !wolvesPerfSizeChartShown;
+  document.getElementById('wolvesPerfSizeChartToggle').textContent = wolvesPerfSizeChartShown ? 'Hide size chart' : 'View size chart';
+  refreshWolvesPerfCustomizer();
+});
+
+document.getElementById('addWolvesPerf').addEventListener('click', () => {
+  const color = WOLVES_COLORS.find(c => c.key === wolvesPerfState.color);
+  const size = document.getElementById('wolvesPerfSize').value;
+  const qty = Math.max(1, parseInt(document.getElementById('wolvesPerfQty').value || '1', 10));
+  const fitLabel = wolvesPerfState.fit === 'adult' ? 'Adult' : 'Youth';
+  const key = `wolves-perf|${wolvesPerfState.color}|${wolvesPerfState.fit}|${size}`;
+  const existing = cart.find(l => l.key === key);
+  if (existing) existing.qty += qty;
+  else cart.push({
+    key,
+    name: 'White Wolves Performance Tee',
+    variantLabel: 'White Wolves Performance Tee',
+    size: `${fitLabel} ${size} · ${color.label}`,
+    number: '',
+    qty,
+    price: wolvesPerfState.price,
+    fit: fitLabel,
+    sizeOnly: size,
+    color: color.label,
+    logo: 'White Wolves logo',
+    placement: 'Front',
+    backText: ''
+  });
+  renderCart();
+  document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+refreshWolvesPerfCustomizer();
+
+// ======= WHITE WOLVES BUTTERSOFT TEE CUSTOMIZER (Gray/White/Black) =======
+// White and Black use real supplier mockup photos with the White Wolves logo already
+// pressed on (baked:true) — no live logo overlay needed for those two. Gray has no such
+// photo yet, so it keeps the plain garment photo + live logo overlay approach.
+const WOLVES_BUTTERSOFT_COLORS = [
+  { key:"gray",  label:"Gray",  img:"images/buttersoft/dark-grey.jpg",   swatch:"images/buttersoft/dark-grey-swatch.jpg" },
+  { key:"white", label:"White", img:"images/buttersoft/wolves-white.jpg", swatch:"images/buttersoft/wolves-white-swatch.jpg", baked:true },
+  { key:"black", label:"Black", img:"images/buttersoft/wolves-black.jpg", swatch:"images/buttersoft/wolves-black-swatch.jpg", baked:true }
+];
+
+const wolvesButtersoftColorSwatchesEl = document.getElementById('wolvesButtersoftColorSwatches');
+WOLVES_BUTTERSOFT_COLORS.forEach(c => {
+  const wrap = document.createElement('div');
+  wrap.className = 'swatch-wrap';
+  wrap.innerHTML = `<div class="swatch" data-color="${c.key}" style="background-image:url('${c.swatch}')" title="${c.label}"></div><span class="swatch-label">${c.label}</span>`;
+  wolvesButtersoftColorSwatchesEl.appendChild(wrap);
+});
+
+const wolvesButtersoftSizeEl = document.getElementById('wolvesButtersoftSize');
+wolvesButtersoftSizeEl.innerHTML = BUTTERSOFT_SIZES.map(s => `<option>${s}</option>`).join('');
+
+let wolvesButtersoftState = { color: 'gray', price: BUTTERSOFT_PRICE };
+
+function refreshWolvesButtersoftCustomizer(){
+  const color = WOLVES_BUTTERSOFT_COLORS.find(c => c.key === wolvesButtersoftState.color);
+  setPreviewSrc(document.getElementById('wolvesButtersoftPreviewShirt'), color.img);
+  wolvesButtersoftColorSwatchesEl.querySelectorAll('.swatch').forEach(el =>
+    el.classList.toggle('active', el.dataset.color === wolvesButtersoftState.color));
+  const wolvesButtersoftLogoEl = document.getElementById('wolvesButtersoftPreviewLogo');
+  if (color.baked) {
+    wolvesButtersoftLogoEl.style.display = 'none';
+  } else {
+    wolvesButtersoftLogoEl.style.display = '';
+    wolvesButtersoftLogoEl.src = wolvesLogoFor(wolvesButtersoftState.color);
+    applyLogoPlacement(wolvesButtersoftLogoEl, 'wolves', WOLVES_BUTTERSOFT_LOGO_PLACEMENT);
+  }
+  document.getElementById('wolvesButtersoftPrice').textContent = money(BUTTERSOFT_PRICE);
+}
+
+wolvesButtersoftColorSwatchesEl.addEventListener('click', e => {
+  const el = e.target.closest('.swatch');
+  if (!el) return;
+  wolvesButtersoftState.color = el.dataset.color;
+  refreshWolvesButtersoftCustomizer();
+});
+
+document.getElementById('addWolvesButtersoft').addEventListener('click', () => {
+  const color = WOLVES_BUTTERSOFT_COLORS.find(c => c.key === wolvesButtersoftState.color);
+  const size = wolvesButtersoftSizeEl.value;
+  const qty = Math.max(1, parseInt(document.getElementById('wolvesButtersoftQty').value || '1', 10));
+  const key = `wolves-buttersoft|${wolvesButtersoftState.color}|${size}`;
+  const existing = cart.find(l => l.key === key);
+  if (existing) existing.qty += qty;
+  else cart.push({
+    key,
+    name: 'White Wolves Buttersoft Tee',
+    variantLabel: 'White Wolves Buttersoft Tee',
+    size: `${size} · ${color.label}`,
+    number: '',
+    qty,
+    price: wolvesButtersoftState.price,
+    fit: '',
+    sizeOnly: size,
+    color: color.label,
+    logo: 'White Wolves logo',
+    placement: 'Front',
+    backText: ''
+  });
+  renderCart();
+  document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+refreshWolvesButtersoftCustomizer();
+
+// ======= SCHOOL / 100 DAYS — COTTON TEE (no logo yet, all 6 colors, adult+youth) =======
+buildSizeChart(document.getElementById('schoolTeeAdultChart'), ADULT_MEASUREMENTS);
+buildSizeChart(document.getElementById('schoolTeeYouthChart'), YOUTH_MEASUREMENTS);
+
+const schoolTeeColorSwatchesEl = document.getElementById('schoolTeeColorSwatches');
+TEE_COLORS.forEach(c => {
+  const wrap = document.createElement('div');
+  wrap.className = 'swatch-wrap';
+  wrap.innerHTML = `<div class="swatch" data-color="${c.key}" style="background-image:url('${c.swatch}')" title="${c.label}"></div><span class="swatch-label">${c.label}</span>`;
+  schoolTeeColorSwatchesEl.appendChild(wrap);
+});
+
+let schoolTeeState = { color: 'ash', fit: 'adult', price: ADULT_PRICE };
+let schoolTeeSizeChartShown = false;
+
+function refreshSchoolTeeCustomizer(){
+  const color = TEE_COLORS.find(c => c.key === schoolTeeState.color);
+  setPreviewSrc(document.getElementById('schoolTeePreviewShirt'), color.img);
+  document.getElementById('schoolTeeFabricNote').textContent = color.fabric;
+  schoolTeeColorSwatchesEl.querySelectorAll('.swatch').forEach(el =>
+    el.classList.toggle('active', el.dataset.color === schoolTeeState.color));
+
+  document.getElementById('schoolTeeFitToggle').querySelectorAll('button').forEach(b =>
+    b.classList.toggle('active', b.dataset.fit === schoolTeeState.fit));
+
+  const sizeEl = document.getElementById('schoolTeeSize');
+  const prevVal = sizeEl.value;
+  const sizes = schoolTeeState.fit === 'adult' ? ADULT_SIZES : YOUTH_SIZES;
+  sizeEl.innerHTML = sizes.map(s => `<option>${s}</option>`).join('');
+  if (sizes.includes(prevVal)) sizeEl.value = prevVal;
+  else if (sizes.includes('M')) sizeEl.value = 'M';
+
+  document.getElementById('schoolTeeAdultChart').classList.toggle('show', schoolTeeSizeChartShown && schoolTeeState.fit === 'adult');
+  document.getElementById('schoolTeeYouthChart').classList.toggle('show', schoolTeeSizeChartShown && schoolTeeState.fit === 'youth');
+
+  schoolTeeState.price = schoolTeeState.fit === 'adult' ? ADULT_PRICE : YOUTH_PRICE;
+  document.getElementById('schoolTeePrice').textContent = money(schoolTeeState.price);
+}
+
+schoolTeeColorSwatchesEl.addEventListener('click', e => {
+  const el = e.target.closest('.swatch');
+  if (!el) return;
+  schoolTeeState.color = el.dataset.color;
+  refreshSchoolTeeCustomizer();
+});
+document.getElementById('schoolTeeFitToggle').addEventListener('click', e => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  schoolTeeState.fit = btn.dataset.fit;
+  refreshSchoolTeeCustomizer();
+});
+document.getElementById('schoolTeeSize').addEventListener('change', refreshSchoolTeeCustomizer);
+document.getElementById('schoolTeeSizeChartToggle').addEventListener('click', () => {
+  schoolTeeSizeChartShown = !schoolTeeSizeChartShown;
+  document.getElementById('schoolTeeSizeChartToggle').textContent = schoolTeeSizeChartShown ? 'Hide size chart' : 'View size chart';
+  refreshSchoolTeeCustomizer();
+});
+
+document.getElementById('addSchoolTee').addEventListener('click', () => {
+  const color = TEE_COLORS.find(c => c.key === schoolTeeState.color);
+  const size = document.getElementById('schoolTeeSize').value;
+  const qty = Math.max(1, parseInt(document.getElementById('schoolTeeQty').value || '1', 10));
+  const fitLabel = schoolTeeState.fit === 'adult' ? 'Adult' : 'Youth';
+  const key = `school-tee|${schoolTeeState.color}|${schoolTeeState.fit}|${size}`;
+  const existing = cart.find(l => l.key === key);
+  if (existing) existing.qty += qty;
+  else cart.push({
+    key,
+    name: '100 Days Cotton Tee',
+    variantLabel: '100 Days Cotton Tee — design added once artwork is ready',
+    size: `${fitLabel} ${size} · ${color.label}`,
+    number: '',
+    qty,
+    price: schoolTeeState.price,
+    fit: fitLabel,
+    sizeOnly: size,
+    color: color.label,
+    logo: '(TBD — 100 Days artwork)',
+    placement: '',
+    backText: ''
+  });
+  renderCart();
+  document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+refreshSchoolTeeCustomizer();
+
+// ======= SCHOOL / 100 DAYS — PERFORMANCE TEE (no logo yet, all 4 colors, adult+youth) =======
+buildSizeChart(document.getElementById('schoolPerfAdultChart'), PERF_MEASUREMENTS);
+buildSizeChart(document.getElementById('schoolPerfYouthChart'), YOUTH_MEASUREMENTS);
+
+const schoolPerfColorSwatchesEl = document.getElementById('schoolPerfColorSwatches');
+PERF_COLORS.forEach(c => {
+  const wrap = document.createElement('div');
+  wrap.className = 'swatch-wrap';
+  wrap.innerHTML = `<div class="swatch" data-color="${c.key}" style="background-image:url('${c.swatch}')" title="${c.label}"></div><span class="swatch-label">${c.label}</span>`;
+  schoolPerfColorSwatchesEl.appendChild(wrap);
+});
+
+let schoolPerfState = { color: 'black', fit: 'adult', price: PERF_PRICE };
+let schoolPerfSizeChartShown = false;
+
+function refreshSchoolPerfCustomizer(){
+  const color = PERF_COLORS.find(c => c.key === schoolPerfState.color);
+  setPreviewSrc(document.getElementById('schoolPerfPreviewShirt'), color.img);
+  schoolPerfColorSwatchesEl.querySelectorAll('.swatch').forEach(el =>
+    el.classList.toggle('active', el.dataset.color === schoolPerfState.color));
+
+  document.getElementById('schoolPerfFitToggle').querySelectorAll('button').forEach(b =>
+    b.classList.toggle('active', b.dataset.fit === schoolPerfState.fit));
+
+  const sizeEl = document.getElementById('schoolPerfSize');
+  const prevVal = sizeEl.value;
+  const sizes = schoolPerfState.fit === 'adult' ? PERF_SIZES : YOUTH_SIZES;
+  sizeEl.innerHTML = sizes.map(s => `<option>${s}</option>`).join('');
+  if (sizes.includes(prevVal)) sizeEl.value = prevVal;
+  else if (sizes.includes('M')) sizeEl.value = 'M';
+
+  document.getElementById('schoolPerfAdultChart').classList.toggle('show', schoolPerfSizeChartShown && schoolPerfState.fit === 'adult');
+  document.getElementById('schoolPerfYouthChart').classList.toggle('show', schoolPerfSizeChartShown && schoolPerfState.fit === 'youth');
+
+  schoolPerfState.price = schoolPerfState.fit === 'adult' ? PERF_PRICE : YOUTH_PRICE;
+  document.getElementById('schoolPerfPrice').textContent = money(schoolPerfState.price);
+}
+
+schoolPerfColorSwatchesEl.addEventListener('click', e => {
+  const el = e.target.closest('.swatch');
+  if (!el) return;
+  schoolPerfState.color = el.dataset.color;
+  refreshSchoolPerfCustomizer();
+});
+document.getElementById('schoolPerfFitToggle').addEventListener('click', e => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  schoolPerfState.fit = btn.dataset.fit;
+  refreshSchoolPerfCustomizer();
+});
+document.getElementById('schoolPerfSize').addEventListener('change', refreshSchoolPerfCustomizer);
+document.getElementById('schoolPerfSizeChartToggle').addEventListener('click', () => {
+  schoolPerfSizeChartShown = !schoolPerfSizeChartShown;
+  document.getElementById('schoolPerfSizeChartToggle').textContent = schoolPerfSizeChartShown ? 'Hide size chart' : 'View size chart';
+  refreshSchoolPerfCustomizer();
+});
+
+document.getElementById('addSchoolPerf').addEventListener('click', () => {
+  const color = PERF_COLORS.find(c => c.key === schoolPerfState.color);
+  const size = document.getElementById('schoolPerfSize').value;
+  const qty = Math.max(1, parseInt(document.getElementById('schoolPerfQty').value || '1', 10));
+  const fitLabel = schoolPerfState.fit === 'adult' ? 'Adult' : 'Youth';
+  const key = `school-perf|${schoolPerfState.color}|${schoolPerfState.fit}|${size}`;
+  const existing = cart.find(l => l.key === key);
+  if (existing) existing.qty += qty;
+  else cart.push({
+    key,
+    name: '100 Days Performance Tee',
+    variantLabel: '100 Days Performance Tee — design added once artwork is ready',
+    size: `${fitLabel} ${size} · ${color.label}`,
+    number: '',
+    qty,
+    price: schoolPerfState.price,
+    fit: fitLabel,
+    sizeOnly: size,
+    color: color.label,
+    logo: '(TBD — 100 Days artwork)',
+    placement: '',
+    backText: ''
+  });
+  renderCart();
+  document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+refreshSchoolPerfCustomizer();
+
+// ======= SCHOOL / KINDERGARTEN 50s — fixed design + color per style, youth XS-M =======
+// Per Anne: customers only ever decide (1) size and (2) — on certain designs only —
+// whether to pay +$5 for a custom name in small script vs. the standard look as shown
+// in the FINAL DTF GANG SHEET. customPlacement is just the on-card helper label; the
+// cart line's backText carries the actual name through to the Orders Hub / receipt.
+const KINDER50_SIZES = ["XS (2-4)","S (6-8)","M (10-12)"];
+const KINDER50_PRICE = 25;
+const KINDER50_CUSTOM_PRICE = 5;
+const KINDER50_PRODUCTS = [
+  { key:'k50-letterman-red', name:'Varsity Letterman — Red & Gold', img:'images/kinder50/letterman-red.jpg', color:'Heather Red', blurb:"Cardigan-look tee with gold “K” patch and “50” on the pocket — printed on a Heather Red blank.", customizable:true, customPlacement:'small script name on the bottom pocket' },
+  { key:'k50-pinstripe', name:'Fifty Days Pinstripe Jersey', img:'images/kinder50/pinstripe-fiftydays.jpg', color:'Natural', blurb:"Script “Fifty Days” pinstripe baseball jersey look — printed on a Natural blank.", customizable:true, customPlacement:'small script name on the back' },
+  { key:'k50-tbirds', name:'T-Birds Tee', img:'images/kinder50/tbirds.jpg', color:'Black', blurb:"Distressed T-Birds swallow logo — printed on a Black blank." },
+  { key:'k50-letterman-navy', name:'Varsity Letterman — Blue & Gold', img:'images/kinder50/letterman-navy.jpg', color:'Heather Navy', blurb:"Cardigan-look tee with gold “50” on the front and a plain back — printed on a Heather Navy blank.", customizable:true, customPlacement:'small script name on the bottom pocket' },
+  { key:'k50-garage', name:'Champ Garage Tee', img:'images/kinder50/garage-champ.jpg', color:'Carbon', blurb:"Mechanic-shop look, “Champ” front patch and “50th Day Garage” hot-rod back patch — printed on a Carbon blank.", customizable:true, customPlacement:'name patch in place of “Champ”' },
+  { key:'k50-bowling', name:'Bowling Night Tee', img:'images/kinder50/bowling.jpg', color:'Turquoise', blurb:"Retro bowling shirt look, “Gutter Greasers” and a slanted “50” on the back — printed on a Turquoise blank." },
+  { key:'k50-diner', name:'50th Day Diner Tee', img:'images/kinder50/diner.jpg', color:'White', blurb:"Diner apron and bow-tie look — printed on a White blank.", customizable:true, customPlacement:'small script name on the apron tag' }
+];
+
+const kinder50GridEl = document.getElementById('kinder50Grid');
+KINDER50_PRODUCTS.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'product-card';
+  card.innerHTML = `
+    <div class="thumb"><img src="${p.img}" alt="${p.name} preview" loading="lazy"></div>
+    <div class="pinfo">
+      <h3>${p.name}</h3>
+      <p style="margin:0;font-size:.8rem;color:#666;">${p.blurb}</p>
+      <div class="row2">
+        <div class="field" style="margin-bottom:0;">
+          <label>Size</label>
+          <select class="k50Size">${KINDER50_SIZES.map(s => `<option>${s}</option>`).join('')}</select>
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label>Qty</label>
+          <input type="number" class="k50Qty" min="1" value="1">
+        </div>
+      </div>
+      ${p.customizable ? `
+      <div class="field" style="margin-bottom:0;">
+        <label style="display:flex;align-items:center;gap:6px;font-weight:normal;">
+          <input type="checkbox" class="k50CustomToggle" style="width:auto;">
+          Customize name — ${p.customPlacement} (+${money(KINDER50_CUSTOM_PRICE)})
+        </label>
+        <input type="text" class="k50CustomName" placeholder="Name to print" maxlength="16" style="display:none;margin-top:6px;">
+      </div>
+      ` : ''}
+      <div class="price k50Price">${money(KINDER50_PRICE)}</div>
+      <button type="button" class="btn block k50Add">Add to Cart</button>
+    </div>
+  `;
+
+  const priceEl = card.querySelector('.k50Price');
+  const toggleEl = card.querySelector('.k50CustomToggle');
+  const nameEl = card.querySelector('.k50CustomName');
+  if (toggleEl) {
+    toggleEl.addEventListener('change', () => {
+      nameEl.style.display = toggleEl.checked ? 'block' : 'none';
+      priceEl.textContent = money(KINDER50_PRICE + (toggleEl.checked ? KINDER50_CUSTOM_PRICE : 0));
+      if (!toggleEl.checked) nameEl.value = '';
+    });
+  }
+
+  card.querySelector('.k50Add').addEventListener('click', () => {
+    const size = card.querySelector('.k50Size').value;
+    const qty = Math.max(1, parseInt(card.querySelector('.k50Qty').value || '1', 10));
+    const wantsCustom = !!(toggleEl && toggleEl.checked);
+    const customName = wantsCustom ? nameEl.value.trim() : '';
+    if (wantsCustom && !customName) {
+      alert('Please enter the name to print, or uncheck "Customize name."');
+      nameEl.focus();
+      return;
+    }
+    const price = KINDER50_PRICE + (wantsCustom ? KINDER50_CUSTOM_PRICE : 0);
+    const key = `${p.key}|${size}|${wantsCustom ? 'custom:' + customName : 'standard'}`;
+    const existing = cart.find(l => l.key === key);
+    if (existing) existing.qty += qty;
+    else cart.push({
+      key,
+      name: p.name,
+      variantLabel: `Kindergarten 50s — ${p.color}`,
+      size: `Youth ${size}${customName ? ' · Custom: "' + customName + '"' : ''}`,
+      number: '',
+      qty,
+      price,
+      fit: 'Youth',
+      sizeOnly: size,
+      color: p.color,
+      logo: p.name,
+      placement: wantsCustom ? p.customPlacement : '',
+      backText: customName
+    });
+    renderCart();
+    document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  kinder50GridEl.appendChild(card);
+});
+
+// Tab switching — Softball/Baseball, Soccer, School, Custom Printing
+document.getElementById('tabBar').addEventListener('click', (e) => {
+  const btn = e.target.closest('.tab-btn');
+  if (!btn) return;
+  const target = btn.dataset.tab;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+  document.querySelectorAll('.tab-panel').forEach(panel => {
+    panel.hidden = panel.dataset.tabPanel !== target;
+  });
+  window.scrollTo({ top: document.getElementById('tabBar').offsetTop - 10, behavior: 'smooth' });
+});
+
+document.getElementById('orderForm').addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const val = id => document.getElementById(id).value.trim();
+
+  const sizes = Array.from(document.querySelectorAll('.sizeQty'))
+    .map(el => ({ size: el.dataset.size, qty: parseInt(el.value || '0', 10) }))
+    .filter(s => s.qty > 0);
+
+  const sizeLines = sizes.length
+    ? sizes.map(s => `  - ${s.size}: ${s.qty}`).join('\n')
+    : '  (none specified)';
+
+  const body = [
+    `New order request from ${val('name')}`,
+    ``,
+    `Contact: ${val('name')} | ${val('email')} | ${val('phone') || 'no phone given'}`,
+    `Needed by: ${val('needBy') || 'no date given'}`,
+    ``,
+    `Team / design name: ${val('teamName')}`,
+    `Fabric: ${val('fabric')}`,
+    `Shirt color: ${val('shirtColor') || '-'}`,
+    `Design colors: ${val('designColor') || '-'}`,
+    ``,
+    `Sizes & quantities:`,
+    sizeLines,
+    ``,
+    `Personalization:`,
+    val('personalize') || '  (none)',
+    ``,
+    `Notes:`,
+    val('notes') || '  (none)',
+    ``,
+    `--- Remember to attach the logo / reference image before sending! ---`
+  ].join('\n');
+
+  const subject = `New KRS Tees Order — ${val('teamName') || val('name')}`;
+  const mailto = `mailto:${ORDERS_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  // Log to the orders hub immediately — this fires even if the customer never
+  // finishes sending the mailto draft, so it is the more reliable record.
+  logOrderToHub({
+    type: 'custom',
+    name: val('name'),
+    email: val('email'),
+    phone: val('phone'),
+    teamName: val('teamName'),
+    fabric: val('fabric'),
+    details: body
+  });
+
+  const banner = document.getElementById('confirmBanner');
+  banner.style.display = 'block';
+  banner.textContent = "Opening your email app with everything filled in — just attach any images and hit send.";
+  banner.scrollIntoView({behavior:'smooth', block:'center'});
+
+  window.location.href = mailto;
+});
+</script>
+
+</body>
+</html>

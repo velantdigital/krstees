@@ -1,0 +1,9 @@
+# Never let anything private end up in this public repo.
+apps-script/
+*.bak
+README-ORDERS-HUB.md
+.env
+.env.local
+.DS_Store
+.verify_check.js
+.vercel
