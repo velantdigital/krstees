@@ -383,17 +383,30 @@
   #cartSection:not(.empty) #cartEmptyMsg{display:none;}
   .cart-line{
     display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
+    flex-direction:column;
+    gap:6px;
     padding:10px 0;
     border-bottom:1px solid var(--line);
     font-size:.92rem;
+  }
+  .cart-line .row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
   }
   .cart-line .meta{color:#666;font-size:.8rem;}
   .cart-line .remove{
     background:none;border:none;color:var(--coral-dark);
     font-size:.8rem;font-weight:700;cursor:pointer;padding:4px;
+  }
+  .cart-line .cart-note{
+    width:100%;
+    padding:7px 9px;
+    font-size:.82rem;
+    border:1px solid var(--line);
+    border-radius:6px;
+    font-family:inherit;
   }
   .cart-subtotal-row{
     display:flex;justify-content:space-between;align-items:center;
@@ -1231,7 +1244,7 @@
       <div class="tstep"><b>We confirm</b>Design, fabric, and total price — usually within 24 hours.</div>
       <div class="tstep"><b>You pay</b>Secure checkout with PayPal or Venmo, right here on the site. Nothing's pressed until it clears.</div>
       <div class="tstep"><b>Confirmation email</b>You'll receive an order confirmation email with your order details.</div>
-      <div class="tstep"><b>We press & ship</b>Each shirt is hand-pressed to order — please allow 3–5 business days before it ships.</div>
+      <div class="tstep"><b>We press & ship</b>Each shirt is hand-pressed to order, slight variations may occur as these are handmade — shirts will be delivered to the school to your child for pick up.</div>
     </div>
   </section>
 
@@ -1269,7 +1282,7 @@ const NV_SALES_TAX_RATE = 0.08375;
 // date: reload once to pick up the new one, and if it is still stale after that,
 // refuse to render the checkout buttons rather than take a wrong-amount payment.
 // Bump SITE_BUILD_ID and version.json together on every deploy that changes money.
-const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v11';
+const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v12';
 let siteBuildStale = false;
 
 function showStaleNotice(){
@@ -1335,20 +1348,29 @@ function renderCart(){
   section.classList.toggle('empty', cart.length === 0);
   linesEl.innerHTML = cart.map(l => `
     <div class="cart-line">
-      <div>
-        <div>${l.name} — ${l.variantLabel} × ${l.qty}</div>
-        <div class="meta">${l.size}${l.number ? ' · #' + l.number : ''} · ${money(l.price)} each</div>
+      <div class="row">
+        <div>
+          <div>${l.name} — ${l.variantLabel} × ${l.qty}</div>
+          <div class="meta">${l.size}${l.number ? ' · #' + l.number : ''} · ${money(l.price)} each</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div>${money(l.price * l.qty)}</div>
+          <button type="button" class="remove" data-key="${l.key}">Remove</button>
+        </div>
       </div>
-      <div style="display:flex;align-items:center;gap:10px;">
-        <div>${money(l.price * l.qty)}</div>
-        <button type="button" class="remove" data-key="${l.key}">Remove</button>
-      </div>
+      <input type="text" class="cart-note" data-key="${l.key}" placeholder="Customization request (e.g. no nametag, add nametag)" value="${(l.customNote || '').replace(/"/g, '&quot;')}">
     </div>
   `).join('');
   linesEl.querySelectorAll('.remove').forEach(btn => {
     btn.addEventListener('click', () => {
       cart = cart.filter(l => l.key !== btn.dataset.key);
       renderCart();
+    });
+  });
+  linesEl.querySelectorAll('.cart-note').forEach(inp => {
+    inp.addEventListener('input', () => {
+      const line = cart.find(c => c.key === inp.dataset.key);
+      if (line) line.customNote = inp.value;
     });
   });
   const subtotal = cart.reduce((sum, l) => sum + l.price * l.qty, 0);
@@ -1392,7 +1414,7 @@ function renderCheckoutButtons(subtotal, tax, total){
       const payer = (details && details.payer) || {};
       const payerName = payer.name ? `${payer.name.given_name || ''} ${payer.name.surname || ''}`.trim() : '';
       const itemsSummary = cart.map(l =>
-        `${l.name} — ${l.variantLabel} (${l.size}${l.number ? ' · #' + l.number : ''}) x${l.qty}`
+        `${l.name} — ${l.variantLabel} (${l.size}${l.number ? ' · #' + l.number : ''}) x${l.qty}${l.customNote ? ' [Note: ' + l.customNote + ']' : ''}`
       ).join('; ');
       const lineItems = cart.map(l => ({
         product: l.name,
@@ -1402,6 +1424,7 @@ function renderCheckoutButtons(subtotal, tax, total){
         size: l.sizeOnly || '',
         color: l.color || '',
         back: l.backText || '',
+        note: l.customNote || '',
         qty: l.qty,
         unitPrice: l.price,
         lineTotal: +(l.price * l.qty).toFixed(2)
