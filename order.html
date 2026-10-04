@@ -323,6 +323,9 @@
   .product-card .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
   .product-card .thumb.thumb-pair{padding:0;gap:2px;}
   .product-card .thumb.thumb-pair img{width:50%;height:100%;flex:none;}
+  /* front-only cards: same square box and same shirt scale as one half of a front/back pair */
+  .product-card .thumb.thumb-single{padding:0;background:#fff;}
+  .product-card .thumb.thumb-single img{width:54%;height:100%;flex:none;object-fit:contain;}
   .product-card .pinfo{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1;}
   .product-card h3{margin:0;font-size:1rem;}
   .product-card .price{font-weight:800;color:var(--coral-dark);font-size:1.05rem;margin-top:auto;}
@@ -585,6 +588,7 @@
   <h1>Shop Ready Designs or Go Fully Custom</h1>
   <p>Grab a ready-made bestseller now, or tell us the team and we'll build it from scratch — either way, hand-pressed to order.</p>
   <span class="tagline">WEAR THE WIN</span>
+  <p style="margin:10px auto 0;font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:.85rem;">Support local &mdash; thank you for supporting local!</p>
 </section>
 
 <div class="tab-bar" id="tabBar">
@@ -1102,57 +1106,21 @@
     <div class="product-grid" id="kinder50Grid"></div>
   </section>
 
-  <!-- 100 DAYS OF SCHOOL (coming soon — not orderable yet) -->
+  <!-- 100 DAYS OF SCHOOL (coming soon — not orderable yet): ONE shirt, five color options -->
   <section class="card" id="drip100">
     <h2>100 Days of Drip</h2>
-    <p class="sub">Coming soon, &ldquo;100 Days of School&rdquo; shirts! Five colors, youth XS&ndash;XL and adult XS&ndash;XL, $25 each with a single-side, front-only print. Ordering opens soon.</p>
+    <p class="sub">Coming soon, &ldquo;100 Days of School&rdquo; shirts! One fun design, five tee colors &mdash; ordering opens soon.</p>
     <div class="product-grid" id="drip100Grid">
       <div class="product-card">
-        <div class="thumb"><img src="images/100days/drip-carolina-blue.jpg" alt="100 Days of Drip tee in Carolina Blue" loading="lazy"></div>
+        <div class="thumb"><img id="dripImg" src="images/100days/drip-carolina-blue.jpg" alt="100 Days of Drip tee in Carolina Blue" loading="lazy"></div>
         <div class="pinfo">
-          <h3>100 Days of Drip Tee &mdash; Carolina Blue</h3>
-          <p style="margin:0;font-size:.8rem;color:#666;">Single-side, front-only print on a Carolina Blue tee.</p>
+          <h3>100 Days of Drip Tee</h3>
+          <p style="margin:0;font-size:.8rem;color:#666;">Features 100 sprinkles on the design! Single-side, front-only print.</p>
           <p style="margin:0;font-size:.8rem;color:#666;">Sizes: Youth XS&ndash;XL &middot; Adult XS&ndash;XL</p>
-          <div class="price">$25.00</div>
-          <button type="button" class="btn block" disabled aria-disabled="true" style="opacity:.65;cursor:not-allowed;">Coming Soon</button>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="thumb"><img src="images/100days/drip-white.jpg" alt="100 Days of Drip tee in White" loading="lazy"></div>
-        <div class="pinfo">
-          <h3>100 Days of Drip Tee &mdash; White</h3>
-          <p style="margin:0;font-size:.8rem;color:#666;">Single-side, front-only print on a White tee.</p>
-          <p style="margin:0;font-size:.8rem;color:#666;">Sizes: Youth XS&ndash;XL &middot; Adult XS&ndash;XL</p>
-          <div class="price">$25.00</div>
-          <button type="button" class="btn block" disabled aria-disabled="true" style="opacity:.65;cursor:not-allowed;">Coming Soon</button>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="thumb"><img src="images/100days/drip-yellow.jpg" alt="100 Days of Drip tee in Yellow" loading="lazy"></div>
-        <div class="pinfo">
-          <h3>100 Days of Drip Tee &mdash; Yellow</h3>
-          <p style="margin:0;font-size:.8rem;color:#666;">Single-side, front-only print on a Yellow tee.</p>
-          <p style="margin:0;font-size:.8rem;color:#666;">Sizes: Youth XS&ndash;XL &middot; Adult XS&ndash;XL</p>
-          <div class="price">$25.00</div>
-          <button type="button" class="btn block" disabled aria-disabled="true" style="opacity:.65;cursor:not-allowed;">Coming Soon</button>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="thumb"><img src="images/100days/drip-diving-blue.jpg" alt="100 Days of Drip tee in Diving Blue" loading="lazy"></div>
-        <div class="pinfo">
-          <h3>100 Days of Drip Tee &mdash; Diving Blue</h3>
-          <p style="margin:0;font-size:.8rem;color:#666;">Single-side, front-only print on a Diving Blue tee.</p>
-          <p style="margin:0;font-size:.8rem;color:#666;">Sizes: Youth XS&ndash;XL &middot; Adult XS&ndash;XL</p>
-          <div class="price">$25.00</div>
-          <button type="button" class="btn block" disabled aria-disabled="true" style="opacity:.65;cursor:not-allowed;">Coming Soon</button>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="thumb"><img src="images/100days/drip-azalea.jpg" alt="100 Days of Drip tee in Azalea" loading="lazy"></div>
-        <div class="pinfo">
-          <h3>100 Days of Drip Tee &mdash; Azalea</h3>
-          <p style="margin:0;font-size:.8rem;color:#666;">Single-side, front-only print on a Azalea tee.</p>
-          <p style="margin:0;font-size:.8rem;color:#666;">Sizes: Youth XS&ndash;XL &middot; Adult XS&ndash;XL</p>
+          <div class="field" style="margin-bottom:0;">
+            <label for="dripColor">Color</label>
+            <select id="dripColor"><option value="carolina-blue">Carolina Blue</option><option value="white">White</option><option value="yellow">Yellow</option><option value="diving-blue">Diving Blue</option><option value="azalea">Azalea</option></select>
+          </div>
           <div class="price">$25.00</div>
           <button type="button" class="btn block" disabled aria-disabled="true" style="opacity:.65;cursor:not-allowed;">Coming Soon</button>
         </div>
@@ -1332,6 +1300,7 @@
 <footer>
   Hand-pressed in-house, one order at a time — questions? email
   <a href="mailto:orders@krstees.com">orders@krstees.com</a>.
+  <br>Thank you for supporting local!
   <br>© <span id="year"></span> KRS Tees. Wear the win.
 </footer>
 
@@ -1361,7 +1330,7 @@ const NV_SALES_TAX_RATE = 0.08375;
 // date: reload once to pick up the new one, and if it is still stale after that,
 // refuse to render the checkout buttons rather than take a wrong-amount payment.
 // Bump SITE_BUILD_ID and version.json together on every deploy that changes money.
-const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v18';
+const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v19';
 let siteBuildStale = false;
 
 function showStaleNotice(){
@@ -1550,7 +1519,7 @@ function renderCheckoutButtons(subtotal, tax, total){
       renderCart();
       const banner = document.getElementById('confirmBanner');
       banner.style.display = 'block';
-      banner.textContent = "Payment received — thank you! We'll confirm your order by email shortly.";
+      banner.textContent = "Payment received — thank you for supporting local! We'll confirm your order by email shortly.";
       banner.scrollIntoView({behavior:'smooth', block:'center'});
     })
   };
@@ -2591,7 +2560,7 @@ KINDER50_PRODUCTS.forEach(p => {
   const card = document.createElement('div');
   card.className = 'product-card';
   card.innerHTML = `
-    <div class="thumb${p.imgBack ? ' thumb-pair' : ''}">
+    <div class="thumb${p.imgBack ? ' thumb-pair' : ' thumb-single'}">
       <img src="${p.img}" alt="${p.name} front preview" loading="lazy">
       ${p.imgBack ? `<img src="${p.imgBack}" alt="${p.name} back preview" loading="lazy">` : ''}
     </div>
@@ -2710,6 +2679,17 @@ if (!document.getElementById('k50Lightbox')) {
     if (e.key === 'Escape' && lb.classList.contains('show')) closeLightbox();
   });
 }
+
+// 100 Days of Drip (coming soon): one shirt, switch the photo by color
+(() => {
+  const sel = document.getElementById('dripColor');
+  const img = document.getElementById('dripImg');
+  if (!sel || !img) return;
+  sel.addEventListener('change', () => {
+    img.src = 'images/100days/drip-' + sel.value + '.jpg';
+    img.alt = '100 Days of Drip tee in ' + sel.options[sel.selectedIndex].text;
+  });
+})();
 
 // Tab switching — Softball/Baseball, Soccer, School, Custom Printing
 document.getElementById('tabBar').addEventListener('click', (e) => {
