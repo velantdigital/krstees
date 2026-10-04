@@ -8,7 +8,7 @@
 <link rel="apple-touch-icon" href="images/logo/krs-tees-star-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Graduate&family=Kaushan+Script&display=swap" rel="stylesheet">
 <!-- PayPal Client ID for the KRSTees app is filled in below. This is the PUBLIC id, safe to have in
      a page's source — never put the Secret here or anywhere in this file. enable-funding=venmo is what makes
      the separate Venmo button appear alongside the PayPal one. -->
@@ -334,6 +334,23 @@
   .product-card .btn{padding:10px 16px;font-size:.9rem;margin-top:4px;}
 
   .product-card .thumb img{cursor:zoom-in;}
+
+  /* live "your name on the shirt" preview (customizable Kindergarten 50 cards) */
+  .product-card .thumb.thumb-pair .cell{width:50%;height:100%;flex:none;overflow:hidden;position:relative;display:flex;justify-content:center;}
+  .imgbox{position:relative;height:100%;aspect-ratio:600/1100;flex:none;container-type:inline-size;}
+  .product-card .thumb.thumb-pair .imgbox img{width:100%;height:100%;flex:none;object-fit:cover;display:block;}
+  .nameov{position:absolute;display:none;align-items:center;justify-content:center;transform:translate(-50%,-50%);pointer-events:none;text-align:center;}
+  .nameov.on{display:flex;}
+  .nameov-t{display:inline-block;white-space:nowrap;line-height:1;}
+  .nameov-t.block{font-family:'Graduate','Rockwell','Georgia',serif;font-weight:400;letter-spacing:.03em;}
+  .nameov-t.script{font-family:'Kaushan Script','Brush Script MT',cursive;font-weight:400;filter:drop-shadow(0 .5px .6px rgba(0,0,0,.45));
+    background:repeating-linear-gradient(62deg,var(--c) 0 1.1px,color-mix(in srgb,var(--c) 72%,#000) 1.1px 2.2px);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;padding:0 .05em;}
+  .k50LbBox{display:none;}
+  .k50LbBox .imgbox{height:min(88vh,1000px);background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.5);}
+  .k50LbBox .imgbox img{width:100%;height:100%;object-fit:cover;display:block;}
+  #k50Lightbox.showbox .k50LbBox{display:block;}
+  #k50Lightbox.showbox > img{display:none;}
   #k50Lightbox{
     display:none;
     position:fixed;
@@ -1108,8 +1125,8 @@
 
   <!-- 100 DAYS OF SCHOOL (coming soon — not orderable yet): ONE shirt, five color options -->
   <section class="card" id="drip100">
-    <h2>100 Days of Drip</h2>
-    <p class="sub">Coming soon, &ldquo;100 Days of School&rdquo; shirts! One fun design, five tee colors &mdash; ordering opens soon.</p>
+    <h2>100 Days of School &mdash; Coming Soon</h2>
+    <p class="sub">&ldquo;100 Days of School&rdquo; shirts are coming soon, and more designs will be added! First up: 100 Days of Drip, one fun design in five tee colors.</p>
     <div class="product-grid" id="drip100Grid">
       <div class="product-card">
         <div class="thumb"><img id="dripImg" src="images/100days/drip-carolina-blue.jpg" alt="100 Days of Drip tee in Carolina Blue" loading="lazy"></div>
@@ -1330,7 +1347,7 @@ const NV_SALES_TAX_RATE = 0.08375;
 // date: reload once to pick up the new one, and if it is still stale after that,
 // refuse to render the checkout buttons rather than take a wrong-amount payment.
 // Bump SITE_BUILD_ID and version.json together on every deploy that changes money.
-const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v19';
+const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v20';
 let siteBuildStale = false;
 
 function showStaleNotice(){
@@ -2534,6 +2551,20 @@ refreshWolvesButtersoftCustomizer();
 // cart line's backText carries the actual name through to the Orders Hub / receipt.
 const KINDER50_SIZES = ["YXS","YS","YM"];
 const KINDER50_CUSTOM_PRICE = 5;
+// Live name preview: where/how the typed name shows on the product photo. All values are
+// percentages of the 600x1100 photo (x/y = center of the name, w/h = box size), size is the
+// max font size in % of the photo width, bg (optional) hides the sample text underneath.
+const NAME_PREVIEW = {
+  'k50-sandy':           { side:'front', x:38.3, y:36.6, w:16, h:4.6, font:'script', size:10, color:'#1a1a1a', bg:'#eacfd5', caps:false },
+  'k50-pinstripe':       { side:'back',  x:50, y:27, w:44, h:0,  font:'script', size:11, color:'#f4e6bd', caps:false },
+  'k50-pinstripe-red':   { side:'back',  x:50, y:26, w:44, h:0,  font:'script', size:11, color:'#f6efe0', caps:false },
+  'k50-baseball-50':     { side:'back',  x:50, y:34, w:62, h:0,  font:'block',  size:10, color:'#c4262e', caps:true },
+  'k50-baseball-peaches':{ side:'front', x:35.8, y:40, w:17, h:0, font:'script', size:6.5, color:'#b3161f', caps:false },
+  'k50-bowling':         { side:'front', x:40.5, y:40.2, w:13, h:0, font:'script', size:7.5, color:'#141414', caps:false },
+  'k50-diner':           { side:'front', x:36.3, y:37.5, w:9.5, h:2.4, rot:-9, font:'script', size:5.2, color:'#111', bg:'#ffffff', caps:true },
+  'k50-poodle-bandana':  { side:'front', x:31, y:44, w:20, h:0, font:'script', size:8, color:'#1a1a1a', caps:false },
+  'k50-poodle-collar':   { side:'front', x:31, y:44, w:20, h:0, font:'script', size:8, color:'#1a1a1a', caps:false }
+};
 const KINDER50_PRODUCTS = [
   { key:'k50-tbirds', price:25, name:'T-Birds Tee (Front Only)', img:'images/kinder50/tbirds.jpg', color:'Black', blurb:"Faux distressed screen-print T-Birds swallow logo — printed on a Black blank. Front only, no back design." },
   { key:'k50-tbirds-jacket', price:30, name:'T-Birds Leather Jacket Tee', img:'images/kinder50/tbirds-jacket.jpg', imgBack:'images/kinder50/tbirds-jacket-back.jpg', color:'Black', blurb:"Faux leather motorcycle jacket layered over a white tee on the front, T-Birds swallow logo on the back — printed on a Black blank." },
@@ -2542,8 +2573,8 @@ const KINDER50_PRODUCTS = [
   { key:'k50-pinstripe', price:25, name:'Blue 50s Varsity Sweater', img:'images/kinder50/pinstripe-fiftydays.jpg', imgBack:'images/kinder50/pinstripe-fiftydays-back.jpg', color:'Heather Navy', blurb:"Faux wool letterman cardigan look with a faux chenille “50” patch across the chest and a ribbed knit waistband — printed on a Heather Navy tee.", customizable:true, customPlacement:'small script name on the back' },
   { key:'k50-pinstripe-red', price:25, name:'Red 50s Varsity Sweater', img:'images/kinder50/pinstripe-red.jpg', imgBack:'images/kinder50/pinstripe-red-back.jpg', color:'Heather Red', blurb:"Faux wool letterman cardigan look with faux chenille “K” and “50” patches and a ribbed knit waistband — printed on a Heather Red tee.", customizable:true, customPlacement:'small script name on the back' },
   { key:'k50-baseball-50', price:30, name:'Baseball Jersey Tee', img:'images/kinder50/baseball-50.jpg', imgBack:'images/kinder50/baseball-50-back.jpg', color:'Cream', blurb:"Faux pinstripe baseball jersey print with a script “Fifty Days” front and a bold “50” on the back — printed on a Cream blank.", customizable:true, customPlacement:'custom name on the back in sports jersey block letter font' },
-  { key:'k50-baseball-peaches', price:30, name:'“Peaches” Baseball Tee', img:'images/kinder50/baseball-peaches.jpg', imgBack:'images/kinder50/baseball-peaches-back.jpg', color:'Cream', blurb:"Faux vintage pinstripe baseball jersey print, A League of Their Own-inspired “Peaches” look — printed on a Cream blank.", customizable:true, customPlacement:'custom name on the back in sports jersey block letter font' },
-  { key:'k50-bowling', price:30, name:'Bowling Night Tee', img:'images/kinder50/bowling.jpg', imgBack:'images/kinder50/bowling-back.jpg', color:'Diving Blue', blurb:"Faux retro bowling-shirt print, “Gutter Greasers” and a slanted “50” on the back — printed on a Diving Blue blank.", customizable:true, customPlacement:'optional nametag on the back' },
+  { key:'k50-baseball-peaches', price:30, name:'“Peaches” Baseball Tee', img:'images/kinder50/baseball-peaches.jpg', imgBack:'images/kinder50/baseball-peaches-back.jpg', color:'Cream', blurb:"Faux vintage pinstripe baseball jersey print, A League of Their Own-inspired “Peaches” look — printed on a Cream blank.", customizable:true, customPlacement:'faux-embroidered name on the front, opposite the patch' },
+  { key:'k50-bowling', price:30, name:'Bowling Night Tee', img:'images/kinder50/bowling.jpg', imgBack:'images/kinder50/bowling-back.jpg', color:'Diving Blue', blurb:"Faux retro bowling-shirt print, “Gutter Greasers” and a slanted “50” on the back — printed on a Diving Blue blank.", customizable:true, customPlacement:'faux-embroidered name on the front, left chest' },
   { key:'k50-diner', price:30, name:'50th Day Diner Tee', img:'images/kinder50/diner.jpg', imgBack:'images/kinder50/diner-back.jpg', color:'White', blurb:"Faux diner-apron print with a faux satin bow-tie, a stitched-look oval “BRUH” patch (or customize it with your own name), and a “50th Day Diner” patch — printed on a White blank.", customizable:true, customPlacement:'name patch in place of “BRUH”' },
   { key:'k50-poodle-bandana', price:30, name:'Poodle Black Scarf Tee', img:'images/kinder50/poodle-black.jpg', imgBack:'images/kinder50/poodle-black-back.jpg', color:'White', blurb:"Faux sequin poodle appliqué with a glitter-gold “50” and a faux satin polka-dot bandana collar — printed on a White blank.", customizable:true, customPlacement:'small name patch below the collar' },
   { key:'k50-poodle-collar', price:30, name:'Poodle Pink Collar Tee', img:'images/kinder50/poodle-pink.jpg', imgBack:'images/kinder50/poodle-pink-back.jpg', color:'White', blurb:"Faux sequin poodle appliqué with a glitter-gold “50” and a faux felt scalloped collar with pearl buttons — printed on a White blank.", customizable:true, customPlacement:'small name patch below the collar' }
@@ -2559,10 +2590,17 @@ const kinder50GridEl = document.getElementById('kinder50Grid');
 KINDER50_PRODUCTS.forEach(p => {
   const card = document.createElement('div');
   card.className = 'product-card';
+  const NP = NAME_PREVIEW[p.key];
+  const ovHtml = (side) => (NP && NP.side === side)
+    ? `<span class="nameov" style="left:${NP.x}%;top:${NP.y}%;width:${NP.w}%;${NP.h ? `height:${NP.h}%;` : ''}${NP.rot ? `transform:translate(-50%,-50%) rotate(${NP.rot}deg);` : ''}${NP.bg ? `background:${NP.bg};box-shadow:0 0 3px 3px ${NP.bg};border-radius:3px;` : ''}"><span class="nameov-t ${NP.font}" style="color:${NP.color};--c:${NP.color};"></span></span>`
+    : '';
+  const cellHtml = (src, alt, side) => `<span class="cell"><span class="imgbox"><img src="${src}" alt="${alt}" loading="lazy">${ovHtml(side)}</span></span>`;
   card.innerHTML = `
     <div class="thumb${p.imgBack ? ' thumb-pair' : ' thumb-single'}">
-      <img src="${p.img}" alt="${p.name} front preview" loading="lazy">
-      ${p.imgBack ? `<img src="${p.imgBack}" alt="${p.name} back preview" loading="lazy">` : ''}
+      ${NP && p.imgBack
+        ? cellHtml(p.img, `${p.name} front preview`, 'front') + cellHtml(p.imgBack, `${p.name} back preview`, 'back')
+        : `<img src="${p.img}" alt="${p.name} front preview" loading="lazy">
+      ${p.imgBack ? `<img src="${p.imgBack}" alt="${p.name} back preview" loading="lazy">` : ''}`}
     </div>
     <div class="pinfo">
       <h3>${p.name}</h3>
@@ -2594,19 +2632,37 @@ KINDER50_PRODUCTS.forEach(p => {
   const priceEl = card.querySelector('.k50Price');
   const toggleEl = card.querySelector('.k50CustomToggle');
   const nameEl = card.querySelector('.k50CustomName');
+  const ovEl = card.querySelector('.nameov');
+  const updateNamePreview = () => {
+    if (!ovEl || !NP) return;
+    const raw = nameEl.value.trim();
+    const on = !!(toggleEl && toggleEl.checked && raw);
+    ovEl.classList.toggle('on', on);
+    if (!on) return;
+    const txt = ovEl.firstElementChild;
+    txt.textContent = NP.caps ? raw.toUpperCase() : raw;
+    txt.style.fontSize = NP.size + 'cqw';
+    const box = ovEl.parentElement;
+    const avail = box.clientWidth * NP.w / 100;
+    const natural = txt.getBoundingClientRect().width;
+    if (avail > 0 && natural > avail) txt.style.fontSize = (NP.size * avail / natural) + 'cqw';
+  };
+  if (ovEl && document.fonts && document.fonts.ready) document.fonts.ready.then(updateNamePreview);
   if (toggleEl) {
     toggleEl.addEventListener('change', () => {
       nameEl.style.display = toggleEl.checked ? 'block' : 'none';
       priceEl.textContent = money(p.price + (toggleEl.checked ? KINDER50_CUSTOM_PRICE : 0));
       if (!toggleEl.checked) nameEl.value = '';
+      updateNamePreview();
     });
+    nameEl.addEventListener('input', updateNamePreview);
   }
 
   card.querySelector('.k50Add').addEventListener('click', () => {
     const size = card.querySelector('.k50Size').value;
     const qty = Math.max(1, parseInt(card.querySelector('.k50Qty').value || '1', 10));
     const wantsCustom = !!(toggleEl && toggleEl.checked);
-    const customName = wantsCustom ? nameEl.value.trim() : '';
+    const customName = wantsCustom ? (NP && NP.caps ? nameEl.value.trim().toUpperCase() : nameEl.value.trim()) : '';
     if (wantsCustom && !customName) {
       alert('Please enter the name to print, or uncheck "Customize name."');
       nameEl.focus();
@@ -2645,14 +2701,22 @@ if (!document.getElementById('k50Lightbox')) {
   lb.innerHTML = `
     <button type="button" class="k50LightboxClose" aria-label="Close">&times;</button>
     <img src="" alt="">
+    <div class="k50LbBox"></div>
     <div class="k50LightboxCaption"></div>
   `;
   document.body.appendChild(lb);
 
   const lbImg = lb.querySelector('img');
   const lbCaption = lb.querySelector('.k50LightboxCaption');
+  const lbBox = lb.querySelector('.k50LbBox');
 
-  const openLightbox = (src, alt) => {
+  const openLightbox = (src, alt, srcBox) => {
+    lb.classList.remove('showbox');
+    lbBox.innerHTML = '';
+    if (srcBox && srcBox.querySelector('.nameov.on')) {
+      lbBox.appendChild(srcBox.cloneNode(true));
+      lb.classList.add('showbox');
+    }
     lbImg.src = src;
     lbImg.alt = alt || '';
     lbCaption.textContent = alt || '';
@@ -2660,6 +2724,8 @@ if (!document.getElementById('k50Lightbox')) {
   };
   const closeLightbox = () => {
     lb.classList.remove('show');
+    lb.classList.remove('showbox');
+    lbBox.innerHTML = '';
     lbImg.src = '';
   };
 
@@ -2668,7 +2734,7 @@ if (!document.getElementById('k50Lightbox')) {
     gridEl.addEventListener('click', (e) => {
       const img = e.target.closest('.thumb img');
       if (!img) return;
-      openLightbox(img.src, img.alt);
+      openLightbox(img.src, img.alt, img.closest('.imgbox'));
     });
   });
   lb.querySelector('.k50LightboxClose').addEventListener('click', closeLightbox);
