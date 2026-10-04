@@ -575,9 +575,9 @@
 </section>
 
 <div class="tab-bar" id="tabBar">
-  <button type="button" class="tab-btn active" data-tab="softball">Softball / Baseball</button>
+  <button type="button" class="tab-btn" data-tab="softball">Softball / Baseball</button>
   <button type="button" class="tab-btn" data-tab="soccer">Soccer</button>
-  <button type="button" class="tab-btn" data-tab="school">School</button>
+  <button type="button" class="tab-btn active" data-tab="school">School</button>
   <button type="button" class="tab-btn" data-tab="custom">Custom Printing</button>
 </div>
 
@@ -586,7 +586,7 @@
   <div id="confirmBanner"></div>
 
   <!-- ============ TAB: SOFTBALL / BASEBALL ============ -->
-  <div class="tab-panel" id="tab-softball" data-tab-panel="softball">
+  <div class="tab-panel" id="tab-softball" data-tab-panel="softball" hidden>
 
   <h2 class="tab-section-heading">For the Players</h2>
 
@@ -1076,7 +1076,7 @@
   <!-- ============ END TAB: SOCCER ============ -->
 
   <!-- ============ TAB: SCHOOL ============ -->
-  <div class="tab-panel" id="tab-school" data-tab-panel="school" hidden>
+  <div class="tab-panel" id="tab-school" data-tab-panel="school">
 
 
   <!-- KINDERGARTEN 50s (fixed design, fixed color per style, youth XS-M) -->
@@ -1088,6 +1088,8 @@
     <table class="size-chart-table" id="kinder50Chart"></table>
     <div class="product-grid" id="kinder50Grid"></div>
   </section>
+
+  <p style="text-align:center;font-weight:700;color:var(--coral-dark);margin:18px 0 6px;">Coming soon, “100 Days of School” shirts.</p>
 
   </div>
   <!-- ============ END TAB: SCHOOL ============ -->
@@ -1267,7 +1269,7 @@ const NV_SALES_TAX_RATE = 0.08375;
 // date: reload once to pick up the new one, and if it is still stale after that,
 // refuse to render the checkout buttons rather than take a wrong-amount payment.
 // Bump SITE_BUILD_ID and version.json together on every deploy that changes money.
-const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v7';
+const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v8';
 let siteBuildStale = false;
 
 function showStaleNotice(){
@@ -2590,6 +2592,13 @@ document.getElementById('tabBar').addEventListener('click', (e) => {
   if (taglineEl) taglineEl.style.display = (target === 'school') ? 'none' : '';
   window.scrollTo({ top: document.getElementById('tabBar').offsetTop - 10, behavior: 'smooth' });
 });
+
+// Keep the hero tagline in sync with whichever tab is active by default on load
+(() => {
+  const activeBtn = document.querySelector('.tab-btn.active');
+  const taglineEl = document.querySelector('.hero .tagline');
+  if (activeBtn && taglineEl) taglineEl.style.display = (activeBtn.dataset.tab === 'school') ? 'none' : '';
+})();
 
 document.getElementById('orderForm').addEventListener('submit', function(e){
   e.preventDefault();
