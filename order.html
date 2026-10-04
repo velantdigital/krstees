@@ -330,6 +330,54 @@
   .product-card .row2{gap:8px;}
   .product-card .btn{padding:10px 16px;font-size:.9rem;margin-top:4px;}
 
+  .product-card .thumb img{cursor:zoom-in;}
+  #k50Lightbox{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:rgba(20,15,8,.88);
+    align-items:center;
+    justify-content:center;
+    padding:30px;
+  }
+  #k50Lightbox.show{display:flex;}
+  #k50Lightbox img{
+    max-width:min(92vw,900px);
+    max-height:88vh;
+    object-fit:contain;
+    border-radius:10px;
+    box-shadow:0 10px 40px rgba(0,0,0,.5);
+    background:#fff;
+  }
+  #k50Lightbox .k50LightboxClose{
+    position:absolute;
+    top:18px;
+    right:22px;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:none;
+    background:rgba(255,255,255,.92);
+    color:#222;
+    font-size:1.4rem;
+    line-height:40px;
+    text-align:center;
+    cursor:pointer;
+    padding:0;
+  }
+  #k50Lightbox .k50LightboxCaption{
+    position:absolute;
+    bottom:24px;
+    left:0;
+    right:0;
+    text-align:center;
+    color:#fff;
+    font-size:.9rem;
+    font-weight:600;
+    text-shadow:0 1px 4px rgba(0,0,0,.6);
+  }
+
   /* cart */
   #cartSection.empty #cartBody{display:none;}
   #cartSection:not(.empty) #cartEmptyMsg{display:none;}
@@ -1218,7 +1266,7 @@ const NV_SALES_TAX_RATE = 0.08375;
 // date: reload once to pick up the new one, and if it is still stale after that,
 // refuse to render the checkout buttons rather than take a wrong-amount payment.
 // Bump SITE_BUILD_ID and version.json together on every deploy that changes money.
-const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v4';
+const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v5';
 let siteBuildStale = false;
 
 function showStaleNotice(){
@@ -2387,19 +2435,19 @@ refreshWolvesButtersoftCustomizer();
 const KINDER50_SIZES = ["XS (2-4)","S (6-8)","M (10-12)"];
 const KINDER50_CUSTOM_PRICE = 5;
 const KINDER50_PRODUCTS = [
-  { key:'k50-pinstripe', price:30, name:'Fifty Days Pinstripe Jersey', img:'images/kinder50/pinstripe-fiftydays.jpg', imgBack:'images/kinder50/pinstripe-fiftydays-back.jpg', color:'Navy', blurb:"Script “Fifty Days” pinstripe baseball jersey look — printed on a Navy blank.", customizable:true, customPlacement:'small script name on the back' },
-  { key:'k50-pinstripe-red', price:30, name:'Fifty Days Pinstripe Jersey — Red', img:'images/kinder50/pinstripe-red.jpg', imgBack:'images/kinder50/pinstripe-red-back.jpg', color:'Red', blurb:"Script “Fifty Days” pinstripe baseball jersey look in red — printed on a Red blank.", customizable:true, customPlacement:'small script name on the back' },
   { key:'k50-tbirds', price:25, name:'T-Birds Tee (Front Only)', img:'images/kinder50/tbirds.jpg', color:'Black', blurb:"Distressed T-Birds swallow logo — printed on a Black blank. Front only, no back design." },
   { key:'k50-tbirds-jacket', price:30, name:'T-Birds Varsity Jacket Tee', img:'images/kinder50/tbirds-jacket.jpg', imgBack:'images/kinder50/tbirds-jacket-back.jpg', color:'Black', blurb:"Varsity bomber jacket look with the T-Birds logo — printed on a Black blank." },
-  { key:'k50-garage', price:30, name:'Garage Tee', img:'images/kinder50/garage-champ.jpg', imgBack:'images/kinder50/garage-back.jpg', color:'Carbon', blurb:"Mechanic-shop look, “BRUH” front patch (or customize it with your own name) and a “50th Day Garage” hot-rod back patch — printed on a Carbon blank.", customizable:true, customPlacement:'name patch in place of “BRUH”' },
-  { key:'k50-bowling', price:30, name:'Bowling Night Tee', img:'images/kinder50/bowling.jpg', imgBack:'images/kinder50/bowling-back.jpg', color:'Diving Blue', blurb:"Retro bowling shirt look, “Gutter Greasers” and a slanted “50” on the back — printed on a Diving Blue blank." },
-  { key:'k50-diner', price:30, name:'50th Day Diner Tee', img:'images/kinder50/diner.jpg', imgBack:'images/kinder50/diner-back.jpg', color:'White', blurb:"Diner apron and bow-tie look — printed on a White blank.", customizable:true, customPlacement:'small script name on the apron tag' },
   { key:'k50-sandy', price:30, name:'Sandy & Pink Ladies Tee', img:'images/kinder50/sandy.jpg', imgBack:'images/kinder50/pink-ladies-back.jpg', color:'Pink', blurb:"“Sandy” polka-dot bandana collar graphic on the front, “Pink Ladies” script on the back — printed on a Pink blank.", customizable:true, customPlacement:'child\'s name in place of “Sandy” on the front' },
+  { key:'k50-ro-collar', price:30, name:'R.O. Collar & Rydell Tee', img:'images/kinder50/ro-collar.jpg', imgBack:'images/kinder50/rydell-back.jpg', color:'White', blurb:"Collared tee with a megaphone “R” graphic on the front, arched “Rydell” script on the back — printed on a White blank." },
+  { key:'k50-pinstripe', price:30, name:'Fifty Days Pinstripe Jersey', img:'images/kinder50/pinstripe-fiftydays.jpg', imgBack:'images/kinder50/pinstripe-fiftydays-back.jpg', color:'Navy', blurb:"Script “Fifty Days” pinstripe baseball jersey look — printed on a Navy blank.", customizable:true, customPlacement:'small script name on the back' },
+  { key:'k50-pinstripe-red', price:30, name:'Fifty Days Pinstripe Jersey — Red', img:'images/kinder50/pinstripe-red.jpg', imgBack:'images/kinder50/pinstripe-red-back.jpg', color:'Red', blurb:"Script “Fifty Days” pinstripe baseball jersey look in red — printed on a Red blank.", customizable:true, customPlacement:'small script name on the back' },
+  { key:'k50-baseball-50', price:30, name:'Fifty Days Baseball Jersey', img:'images/kinder50/baseball-50.jpg', imgBack:'images/kinder50/baseball-50-back.jpg', color:'Natural', blurb:"Pinstripe baseball jersey with a bold “50” on the back — printed on a Natural blank.", customizable:true, customPlacement:'small script name on the back' },
+  { key:'k50-baseball-peaches', price:30, name:'“Peaches” Baseball Tee', img:'images/kinder50/baseball-peaches.jpg', imgBack:'images/kinder50/baseball-peaches-back.jpg', color:'Cream', blurb:"A League of Their Own-inspired “Peaches” baseball look — printed on a Cream blank.", customizable:true, customPlacement:'small script name on the back' },
+  { key:'k50-garage', price:30, name:'Garage Tee', img:'images/kinder50/garage-champ.jpg', imgBack:'images/kinder50/garage-back.jpg', color:'Carbon', blurb:"Mechanic-shop look, “BRUH” front patch (or customize it with your own name) and a “50th Day Garage” hot-rod back patch — printed on a Carbon blank.", customizable:true, customPlacement:'name patch in place of “BRUH”' },
+  { key:'k50-bowling', price:30, name:'Bowling Night Tee', img:'images/kinder50/bowling.jpg', imgBack:'images/kinder50/bowling-back.jpg', color:'Diving Blue', blurb:"Retro bowling shirt look, “Gutter Greasers” and a slanted “50” on the back — printed on a Diving Blue blank.", customizable:true, customPlacement:'optional nametag on the back' },
+  { key:'k50-diner', price:30, name:'50th Day Diner Tee', img:'images/kinder50/diner.jpg', imgBack:'images/kinder50/diner-back.jpg', color:'White', blurb:"Diner apron and bow-tie look — printed on a White blank.", customizable:true, customPlacement:'small script name on the apron tag' },
   { key:'k50-poodle-bandana', price:30, name:'Poodle Skirt Set — Black Bandana', img:'images/kinder50/poodle-black.jpg', imgBack:'images/kinder50/poodle-black-back.jpg', color:'White', blurb:"50s poodle-skirt look with a black polka-dot bandana collar and a gold “50” — printed on a White blank.", customizable:true, customPlacement:'small name patch below the collar' },
-  { key:'k50-poodle-collar', price:30, name:'Poodle Skirt Set — Pink Collar', img:'images/kinder50/poodle-pink.jpg', imgBack:'images/kinder50/poodle-pink-back.jpg', color:'White', blurb:"50s poodle-skirt look with a pink scallop collar and a gold “50” — printed on a White blank.", customizable:true, customPlacement:'small name patch below the collar' },
-  { key:'k50-baseball-50', price:30, name:'Fifty Days Baseball Jersey', img:'images/kinder50/baseball-50.jpg', imgBack:'images/kinder50/baseball-50-back.jpg', color:'Natural', blurb:"Pinstripe baseball jersey with a bold “50” on the back — printed on a Natural blank." },
-  { key:'k50-baseball-peaches', price:30, name:'“Peaches” Baseball Tee', img:'images/kinder50/baseball-peaches.jpg', imgBack:'images/kinder50/baseball-peaches-back.jpg', color:'Cream', blurb:"A League of Their Own-inspired “Peaches” baseball look — printed on a Cream blank." },
-  { key:'k50-ro-collar', price:30, name:'R.O. Collar & Rydell Tee', img:'images/kinder50/ro-collar.jpg', imgBack:'images/kinder50/rydell-back.jpg', color:'White', blurb:"Collared tee with a megaphone “R” graphic on the front, arched “Rydell” script on the back — printed on a White blank." }
+  { key:'k50-poodle-collar', price:30, name:'Poodle Skirt Set — Pink Collar', img:'images/kinder50/poodle-pink.jpg', imgBack:'images/kinder50/poodle-pink-back.jpg', color:'White', blurb:"50s poodle-skirt look with a pink scallop collar and a gold “50” — printed on a White blank.", customizable:true, customPlacement:'small name patch below the collar' }
 ];
 
 buildSizeChart(document.getElementById('kinder50Chart'), YOUTH_MEASUREMENTS);
@@ -2488,6 +2536,45 @@ KINDER50_PRODUCTS.forEach(p => {
   });
   kinder50GridEl.appendChild(card);
 });
+
+// Click-to-zoom lightbox for Kindergarten 50 product photos
+if (!document.getElementById('k50Lightbox')) {
+  const lb = document.createElement('div');
+  lb.id = 'k50Lightbox';
+  lb.innerHTML = `
+    <button type="button" class="k50LightboxClose" aria-label="Close">&times;</button>
+    <img src="" alt="">
+    <div class="k50LightboxCaption"></div>
+  `;
+  document.body.appendChild(lb);
+
+  const lbImg = lb.querySelector('img');
+  const lbCaption = lb.querySelector('.k50LightboxCaption');
+
+  const openLightbox = (src, alt) => {
+    lbImg.src = src;
+    lbImg.alt = alt || '';
+    lbCaption.textContent = alt || '';
+    lb.classList.add('show');
+  };
+  const closeLightbox = () => {
+    lb.classList.remove('show');
+    lbImg.src = '';
+  };
+
+  kinder50GridEl.addEventListener('click', (e) => {
+    const img = e.target.closest('.thumb img');
+    if (!img) return;
+    openLightbox(img.src, img.alt);
+  });
+  lb.querySelector('.k50LightboxClose').addEventListener('click', closeLightbox);
+  lb.addEventListener('click', (e) => {
+    if (e.target === lb) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lb.classList.contains('show')) closeLightbox();
+  });
+}
 
 // Tab switching — Softball/Baseball, Soccer, School, Custom Printing
 document.getElementById('tabBar').addEventListener('click', (e) => {
