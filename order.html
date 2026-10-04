@@ -1226,6 +1226,29 @@
     <p class="sub" id="cartEmptyMsg">Nothing in your cart yet — add a design above.</p>
     <div id="cartBody">
       <div id="cartLines"></div>
+      <div class="row2" style="margin:14px 0 0;">
+        <div class="field" style="margin-bottom:8px;">
+          <label for="cartChildName">Child&rsquo;s name (required)</label>
+          <input type="text" id="cartChildName" placeholder="Child&rsquo;s first &amp; last name">
+        </div>
+        <div class="field" style="margin-bottom:8px;">
+          <label for="cartChildClass">Child&rsquo;s class / teacher (required)</label>
+          <input type="text" id="cartChildClass" placeholder="e.g. Mrs. Smith, Room 4">
+        </div>
+        <div class="field" style="margin-bottom:8px;">
+          <label for="cartParentName">Parent name</label>
+          <input type="text" id="cartParentName" autocomplete="name" placeholder="Parent / guardian name">
+        </div>
+        <div class="field" style="margin-bottom:8px;">
+          <label for="cartParentMobile">Parent mobile</label>
+          <input type="tel" id="cartParentMobile" autocomplete="tel" placeholder="(555) 555-5555">
+        </div>
+        <div class="field" style="margin-bottom:8px;">
+          <label for="cartParentEmail">Parent email</label>
+          <input type="email" id="cartParentEmail" autocomplete="email" placeholder="you@example.com">
+        </div>
+      </div>
+      <p class="form-note" id="cartNamesErr" style="display:none;color:var(--coral-dark);font-weight:700;margin:0 0 8px;">Please enter your child&rsquo;s name and class so we can deliver the right shirts.</p>
       <div class="cart-subtotal-row"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div>
       <div class="cart-subtotal-row"><span>Sales Tax (Clark County, NV &middot; 8.375%)</span><span id="cartTax">$0.00</span></div>
       <div class="cart-total"><span>Total</span><span id="cartTotal">$0.00</span></div>
@@ -1282,7 +1305,7 @@ const NV_SALES_TAX_RATE = 0.08375;
 // date: reload once to pick up the new one, and if it is still stale after that,
 // refuse to render the checkout buttons rather than take a wrong-amount payment.
 // Bump SITE_BUILD_ID and version.json together on every deploy that changes money.
-const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v15';
+const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v16';
 let siteBuildStale = false;
 
 function showStaleNotice(){
@@ -1358,7 +1381,7 @@ function renderCart(){
           <button type="button" class="remove" data-key="${l.key}">Remove</button>
         </div>
       </div>
-      <input type="text" class="cart-note" data-key="${l.key}" placeholder="Customization request (e.g. no nametag, add nametag)" value="${(l.customNote || '').replace(/"/g, '&quot;')}">
+      <input type="text" class="cart-note" data-key="${l.key}" placeholder="Special instructions (e.g. no nametag, add nametag)" value="${(l.customNote || '').replace(/"/g, '&quot;')}">
     </div>
   `).join('');
   linesEl.querySelectorAll('.remove').forEach(btn => {
@@ -1407,12 +1430,30 @@ function renderCheckoutButtons(subtotal, tax, total){
   if (siteBuildStale) { showStaleNotice(); return; }
 
   const orderConfig = {
+    onClick: (data, actions) => {
+      const childInput = document.getElementById('cartChildName');
+      const classInput = document.getElementById('cartChildClass');
+      const errEl = document.getElementById('cartNamesErr');
+      if (!childInput.value.trim() || !classInput.value.trim()) {
+        errEl.style.display = 'block';
+        (childInput.value.trim() ? classInput : childInput).focus();
+        return actions.reject();
+      }
+      errEl.style.display = 'none';
+      return actions.resolve();
+    },
     createOrder: (data, actions) => actions.order.create({
       purchase_units: [{ amount: { value: total.toFixed(2) } }]
     }),
     onApprove: (data, actions) => actions.order.capture().then((details) => {
       const payer = (details && details.payer) || {};
       const payerName = payer.name ? `${payer.name.given_name || ''} ${payer.name.surname || ''}`.trim() : '';
+      const val = id => document.getElementById(id).value.trim();
+      const parentName = val('cartParentName') || payerName;
+      const parentMobile = val('cartParentMobile');
+      const parentEmail = val('cartParentEmail') || payer.email_address || '';
+      const childName = val('cartChildName');
+      const childClass = val('cartChildClass');
       const itemsSummary = cart.map(l =>
         `${l.name} — ${l.variantLabel} (${l.size}${l.number ? ' · #' + l.number : ''}) x${l.qty}${l.customNote ? ' [Note: ' + l.customNote + ']' : ''}`
       ).join('; ');
@@ -1432,7 +1473,12 @@ function renderCheckoutButtons(subtotal, tax, total){
       logOrderToHub({
         type: 'cart',
         name: payerName,
-        email: payer.email_address || '',
+        parentName: parentName,
+        parentMobile: parentMobile,
+        parentEmail: parentEmail,
+        childName: childName,
+        childClass: childClass,
+        email: parentEmail,
         items: itemsSummary,
         lineItems: lineItems,
         subtotal: subtotal.toFixed(2),
@@ -1442,6 +1488,8 @@ function renderCheckoutButtons(subtotal, tax, total){
       });
 
       cart = [];
+      ['cartChildName','cartChildClass','cartParentName','cartParentMobile','cartParentEmail']
+        .forEach(id => { document.getElementById(id).value = ''; });
       renderCart();
       const banner = document.getElementById('confirmBanner');
       banner.style.display = 'block';
