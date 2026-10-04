@@ -1305,7 +1305,7 @@ const NV_SALES_TAX_RATE = 0.08375;
 // date: reload once to pick up the new one, and if it is still stale after that,
 // refuse to render the checkout buttons rather than take a wrong-amount payment.
 // Bump SITE_BUILD_ID and version.json together on every deploy that changes money.
-const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v16';
+const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v17';
 let siteBuildStale = false;
 
 function showStaleNotice(){
@@ -1466,6 +1466,7 @@ function renderCheckoutButtons(subtotal, tax, total){
         color: l.color || '',
         back: l.backText || '',
         note: l.customNote || '',
+        img: l.img || '',
         qty: l.qty,
         unitPrice: l.price,
         lineTotal: +(l.price * l.qty).toFixed(2)
@@ -2603,7 +2604,8 @@ KINDER50_PRODUCTS.forEach(p => {
       color: p.color,
       logo: p.name,
       placement: wantsCustom ? p.customPlacement : '',
-      backText: customName
+      backText: customName,
+      img: new URL(p.img, location.href).href
     });
     renderCart();
     document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
