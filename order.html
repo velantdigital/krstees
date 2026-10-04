@@ -1295,7 +1295,12 @@
         </div>
         <div class="field" style="margin-bottom:8px;">
           <label for="cartChildClass">Child&rsquo;s class / teacher (required)</label>
-          <input type="text" id="cartChildClass" placeholder="e.g. Mrs. Smith, Room 4">
+          <select id="cartChildClass">
+            <option value="">Select class&hellip;</option>
+            <option value="KA">KA</option>
+            <option value="KB">KB</option>
+            <option value="KC">KC</option>
+          </select>
         </div>
         <div class="field" style="margin-bottom:8px;">
           <label for="cartParentName">Parent name</label>
@@ -1310,7 +1315,7 @@
           <input type="email" id="cartParentEmail" autocomplete="email" placeholder="you@example.com">
         </div>
       </div>
-      <p class="form-note" id="cartNamesErr" style="display:none;color:var(--coral-dark);font-weight:700;margin:0 0 8px;">Please enter your child&rsquo;s name and class so we can deliver the right shirts.</p>
+      <p class="form-note" id="cartNamesErr" style="display:none;color:var(--coral-dark);font-weight:700;margin:0 0 8px;">Please enter your child&rsquo;s name and choose their class (KA, KB or KC) so we can deliver the right shirts.</p>
       <div class="cart-subtotal-row"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div>
       <div class="cart-subtotal-row"><span>Sales Tax (Clark County, NV &middot; 8.375%)</span><span id="cartTax">$0.00</span></div>
       <div class="cart-total"><span>Total</span><span id="cartTotal">$0.00</span></div>
@@ -1368,7 +1373,7 @@ const NV_SALES_TAX_RATE = 0.08375;
 // date: reload once to pick up the new one, and if it is still stale after that,
 // refuse to render the checkout buttons rather than take a wrong-amount payment.
 // Bump SITE_BUILD_ID and version.json together on every deploy that changes money.
-const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v26';
+const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v27';
 let siteBuildStale = false;
 
 function showStaleNotice(){
