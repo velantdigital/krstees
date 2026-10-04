@@ -325,7 +325,7 @@
   .product-card .thumb.thumb-pair img{width:50%;height:100%;flex:none;}
   .product-card .pinfo{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1;}
   .product-card h3{margin:0;font-size:1rem;}
-  .product-card .price{font-weight:800;color:var(--coral-dark);font-size:1.05rem;}
+  .product-card .price{font-weight:800;color:var(--coral-dark);font-size:1.05rem;margin-top:auto;}
   .product-card select,.product-card input[type=number]{padding:8px;font-size:.85rem;}
   .product-card .row2{gap:8px;}
   .product-card .btn{padding:10px 16px;font-size:.9rem;margin-top:4px;}
@@ -1282,7 +1282,7 @@ const NV_SALES_TAX_RATE = 0.08375;
 // date: reload once to pick up the new one, and if it is still stale after that,
 // refuse to render the checkout buttons rather than take a wrong-amount payment.
 // Bump SITE_BUILD_ID and version.json together on every deploy that changes money.
-const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v14';
+const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v15';
 let siteBuildStale = false;
 
 function showStaleNotice(){
