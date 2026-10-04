@@ -8,7 +8,7 @@
 <link rel="apple-touch-icon" href="images/logo/krs-tees-star-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Graduate&family=Kaushan+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Graduate&family=Kaushan+Script&family=Yellowtail&family=Sacramento&display=swap" rel="stylesheet">
 <!-- PayPal Client ID for the KRSTees app is filled in below. This is the PUBLIC id, safe to have in
      a page's source — never put the Secret here or anywhere in this file. enable-funding=venmo is what makes
      the separate Venmo button appear alongside the PayPal one. -->
@@ -354,6 +354,9 @@
       repeating-linear-gradient(58deg,var(--c) 0 .034em,var(--cl) .034em .052em,var(--c) .052em .09em);
     -webkit-background-clip:text;background-clip:text;}
   /* faux chenille ("fuzzy") varsity letters: felt border + fuzzy halo, yarn-textured letter on top */
+  .nameov-t.script.cursive-pink{font-family:'Yellowtail','Brush Script MT',cursive;}
+  .nameov-t.script.cursive-loop{font-family:'Sacramento','Brush Script MT',cursive;-webkit-text-stroke:.055em var(--cd);letter-spacing:.02em;}
+  .nameov-t.script.cursive-loop::after{-webkit-text-stroke:.03em transparent;}
   .nameov-t.chenille{position:relative;font-family:'Graduate','Rockwell','Georgia',serif;font-weight:400;letter-spacing:.07em;padding:0 .12em;
     color:#f2e8cf;-webkit-text-stroke:.2em #f2e8cf;paint-order:stroke fill;
     text-shadow:.07em 0 .045em #f2e8cf,-.07em 0 .045em #f2e8cf,0 .07em .045em #f2e8cf,0 -.07em .045em #f2e8cf,.05em .05em .045em #f2e8cf,-.05em -.05em .045em #f2e8cf,.05em -.05em .045em #f2e8cf,-.05em .05em .045em #f2e8cf;
@@ -1365,7 +1368,7 @@ const NV_SALES_TAX_RATE = 0.08375;
 // date: reload once to pick up the new one, and if it is still stale after that,
 // refuse to render the checkout buttons rather than take a wrong-amount payment.
 // Bump SITE_BUILD_ID and version.json together on every deploy that changes money.
-const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v25';
+const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v26';
 let siteBuildStale = false;
 
 function showStaleNotice(){
@@ -2573,15 +2576,15 @@ const KINDER50_CUSTOM_PRICE = 5;
 // percentages of the 600x1100 photo (x/y = center of the name, w/h = box size), size is the
 // max font size in % of the photo width, bg (optional) hides the sample text underneath.
 const NAME_PREVIEW = {
-  'k50-sandy':           { side:'front', x:38.3, y:36.6, w:16, h:4.6, font:'script', size:10, color:'#1a1a1a', bg:'#eacfd5', caps:false },
+  'k50-sandy':           { side:'front', x:38.3, y:36.6, w:16, h:4.6, font:'script', cls:'cursive-pink', size:10, color:'#1a1a1a', bg:'#eacfd5', caps:false },
   'k50-pinstripe':       { side:'back',  x:45, y:34, w:40, h:0,  font:'chenille', size:9.5, color:'#e8a820', caps:true },
   'k50-pinstripe-red':   { side:'back',  x:47, y:34, w:40, h:0,  font:'chenille', size:9.5, color:'#e8a820', caps:true },
   'k50-baseball-50':     { side:'back',  x:50, y:34, w:56, h:0,  font:'block',  size:8.6, color:'#c4262e', caps:true },
   'k50-baseball-peaches':{ side:'front', x:35.8, y:40, w:17, h:0, font:'script', size:6.5, color:'#b3161f', caps:false },
   'k50-bowling':         { side:'front', x:40.5, y:40.2, w:13, h:0, font:'script', size:7.5, color:'#141414', caps:false },
   'k50-diner':           { side:'front', x:36.3, y:37.5, w:9.5, h:2.4, rot:-9, font:'script', size:5.2, color:'#111', bg:'#ffffff', caps:true },
-  'k50-poodle-bandana':  { side:'back',  x:50, y:37, w:36, h:0, font:'script', size:10, color:'#e6b422', caps:false },
-  'k50-poodle-collar':   { side:'back',  x:50, y:37, w:36, h:0, font:'script', size:10, color:'#e6b422', caps:false }
+  'k50-poodle-bandana':  { side:'back',  x:50, y:37, w:40, h:0, font:'script', cls:'cursive-loop', size:12, color:'#e6b422', caps:false },
+  'k50-poodle-collar':   { side:'back',  x:50, y:37, w:40, h:0, font:'script', cls:'cursive-loop', size:12, color:'#e6b422', caps:false }
 };
 const KINDER50_PRODUCTS = [
   { key:'k50-tbirds', price:25, name:'T-Birds Tee (Front Only)', img:'images/kinder50/tbirds.jpg', color:'Black', blurb:"Faux distressed screen-print T-Birds swallow logo — printed on a Black blank. Front only, no back design." },
@@ -2610,7 +2613,7 @@ KINDER50_PRODUCTS.forEach(p => {
   card.className = 'product-card';
   const NP = NAME_PREVIEW[p.key];
   const ovHtml = (side) => (NP && NP.side === side)
-    ? `<span class="nameov" style="left:${NP.x}%;top:${NP.y}%;width:${NP.w}%;${NP.h ? `height:${NP.h}%;` : ''}${NP.rot ? `transform:translate(-50%,-50%) rotate(${NP.rot}deg);` : ''}${NP.bg ? `background:${NP.bg};box-shadow:0 0 3px 3px ${NP.bg};border-radius:3px;` : ''}"><span class="nameov-t ${NP.font}" style="color:${NP.color};--c:${NP.color};"></span></span>`
+    ? `<span class="nameov" style="left:${NP.x}%;top:${NP.y}%;width:${NP.w}%;${NP.h ? `height:${NP.h}%;` : ''}${NP.rot ? `transform:translate(-50%,-50%) rotate(${NP.rot}deg);` : ''}${NP.bg ? `background:${NP.bg};box-shadow:0 0 3px 3px ${NP.bg};border-radius:3px;` : ''}"><span class="nameov-t ${NP.font}${NP.cls ? ' ' + NP.cls : ''}" style="color:${NP.color};--c:${NP.color};"></span></span>`
     : '';
   const cellHtml = (src, alt, side) => `<span class="cell"><span class="imgbox"><img src="${src}" alt="${alt}" loading="lazy">${ovHtml(side)}</span></span>`;
   card.innerHTML = `
