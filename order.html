@@ -1304,7 +1304,7 @@ const NV_SALES_TAX_RATE = 0.08375;
 // date: reload once to pick up the new one, and if it is still stale after that,
 // refuse to render the checkout buttons rather than take a wrong-amount payment.
 // Bump SITE_BUILD_ID and version.json together on every deploy that changes money.
-const SITE_BUILD_ID = '2026-10-02-kinder50carbon';
+const SITE_BUILD_ID = '2026-10-04-kinder50-expand';
 let siteBuildStale = false;
 
 function showStaleNotice(){
@@ -2649,11 +2649,20 @@ const KINDER50_CUSTOM_PRICE = 5;
 const KINDER50_PRODUCTS = [
   { key:'k50-letterman-red', name:'Varsity Letterman — Red & Gold', img:'images/kinder50/letterman-red.jpg', color:'Heather Red', blurb:"Cardigan-look tee with gold “K” patch and “50” on the pocket — printed on a Heather Red blank.", customizable:true, customPlacement:'small script name on the bottom pocket' },
   { key:'k50-pinstripe', name:'Fifty Days Pinstripe Jersey', img:'images/kinder50/pinstripe-fiftydays.jpg', color:'Natural', blurb:"Script “Fifty Days” pinstripe baseball jersey look — printed on a Natural blank.", customizable:true, customPlacement:'small script name on the back' },
+  { key:'k50-pinstripe-red', name:'Fifty Days Pinstripe Jersey — Red', img:'images/kinder50/pinstripe-red.jpg', color:'Red', blurb:"Script “Fifty Days” pinstripe baseball jersey look in red — printed on a Red blank.", customizable:true, customPlacement:'small script name on the back' },
   { key:'k50-tbirds', name:'T-Birds Tee', img:'images/kinder50/tbirds.jpg', color:'Black', blurb:"Distressed T-Birds swallow logo — printed on a Black blank." },
+  { key:'k50-tbirds-jacket', name:'T-Birds Varsity Jacket Tee', img:'images/kinder50/tbirds-jacket.jpg', color:'Black', blurb:"Varsity bomber jacket look with the T-Birds logo — printed on a Black blank." },
   { key:'k50-letterman-navy', name:'Varsity Letterman — Blue & Gold', img:'images/kinder50/letterman-navy.jpg', color:'Heather Navy', blurb:"Cardigan-look tee with gold “50” on the front and a plain back — printed on a Heather Navy blank.", customizable:true, customPlacement:'small script name on the bottom pocket' },
   { key:'k50-garage', name:'Champ Garage Tee', img:'images/kinder50/garage-champ.jpg', color:'Carbon', blurb:"Mechanic-shop look, “Champ” front patch and “50th Day Garage” hot-rod back patch — printed on a Carbon blank.", customizable:true, customPlacement:'name patch in place of “Champ”' },
   { key:'k50-bowling', name:'Bowling Night Tee', img:'images/kinder50/bowling.jpg', color:'Turquoise', blurb:"Retro bowling shirt look, “Gutter Greasers” and a slanted “50” on the back — printed on a Turquoise blank." },
-  { key:'k50-diner', name:'50th Day Diner Tee', img:'images/kinder50/diner.jpg', color:'White', blurb:"Diner apron and bow-tie look — printed on a White blank.", customizable:true, customPlacement:'small script name on the apron tag' }
+  { key:'k50-diner', name:'50th Day Diner Tee', img:'images/kinder50/diner.jpg', color:'White', blurb:"Diner apron and bow-tie look — printed on a White blank.", customizable:true, customPlacement:'small script name on the apron tag' },
+  { key:'k50-sandy', name:'Sandy — Date Night Look', img:'images/kinder50/sandy.jpg', color:'White', blurb:"Off-the-shoulder red tie-bow top, Grease-inspired — printed on a White blank." },
+  { key:'k50-pink-ladies', name:'Pink Ladies Jacket', img:'images/kinder50/pink-ladies.jpg', color:'Pink', blurb:"Pink Ladies satin jacket look with a back tie bow — printed on a Pink blank." },
+  { key:'k50-poodle', name:'Poodle Skirt Set', img:'images/kinder50/poodle.jpg', color:'White', blurb:"50s poodle-skirt look with a scallop collar — printed on a White blank.", customizable:true, customPlacement:'small name patch on the collar' },
+  { key:'k50-baseball-50', name:'Fifty Days Baseball Jersey', img:'images/kinder50/baseball-50.jpg', color:'Natural', blurb:"Pinstripe baseball jersey with a bold “50” on the back — printed on a Natural blank." },
+  { key:'k50-baseball-peaches', name:'“Peaches” Baseball Tee', img:'images/kinder50/baseball-peaches.jpg', color:'Cream', blurb:"A League of Their Own-inspired “Peaches” baseball look — printed on a Cream blank." },
+  { key:'k50-ro-collar', name:'R.O. Collar Tee', img:'images/kinder50/ro-collar.jpg', color:'White', blurb:"Collared tee with a megaphone “R” graphic — printed on a White blank." },
+  { key:'k50-rydell', name:'Rydell Tee', img:'images/kinder50/rydell.jpg', color:'White', blurb:"Arched “RYDELL” script back graphic, Grease-inspired — printed on a White blank." }
 ];
 
 const kinder50GridEl = document.getElementById('kinder50Grid');
