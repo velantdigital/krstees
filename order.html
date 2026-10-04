@@ -321,6 +321,8 @@
     padding:10px;
   }
   .product-card .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .product-card .thumb.thumb-pair{padding:0;gap:2px;}
+  .product-card .thumb.thumb-pair img{width:50%;height:100%;flex:none;}
   .product-card .pinfo{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1;}
   .product-card h3{margin:0;font-size:1rem;}
   .product-card .price{font-weight:800;color:var(--coral-dark);font-size:1.05rem;}
@@ -1028,101 +1030,11 @@
   <!-- ============ TAB: SCHOOL ============ -->
   <div class="tab-panel" id="tab-school" data-tab-panel="school" hidden>
 
-  <section class="card">
-    <h2>100 Days of School</h2>
-    <p class="sub">Lock in color and sizing now — drop your 100 Days artwork in whenever it's ready and we'll press it on these. Cotton Tee and Performance Tee, kids and adult sizes, every color.</p>
-  </section>
-
-  <!-- SCHOOL COTTON TEE CUSTOMIZER -->
-  <section class="card" id="customize-school-tee">
-    <h2>100 Days Cotton Tee</h2>
-    <p class="sub">Unisex Light Cotton T-Shirt — modern classic fit, narrow rib collar, taped neck &amp; shoulders. Adult and Youth sizing, all 6 colors.</p>
-
-    <div class="customizer-grid">
-      <div>
-        <div class="preview-stage" id="schoolTeePreviewStage">
-          <img class="baseShirt" id="schoolTeePreviewShirt" src="images/tee/ash-front.jpg" alt="100 Days Cotton Tee preview">
-        </div>
-        <p class="fabric-note" id="schoolTeeFabricNote">100% U.S. cotton.</p>
-      </div>
-
-      <div>
-        <span class="cust-label">Color</span>
-        <div class="swatch-row" id="schoolTeeColorSwatches"></div>
-
-        <span class="cust-label" style="margin-top:10px;">Fit</span>
-        <div class="seg-toggle" id="schoolTeeFitToggle">
-          <button type="button" data-fit="adult" class="active">Adult</button>
-          <button type="button" data-fit="youth">Youth</button>
-        </div>
-
-        <div class="row2" style="margin-top:12px;">
-          <div class="field" style="margin-bottom:0;">
-            <label for="schoolTeeSize">Size</label>
-            <select id="schoolTeeSize"></select>
-          </div>
-          <div class="field" style="margin-bottom:0;">
-            <label for="schoolTeeQty">Qty</label>
-            <input type="number" id="schoolTeeQty" min="1" value="1">
-          </div>
-        </div>
-        <button type="button" class="size-chart-link" id="schoolTeeSizeChartToggle">View size chart</button>
-        <table class="size-chart-table" id="schoolTeeAdultChart"></table>
-        <table class="size-chart-table" id="schoolTeeYouthChart"></table>
-
-        <div class="cust-price" id="schoolTeePrice">$25.00</div>
-        <button type="button" class="btn block" id="addSchoolTee">Add to Cart</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- SCHOOL PERFORMANCE TEE CUSTOMIZER -->
-  <section class="card" id="customize-school-perf">
-    <h2>100 Days Performance Tee</h2>
-    <p class="sub">100% polyester moisture-management &amp; antimicrobial performance fabric. Adult and Youth sizing, all 4 colors.</p>
-
-    <div class="customizer-grid">
-      <div>
-        <div class="preview-stage" id="schoolPerfPreviewStage">
-          <img class="baseShirt" id="schoolPerfPreviewShirt" src="images/perf/black-front.jpg" alt="100 Days Performance Tee preview">
-        </div>
-        <p class="fabric-note">100% polyester moisture-management/antimicrobial performance fabric.</p>
-      </div>
-
-      <div>
-        <span class="cust-label">Color</span>
-        <div class="swatch-row" id="schoolPerfColorSwatches"></div>
-
-        <span class="cust-label" style="margin-top:10px;">Fit</span>
-        <div class="seg-toggle" id="schoolPerfFitToggle">
-          <button type="button" data-fit="adult" class="active">Adult</button>
-          <button type="button" data-fit="youth">Youth</button>
-        </div>
-
-        <div class="row2" style="margin-top:12px;">
-          <div class="field" style="margin-bottom:0;">
-            <label for="schoolPerfSize">Size</label>
-            <select id="schoolPerfSize"></select>
-          </div>
-          <div class="field" style="margin-bottom:0;">
-            <label for="schoolPerfQty">Qty</label>
-            <input type="number" id="schoolPerfQty" min="1" value="1">
-          </div>
-        </div>
-        <button type="button" class="size-chart-link" id="schoolPerfSizeChartToggle">View size chart</button>
-        <table class="size-chart-table" id="schoolPerfAdultChart"></table>
-        <table class="size-chart-table" id="schoolPerfYouthChart"></table>
-
-        <div class="cust-price" id="schoolPerfPrice">$25.00</div>
-        <button type="button" class="btn block" id="addSchoolPerf">Add to Cart</button>
-      </div>
-    </div>
-  </section>
 
   <!-- KINDERGARTEN 50s (fixed design, fixed color per style, youth XS-M) -->
   <section class="card" id="kinder50">
     <h2>Kindergarten 50s</h2>
-    <p class="sub">50th Day of School costume tees — each style is a fixed design on one tee color (shown in the photo), youth sizing XS–M. $25 each.</p>
+    <p class="sub">50th Day of School costume tees — each style is a fixed design on one tee color with a graphic pressed on (shown in the photo), youth sizing XS–M. $25–$30 depending on style — see each card for its price.</p>
     <div class="product-grid" id="kinder50Grid"></div>
   </section>
 
@@ -1304,7 +1216,7 @@ const NV_SALES_TAX_RATE = 0.08375;
 // date: reload once to pick up the new one, and if it is still stale after that,
 // refuse to render the checkout buttons rather than take a wrong-amount payment.
 // Bump SITE_BUILD_ID and version.json together on every deploy that changes money.
-const SITE_BUILD_ID = '2026-10-04-kinder50-pricing';
+const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v2';
 let siteBuildStale = false;
 
 function showStaleNotice(){
@@ -2465,179 +2377,6 @@ document.getElementById('addWolvesButtersoft').addEventListener('click', () => {
 
 refreshWolvesButtersoftCustomizer();
 
-// ======= SCHOOL / 100 DAYS — COTTON TEE (no logo yet, all 6 colors, adult+youth) =======
-buildSizeChart(document.getElementById('schoolTeeAdultChart'), ADULT_MEASUREMENTS);
-buildSizeChart(document.getElementById('schoolTeeYouthChart'), YOUTH_MEASUREMENTS);
-
-const schoolTeeColorSwatchesEl = document.getElementById('schoolTeeColorSwatches');
-TEE_COLORS.forEach(c => {
-  const wrap = document.createElement('div');
-  wrap.className = 'swatch-wrap';
-  wrap.innerHTML = `<div class="swatch" data-color="${c.key}" style="background-image:url('${c.swatch}')" title="${c.label}"></div><span class="swatch-label">${c.label}</span>`;
-  schoolTeeColorSwatchesEl.appendChild(wrap);
-});
-
-let schoolTeeState = { color: 'ash', fit: 'adult', price: ADULT_PRICE };
-let schoolTeeSizeChartShown = false;
-
-function refreshSchoolTeeCustomizer(){
-  const color = TEE_COLORS.find(c => c.key === schoolTeeState.color);
-  setPreviewSrc(document.getElementById('schoolTeePreviewShirt'), color.img);
-  document.getElementById('schoolTeeFabricNote').textContent = color.fabric;
-  schoolTeeColorSwatchesEl.querySelectorAll('.swatch').forEach(el =>
-    el.classList.toggle('active', el.dataset.color === schoolTeeState.color));
-
-  document.getElementById('schoolTeeFitToggle').querySelectorAll('button').forEach(b =>
-    b.classList.toggle('active', b.dataset.fit === schoolTeeState.fit));
-
-  const sizeEl = document.getElementById('schoolTeeSize');
-  const prevVal = sizeEl.value;
-  const sizes = schoolTeeState.fit === 'adult' ? ADULT_SIZES : YOUTH_SIZES;
-  sizeEl.innerHTML = sizes.map(s => `<option>${s}</option>`).join('');
-  if (sizes.includes(prevVal)) sizeEl.value = prevVal;
-  else if (sizes.includes('M')) sizeEl.value = 'M';
-
-  document.getElementById('schoolTeeAdultChart').classList.toggle('show', schoolTeeSizeChartShown && schoolTeeState.fit === 'adult');
-  document.getElementById('schoolTeeYouthChart').classList.toggle('show', schoolTeeSizeChartShown && schoolTeeState.fit === 'youth');
-
-  schoolTeeState.price = schoolTeeState.fit === 'adult' ? ADULT_PRICE : YOUTH_PRICE;
-  document.getElementById('schoolTeePrice').textContent = money(schoolTeeState.price);
-}
-
-schoolTeeColorSwatchesEl.addEventListener('click', e => {
-  const el = e.target.closest('.swatch');
-  if (!el) return;
-  schoolTeeState.color = el.dataset.color;
-  refreshSchoolTeeCustomizer();
-});
-document.getElementById('schoolTeeFitToggle').addEventListener('click', e => {
-  const btn = e.target.closest('button');
-  if (!btn) return;
-  schoolTeeState.fit = btn.dataset.fit;
-  refreshSchoolTeeCustomizer();
-});
-document.getElementById('schoolTeeSize').addEventListener('change', refreshSchoolTeeCustomizer);
-document.getElementById('schoolTeeSizeChartToggle').addEventListener('click', () => {
-  schoolTeeSizeChartShown = !schoolTeeSizeChartShown;
-  document.getElementById('schoolTeeSizeChartToggle').textContent = schoolTeeSizeChartShown ? 'Hide size chart' : 'View size chart';
-  refreshSchoolTeeCustomizer();
-});
-
-document.getElementById('addSchoolTee').addEventListener('click', () => {
-  const color = TEE_COLORS.find(c => c.key === schoolTeeState.color);
-  const size = document.getElementById('schoolTeeSize').value;
-  const qty = Math.max(1, parseInt(document.getElementById('schoolTeeQty').value || '1', 10));
-  const fitLabel = schoolTeeState.fit === 'adult' ? 'Adult' : 'Youth';
-  const key = `school-tee|${schoolTeeState.color}|${schoolTeeState.fit}|${size}`;
-  const existing = cart.find(l => l.key === key);
-  if (existing) existing.qty += qty;
-  else cart.push({
-    key,
-    name: '100 Days Cotton Tee',
-    variantLabel: '100 Days Cotton Tee — design added once artwork is ready',
-    size: `${fitLabel} ${size} · ${color.label}`,
-    number: '',
-    qty,
-    price: schoolTeeState.price,
-    fit: fitLabel,
-    sizeOnly: size,
-    color: color.label,
-    logo: '(TBD — 100 Days artwork)',
-    placement: '',
-    backText: ''
-  });
-  renderCart();
-  document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
-
-refreshSchoolTeeCustomizer();
-
-// ======= SCHOOL / 100 DAYS — PERFORMANCE TEE (no logo yet, all 4 colors, adult+youth) =======
-buildSizeChart(document.getElementById('schoolPerfAdultChart'), PERF_MEASUREMENTS);
-buildSizeChart(document.getElementById('schoolPerfYouthChart'), YOUTH_MEASUREMENTS);
-
-const schoolPerfColorSwatchesEl = document.getElementById('schoolPerfColorSwatches');
-PERF_COLORS.forEach(c => {
-  const wrap = document.createElement('div');
-  wrap.className = 'swatch-wrap';
-  wrap.innerHTML = `<div class="swatch" data-color="${c.key}" style="background-image:url('${c.swatch}')" title="${c.label}"></div><span class="swatch-label">${c.label}</span>`;
-  schoolPerfColorSwatchesEl.appendChild(wrap);
-});
-
-let schoolPerfState = { color: 'black', fit: 'adult', price: PERF_PRICE };
-let schoolPerfSizeChartShown = false;
-
-function refreshSchoolPerfCustomizer(){
-  const color = PERF_COLORS.find(c => c.key === schoolPerfState.color);
-  setPreviewSrc(document.getElementById('schoolPerfPreviewShirt'), color.img);
-  schoolPerfColorSwatchesEl.querySelectorAll('.swatch').forEach(el =>
-    el.classList.toggle('active', el.dataset.color === schoolPerfState.color));
-
-  document.getElementById('schoolPerfFitToggle').querySelectorAll('button').forEach(b =>
-    b.classList.toggle('active', b.dataset.fit === schoolPerfState.fit));
-
-  const sizeEl = document.getElementById('schoolPerfSize');
-  const prevVal = sizeEl.value;
-  const sizes = schoolPerfState.fit === 'adult' ? PERF_SIZES : YOUTH_SIZES;
-  sizeEl.innerHTML = sizes.map(s => `<option>${s}</option>`).join('');
-  if (sizes.includes(prevVal)) sizeEl.value = prevVal;
-  else if (sizes.includes('M')) sizeEl.value = 'M';
-
-  document.getElementById('schoolPerfAdultChart').classList.toggle('show', schoolPerfSizeChartShown && schoolPerfState.fit === 'adult');
-  document.getElementById('schoolPerfYouthChart').classList.toggle('show', schoolPerfSizeChartShown && schoolPerfState.fit === 'youth');
-
-  schoolPerfState.price = schoolPerfState.fit === 'adult' ? PERF_PRICE : YOUTH_PRICE;
-  document.getElementById('schoolPerfPrice').textContent = money(schoolPerfState.price);
-}
-
-schoolPerfColorSwatchesEl.addEventListener('click', e => {
-  const el = e.target.closest('.swatch');
-  if (!el) return;
-  schoolPerfState.color = el.dataset.color;
-  refreshSchoolPerfCustomizer();
-});
-document.getElementById('schoolPerfFitToggle').addEventListener('click', e => {
-  const btn = e.target.closest('button');
-  if (!btn) return;
-  schoolPerfState.fit = btn.dataset.fit;
-  refreshSchoolPerfCustomizer();
-});
-document.getElementById('schoolPerfSize').addEventListener('change', refreshSchoolPerfCustomizer);
-document.getElementById('schoolPerfSizeChartToggle').addEventListener('click', () => {
-  schoolPerfSizeChartShown = !schoolPerfSizeChartShown;
-  document.getElementById('schoolPerfSizeChartToggle').textContent = schoolPerfSizeChartShown ? 'Hide size chart' : 'View size chart';
-  refreshSchoolPerfCustomizer();
-});
-
-document.getElementById('addSchoolPerf').addEventListener('click', () => {
-  const color = PERF_COLORS.find(c => c.key === schoolPerfState.color);
-  const size = document.getElementById('schoolPerfSize').value;
-  const qty = Math.max(1, parseInt(document.getElementById('schoolPerfQty').value || '1', 10));
-  const fitLabel = schoolPerfState.fit === 'adult' ? 'Adult' : 'Youth';
-  const key = `school-perf|${schoolPerfState.color}|${schoolPerfState.fit}|${size}`;
-  const existing = cart.find(l => l.key === key);
-  if (existing) existing.qty += qty;
-  else cart.push({
-    key,
-    name: '100 Days Performance Tee',
-    variantLabel: '100 Days Performance Tee — design added once artwork is ready',
-    size: `${fitLabel} ${size} · ${color.label}`,
-    number: '',
-    qty,
-    price: schoolPerfState.price,
-    fit: fitLabel,
-    sizeOnly: size,
-    color: color.label,
-    logo: '(TBD — 100 Days artwork)',
-    placement: '',
-    backText: ''
-  });
-  renderCart();
-  document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
-
-refreshSchoolPerfCustomizer();
-
 // ======= SCHOOL / KINDERGARTEN 50s — fixed design + color per style, youth XS-M =======
 // Per Anne: customers only ever decide (1) size and (2) — on certain designs only —
 // whether to pay +$5 for a custom name in small script vs. the standard look as shown
@@ -2646,20 +2385,18 @@ refreshSchoolPerfCustomizer();
 const KINDER50_SIZES = ["XS (2-4)","S (6-8)","M (10-12)"];
 const KINDER50_CUSTOM_PRICE = 5;
 const KINDER50_PRODUCTS = [
-  { key:'k50-letterman-red', price:25, name:'Varsity Letterman — Red & Gold', img:'images/kinder50/letterman-red.jpg', color:'Heather Red', blurb:"Cardigan-look tee with gold “K” patch and “50” on the pocket — printed on a Heather Red blank.", customizable:true, customPlacement:'small script name on the bottom pocket' },
   { key:'k50-pinstripe', price:30, name:'Fifty Days Pinstripe Jersey', img:'images/kinder50/pinstripe-fiftydays.jpg', color:'Natural', blurb:"Script “Fifty Days” pinstripe baseball jersey look — printed on a Natural blank.", customizable:true, customPlacement:'small script name on the back' },
   { key:'k50-pinstripe-red', price:30, name:'Fifty Days Pinstripe Jersey — Red', img:'images/kinder50/pinstripe-red.jpg', color:'Red', blurb:"Script “Fifty Days” pinstripe baseball jersey look in red — printed on a Red blank.", customizable:true, customPlacement:'small script name on the back' },
   { key:'k50-tbirds', price:25, name:'T-Birds Tee', img:'images/kinder50/tbirds.jpg', color:'Black', blurb:"Distressed T-Birds swallow logo — printed on a Black blank." },
-  { key:'k50-tbirds-jacket', price:30, name:'T-Birds Varsity Jacket Tee', img:'images/kinder50/tbirds-jacket.jpg', color:'Black', blurb:"Varsity bomber jacket look with the T-Birds logo — printed on a Black blank." },
-  { key:'k50-letterman-navy', price:25, name:'Varsity Letterman — Blue & Gold', img:'images/kinder50/letterman-navy.jpg', color:'Heather Navy', blurb:"Cardigan-look tee with gold “50” on the front and a plain back — printed on a Heather Navy blank.", customizable:true, customPlacement:'small script name on the bottom pocket' },
+  { key:'k50-tbirds-jacket', price:30, name:'T-Birds Varsity Jacket Tee', img:'images/kinder50/tbirds-jacket.jpg', imgBack:'images/kinder50/tbirds-jacket-back.jpg', color:'Black', blurb:"Varsity bomber jacket look with the T-Birds logo — printed on a Black blank." },
   { key:'k50-garage', price:25, name:'Champ Garage Tee', img:'images/kinder50/garage-champ.jpg', color:'Carbon', blurb:"Mechanic-shop look, “Champ” front patch and “50th Day Garage” hot-rod back patch — printed on a Carbon blank.", customizable:true, customPlacement:'name patch in place of “Champ”' },
-  { key:'k50-bowling', price:30, name:'Bowling Night Tee', img:'images/kinder50/bowling.jpg', color:'Turquoise', blurb:"Retro bowling shirt look, “Gutter Greasers” and a slanted “50” on the back — printed on a Turquoise blank." },
-  { key:'k50-diner', price:30, name:'50th Day Diner Tee', img:'images/kinder50/diner.jpg', color:'White', blurb:"Diner apron and bow-tie look — printed on a White blank.", customizable:true, customPlacement:'small script name on the apron tag' },
+  { key:'k50-bowling', price:30, name:'Bowling Night Tee', img:'images/kinder50/bowling.jpg', imgBack:'images/kinder50/bowling-back.jpg', color:'Turquoise', blurb:"Retro bowling shirt look, “Gutter Greasers” and a slanted “50” on the back — printed on a Turquoise blank." },
+  { key:'k50-diner', price:30, name:'50th Day Diner Tee', img:'images/kinder50/diner.jpg', imgBack:'images/kinder50/diner-back.jpg', color:'White', blurb:"Diner apron and bow-tie look — printed on a White blank.", customizable:true, customPlacement:'small script name on the apron tag' },
   { key:'k50-sandy', price:25, name:'Sandy — Date Night Look', img:'images/kinder50/sandy.jpg', color:'White', blurb:"Off-the-shoulder red tie-bow top, Grease-inspired — printed on a White blank." },
   { key:'k50-pink-ladies', price:25, name:'Pink Ladies Jacket', img:'images/kinder50/pink-ladies.jpg', color:'Pink', blurb:"Pink Ladies satin jacket look with a back tie bow — printed on a Pink blank." },
   { key:'k50-poodle', price:30, name:'Poodle Skirt Set', img:'images/kinder50/poodle.jpg', color:'White', blurb:"50s poodle-skirt look with a scallop collar — printed on a White blank.", customizable:true, customPlacement:'small name patch on the collar' },
   { key:'k50-baseball-50', price:30, name:'Fifty Days Baseball Jersey', img:'images/kinder50/baseball-50.jpg', color:'Natural', blurb:"Pinstripe baseball jersey with a bold “50” on the back — printed on a Natural blank." },
-  { key:'k50-baseball-peaches', price:30, name:'“Peaches” Baseball Tee', img:'images/kinder50/baseball-peaches.jpg', color:'Cream', blurb:"A League of Their Own-inspired “Peaches” baseball look — printed on a Cream blank." },
+  { key:'k50-baseball-peaches', price:30, name:'“Peaches” Baseball Tee', img:'images/kinder50/baseball-peaches.jpg', imgBack:'images/kinder50/baseball-peaches-back.jpg', color:'Cream', blurb:"A League of Their Own-inspired “Peaches” baseball look — printed on a Cream blank." },
   { key:'k50-ro-collar', price:25, name:'R.O. Collar Tee', img:'images/kinder50/ro-collar.jpg', color:'White', blurb:"Collared tee with a megaphone “R” graphic — printed on a White blank." },
   { key:'k50-rydell', price:25, name:'Rydell Tee', img:'images/kinder50/rydell.jpg', color:'White', blurb:"Arched “RYDELL” script back graphic, Grease-inspired — printed on a White blank." }
 ];
@@ -2669,7 +2406,10 @@ KINDER50_PRODUCTS.forEach(p => {
   const card = document.createElement('div');
   card.className = 'product-card';
   card.innerHTML = `
-    <div class="thumb"><img src="${p.img}" alt="${p.name} preview" loading="lazy"></div>
+    <div class="thumb${p.imgBack ? ' thumb-pair' : ''}">
+      <img src="${p.img}" alt="${p.name} front preview" loading="lazy">
+      ${p.imgBack ? `<img src="${p.imgBack}" alt="${p.name} back preview" loading="lazy">` : ''}
+    </div>
     <div class="pinfo">
       <h3>${p.name}</h3>
       <p style="margin:0;font-size:.8rem;color:#666;">${p.blurb}</p>
