@@ -1347,7 +1347,7 @@ const NV_SALES_TAX_RATE = 0.08375;
 // date: reload once to pick up the new one, and if it is still stale after that,
 // refuse to render the checkout buttons rather than take a wrong-amount payment.
 // Bump SITE_BUILD_ID and version.json together on every deploy that changes money.
-const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v21';
+const SITE_BUILD_ID = '2026-10-04-kinder50-catalog-v22';
 let siteBuildStale = false;
 
 function showStaleNotice(){
@@ -2621,6 +2621,7 @@ KINDER50_PRODUCTS.forEach(p => {
           <input type="checkbox" class="k50CustomToggle" style="width:auto;">
           Customize name — ${p.customPlacement} (+${money(KINDER50_CUSTOM_PRICE)})
         </label>
+        <p class="k50NameHint" style="display:none;margin:6px 0 0;font-size:.8rem;font-weight:700;color:var(--coral-dark);">Enter name below to see what it will look like on the shirt</p>
         <input type="text" class="k50CustomName" placeholder="Name to print" maxlength="16" style="display:none;margin-top:6px;">
       </div>
       ` : ''}
@@ -2651,6 +2652,8 @@ KINDER50_PRODUCTS.forEach(p => {
   if (toggleEl) {
     toggleEl.addEventListener('change', () => {
       nameEl.style.display = toggleEl.checked ? 'block' : 'none';
+      const hintEl = card.querySelector('.k50NameHint');
+      if (hintEl) hintEl.style.display = toggleEl.checked ? 'block' : 'none';
       priceEl.textContent = money(p.price + (toggleEl.checked ? KINDER50_CUSTOM_PRICE : 0));
       if (!toggleEl.checked) nameEl.value = '';
       updateNamePreview();
