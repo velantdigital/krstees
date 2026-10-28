@@ -28,8 +28,10 @@ if not order_html.exists():
 if not index_html.exists():
     problems.append("index.html is missing")
 if order_html.exists() and index_html.exists():
-    if order_html.read_bytes() != index_html.read_bytes():
-        problems.append("order.html and index.html are NOT identical — index.html is what Vercel actually serves, so this means the live site will NOT match what you think you're shipping. Copy order.html over index.html.")
+    # index.html is now the marketing homepage; order.html is the working store.
+    # They are intentionally DIFFERENT. Make sure index.html links to the store.
+    if b'/order.html' not in index_html.read_bytes():
+        problems.append("index.html (homepage) does not link to /order.html, so customers could not reach the store.")
 
 content = order_html.read_text(encoding="utf-8") if order_html.exists() else ""
 
