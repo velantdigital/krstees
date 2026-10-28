@@ -1169,10 +1169,10 @@
     <div class="product-grid" id="kinder50Grid"></div>
   </section>
 
-  <!-- 100 DAYS OF SCHOOL (coming soon — not orderable yet): ONE shirt, five color options -->
+  <!-- 100 DAYS OF SCHOOL: 100 Days of Drip, one shirt, five color options -->
   <section class="card" id="drip100">
-    <h2>100 Days of School &mdash; Coming Soon</h2>
-    <p class="sub">&ldquo;100 Days of School&rdquo; shirts are coming soon, and more designs will be added! The 100th day of school is Tuesday, January 12, 2027. First up: 100 Days of Drip, one fun design in five tee colors.</p>
+    <h2>100 Days of School</h2>
+    <p class="sub">The 100th day of school is Tuesday, January 12, 2027. 100 Days of Drip comes in five tee colors. See more designs on the <a href="/100days.html">100 Days page</a>.</p>
     <div class="product-grid" id="drip100Grid">
       <div class="product-card">
         <div class="thumb"><img id="dripImg" src="images/100days/drip-carolina-blue.jpg" alt="100 Days of Drip tee in Carolina Blue" loading="lazy"></div>
@@ -1184,8 +1184,9 @@
             <label for="dripColor">Color</label>
             <select id="dripColor"><option value="carolina-blue">Carolina Blue</option><option value="white">White</option><option value="yellow">Yellow</option><option value="diving-blue">Diving Blue</option><option value="azalea">Azalea</option></select>
           </div>
+          <div class="row2"><div class="field" style="margin-bottom:0;"><label for="dripSize">Size</label><select id="dripSize"><option>Youth XS</option><option>Youth S</option><option>Youth M</option><option>Youth L</option><option>Youth XL</option><option>Adult XS</option><option>Adult S</option><option>Adult M</option><option>Adult L</option><option>Adult XL</option></select></div><div class="field" style="margin-bottom:0;"><label for="dripQty">Qty</label><input type="number" id="dripQty" min="1" value="1"></div></div>
           <div class="price">$25.00</div>
-          <button type="button" class="btn block" disabled aria-disabled="true" style="opacity:.65;cursor:not-allowed;">Coming Soon</button>
+          <button type="button" class="btn block" id="dripAdd">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -1314,11 +1315,11 @@
     <div id="cartBody">
       <div id="cartLines"></div>
       <div class="row2" style="margin:14px 0 0;">
-        <div class="field" style="margin-bottom:8px;">
+        <div class="field" id="cartChildNameField" style="margin-bottom:8px;">
           <label for="cartChildName">Child&rsquo;s name (required)</label>
           <input type="text" id="cartChildName" placeholder="Child&rsquo;s first &amp; last name">
         </div>
-        <div class="field" style="margin-bottom:8px;">
+        <div class="field" id="cartChildClassField" style="margin-bottom:8px;">
           <label for="cartChildClass">Child&rsquo;s class / teacher (required)</label>
           <select id="cartChildClass">
             <option value="">Select class&hellip;</option>
@@ -1398,7 +1399,7 @@ const NV_SALES_TAX_RATE = 0.08375;
 // date: reload once to pick up the new one, and if it is still stale after that,
 // refuse to render the checkout buttons rather than take a wrong-amount payment.
 // Bump SITE_BUILD_ID and version.json together on every deploy that changes money.
-const SITE_BUILD_ID = '2026-10-24-deeplinks-v31';
+const SITE_BUILD_ID = '2026-10-28-redesign-drip-v32';
 let siteBuildStale = false;
 
 function showStaleNotice(){
@@ -1458,7 +1459,12 @@ let cart = []; // { key, name, variantLabel, size, number, qty, price }
 
 function money(n){ return `$${n.toFixed(2)}`; }
 
+// Child name and class are only needed for school-delivered Kinder 50s orders
+function cartNeedsClass(){ return cart.some(l => (l.variantLabel || '').startsWith('Kindergarten 50s')); }
 function renderCart(){
+  { const need = cartNeedsClass();
+    ['cartChildNameField','cartChildClassField'].forEach(id => { const el = document.getElementById(id); if (el) el.style.display = need ? '' : 'none'; });
+    if (!need) { const e = document.getElementById('cartNamesErr'); if (e) e.style.display = 'none'; } }
   const section = document.getElementById('cartSection');
   const linesEl = document.getElementById('cartLines');
   section.classList.toggle('empty', cart.length === 0);
@@ -1527,7 +1533,7 @@ function renderCheckoutButtons(subtotal, tax, total){
       const childInput = document.getElementById('cartChildName');
       const classInput = document.getElementById('cartChildClass');
       const errEl = document.getElementById('cartNamesErr');
-      if (!childInput.value.trim() || !classInput.value.trim()) {
+      if (cartNeedsClass() && (!childInput.value.trim() || !classInput.value.trim())) {
         errEl.style.display = 'block';
         (childInput.value.trim() ? classInput : childInput).focus();
         return actions.reject();
@@ -2801,7 +2807,8 @@ if (!document.getElementById('k50Lightbox')) {
   });
 }
 
-// 100 Days of Drip (coming soon): one shirt, switch the photo by color
+// 100 Days of Drip: one shirt, switch the photo by color, add to cart
+const DRIP_PRICE = 25;
 (() => {
   const sel = document.getElementById('dripColor');
   const img = document.getElementById('dripImg');
@@ -2809,6 +2816,36 @@ if (!document.getElementById('k50Lightbox')) {
   sel.addEventListener('change', () => {
     img.src = 'images/100days/drip-' + sel.value + '.jpg';
     img.alt = '100 Days of Drip tee in ' + sel.options[sel.selectedIndex].text;
+  });
+  const addBtn = document.getElementById('dripAdd');
+  if (!addBtn) return;
+  addBtn.addEventListener('click', () => {
+    const color = sel.options[sel.selectedIndex].text;
+    const size = document.getElementById('dripSize').value;
+    const qty = Math.max(1, parseInt(document.getElementById('dripQty').value || '1', 10));
+    const fit = size.startsWith('Adult') ? 'Adult' : 'Youth';
+    const sizeOnly = size.replace(/^(Youth|Adult) /, '');
+    const key = `drip100|${sel.value}|${size}`;
+    const existing = cart.find(l => l.key === key);
+    if (existing) existing.qty += qty;
+    else cart.push({
+      key,
+      name: '100 Days of Drip Tee',
+      variantLabel: `100 Days of School — ${color}`,
+      size,
+      number: '',
+      qty,
+      price: DRIP_PRICE,
+      fit,
+      sizeOnly,
+      color,
+      logo: '100 Days of Drip',
+      placement: 'Front',
+      backText: '',
+      img: new URL('images/100days/drip-' + sel.value + '.jpg', location.href).href
+    });
+    renderCart();
+    document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 })();
 
